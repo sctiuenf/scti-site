@@ -1,12 +1,14 @@
 <?php 
-require_once __DIR__.'/app/utils/root_dir_path.php';
-require_once $root_dir_path.'/app/views/partials/header.php';
+require_once __DIR__.'/utils/root_dir_path.php';
+require_once $root_dir_path.'/views/partials/header.php';
+require_once $root_dir_path.'/models/User.php';
 ?>
 
 <h1>Coming soon.</h1>
+<?php
+if(isset($_SESSION['logged'])){ ?>
+<h2>Bem vindo, <?=$user->getName()?>!</h2>
+<?php } ?>
 
-<a href="<?=$root_url?>/app/user/login">Entrar</a>
-<a href="<?=$root_url?>/app/user/register">Cadastrar</a>
-<a href="#programacao">Programação</a>
 
-<?php require_once $root_dir_path.'/app/views/partials/footer.php' ?>
+<?php require_once $root_dir_path.'/views/partials/footer.php' ?>

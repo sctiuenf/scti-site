@@ -1,0 +1,8 @@
+{
+    "require-dev": {
+    },
+    "require": {
+        "jacobstr/matura": "~0.2",
+        "phpmailer/phpmailer": "^6.0"
+    }
+}
