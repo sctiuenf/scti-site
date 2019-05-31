@@ -1,0 +1,1 @@
+C:\xampp\htdocs\scti\vendor\bin\mat test C:\xampp\htdocs\scti\tests\ -i ".php"

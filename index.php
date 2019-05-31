@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>SCTI 2019</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php 
+require_once __DIR__.'/utils/root_dir_path.php';
+require_once $root_dir_path.'/views/partials/header.php';
+require_once $root_dir_path.'/models/User.php';
+?>
 
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-    </head>
-    <body>
-        <h1>Coming soon.</h1>
+<h1>Coming soon.</h1>
+<?php
+if(isset($_SESSION['logged'])){ ?>
+<h2>Bem vindo, <?=$user->getName()?>!</h2>
+<?php } ?>
 
 
-
-        <script src="js/index.js"></script>
-    </body>
-</html>
+<?php require_once $root_dir_path.'/views/partials/footer.php' ?>
