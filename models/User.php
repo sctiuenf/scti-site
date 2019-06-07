@@ -143,5 +143,27 @@ class User {
         
         return $status;
     }
+
+    public function getEnrollments(){
+        $enrolls = db_select('SELECT e.tituloEvento, e.inicioEvento, e.fotoEvento, e.preRequisitosOrg, e.preRequisitosTec, e.vagasPadrao, e.vagasAlternativas, e.vagasOcupadas, e.vagasAlterOcupadas, i.idMinicurso FROM inscricoes INNER JOIN eventos ON i.idMinicurso=e.idEvento WHERE i.idParticipante=?', $this->id);
+
+        return $enrolls;
+    }
+
+    public function chooseShirt($name, $size){
+        $result = db_select('SELECT idBrinde FROM brindes WHERE tituloBrinde = ? AND tamanhoBrinde = ?', $name, $size);
+
+        if(!$result)
+            throw new Exception('Camisa não existente');
+
+        $shirtId = $result[0]['idBrinde'];
+
+        $currentShirt = db_select('SELECT idBrinde FROM participantes WHERE idParticipante=?', $this->id)[0]['idBrinde'];
+
+        if($shirtId === $currentShirt)
+            throw new Exception('Você já selecionou essa camisa.');
+
+        db_query('UPDATE participantes SET idBrinde=? WHERE idParticipante=?', $shirtId, $this->id);
+    }
 }
 ?>
