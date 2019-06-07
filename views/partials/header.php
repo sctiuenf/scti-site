@@ -13,10 +13,12 @@
 
         <link rel="stylesheet" type="text/css" href="<?=$root_url?>/assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="<?=$root_url?>/assets/css/style.css">
+
+        <script src="<?=$root_url?>/assets/js/libs/jquery-3.4.1.min.js"></script>
     
     </head>
     <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <a class="navbar-brand" href="#">SCTI</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

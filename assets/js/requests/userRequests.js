@@ -81,18 +81,21 @@ $(document).ready(function () {
         form[0].checkValidity();
         form[0].reportValidity();
         
+        showLoader();
         $.ajax({
             type: "post",
             url: "setupForgotPass",
             data: form.serialize(),
             dataType: "json",
             success: function (response) {
+                hideLoader();
                 if(response['success'])
                     alert('Um link para recuperação de senha foi enviado para o email informado. Lembre-se de verificar a caixa de spam :)');
                 else
                     alert(response['message']);
             },
             error: function(e){
+                hideLoader();
                 console.log(e);
             }
         });
