@@ -8,4 +8,5 @@ $root_url = $protocol . "://" . $_SERVER['HTTP_HOST'];
     
 if(strpos($root_url, "localhost") !== false)
     $root_url .= "/scti";
+
 ?>
