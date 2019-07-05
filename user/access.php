@@ -18,16 +18,16 @@ if(isset($_SESSION['logged'])){
             </div>
 
             <?php } ?>
-
-        <h1>Login</h1>
+        
+        
+        <h1 class="mb-4">Login</h1>
             <div class="form-group">
+                <input class="form-control" required name="email" type="email">
                 <label>Email</label>
-                <input class="form-control" required name="email" type="email" placeholder="Email">
             </div>
             <div class="form-group">
-            <label>Senha</label>
-            <input class="form-control" required name="password" type="password" placeholder="Senha">
-               
+                <input class="form-control" required name="password" type="password">
+                <label>Senha</label>
             </div>
             <input class="btn btn-primary" type="submit" value="Entrar">
             <a class="float-right" href="forgotPassword">Esqueci minha senha</a>
@@ -39,36 +39,40 @@ if(isset($_SESSION['logged'])){
     <div class="col-6 d-flex justify-content-center align-items-center">
         <div class="row w-75">
         <form class="w-100" id="create" method="post">
-        <h1>Cadastro</h1>
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-6">
+        <h1 class="mb-4">Cadastro</h1>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <input class="form-control" required name="firstname" type="text" >
                         <label>Nome</label>
-                        <input class="form-control" required name="firstname" type="text" placeholder="Nome">
                     </div>
-                    <div class="col-6">
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <input class="form-control" required name="lastname" type="text">
                         <label>Sobrenome</label>
-                        <input class="form-control" required name="lastname" type="text" placeholder="Sobrenome">
                     </div>
                 </div>
             </div>
             <div class="form-group">
+                <input class="form-control" required name="email" type="email">
                 <label>Email</label>
-                <input class="form-control" required name="email" type="email" placeholder="Email">
             </div>
             <div class="form-group">
+                <input class="form-control" name="phone" type="tel" pattern="[0-9]{11}">
                 <label>Telefone</label>
-                <input class="form-control" name="phone" type="tel" placeholder="Telefone" pattern="[0-9]{11}">
             </div>
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-6">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <input class="form-control" required name="password" type="password">
                         <label>Senha</label>
-                        <input class="form-control" required name="password" type="password" placeholder="Senha">
                     </div>
-                    <div class="col-6">
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <input class="form-control" required name="passwordConfirm" type="password">
                         <label>Confirmar senha</label>
-                        <input class="form-control" required name="passwordConfirm" type="password" placeholder="Nome">
                     </div>
                 </div>
             </div>
