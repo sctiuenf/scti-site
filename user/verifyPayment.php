@@ -6,7 +6,7 @@ if(!isset($_SESSION['logged'])){
     die;
 }
 require_once __DIR__.'/../db/db_functions.php';
-require_once __DIR__.'/../config/sympla.php';
+require_once __DIR__.'/../config/eventBrite.php';
 require_once __DIR__.'/../models/User.php';
 require_once __DIR__.'/../utils/json_utils.php';
 
