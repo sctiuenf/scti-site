@@ -3,6 +3,8 @@
 <script src="<?=$root_url?>/assets/js/index.js"></script>
 <script src="<?=$root_url?>/assets/js/requests/userRequests.js"></script>
 <script src="<?=$root_url?>/assets/js/carousel.js"></script>
+<script src="<?=$root_url?>/assets/js/utils.js"></script>
+<script src="<?=$root_url?>/assets/js/draw.js"></script>
     <!-- Loader -->
     <div id="loader">
         <div class="loader-content">
