@@ -9,23 +9,25 @@ cv.height = cv.clientHeight;
 const GLOBAL_ALPHA = 0.2; //Transpacência com que todos os desenhos serão feitos no canvas, valores validos entre 0 e 1; 0 = transparente, 1 = opaco
 
 //Seção de constantes sobre os NÓS
-const NODE_MIN_RADIUS = 4, NODE_MAX_RADIUS = 6; //Tamanhos mínimo e máximo que os nós podem ter quando criádos (aleatório)
+const NODE_SHAPE_CIRCLE = 'CIRCLE', NODE_SHAPE_SQUARE = 'SQUARE'; //Formatos possíveis para os nós
+const NODE_MIN_SIZE = 5, NODE_MAX_SIZE = 10; //Tamanhos mínimo e máximo que o raio(CIRCULO) ou a metade do lado(QUADRADO) que o nó pode ter(aleatório);
 const NODE_BORDER_WIDTH = 1; //Espessura em pixels da borda do nó
 const NODE_MIN_SPEED = 0.2, NODE_MAX_SPEED = 0.6; //Velocidades mínima e máxima que o nos pode ter ao ser criado (aleatório)
 const NODE_COLOR = 'rgb(255, 255, 255)'; //Cor dos nós em rgb
 const NODE_AMOUNT = (cv.width * cv.height) / 30000; //Quantidade de nós na rede Ex: (cv.width * cv.height) / 10000 resulta em 1 nó por 10 mil de área do canvas
 const NODE_IS_FILLED = false; //Valor booleano que define se os nós terão preenchimento
+const NODE_SHAPE = NODE_SHAPE_SQUARE; //Formato do nó, valores válidos são NODE_SHAPE_CIRCLE e NODE_SHAPE_SQUARE
 
 //Seção de constantes sobre os LINKS
 const LINK_MAX_LENGTH_SQR = 40000; //Distância máxima ao quadrado para a existência de um link entre dois nós
 const LINK_MIN_WEIGHT = 0.5, LINK_MAX_WEIGHT = 1; //Espessuras mínima e máxima do link de acordo com a proximidade dos nós
 const LINK_COLOR = 'rgb(255, 255, 255)'; //Cor dos links em rgb
 const LINK_WEIGHT_IS_DYNAMIC = true; //Define se a força dos links cresce quando os nós estão próximos, caso falso, os nós sempre terão espessura igual a LINK_MAX_WEIGHT
-const LINK_CONECTION_SPEED = 0.03; //Velocidade de conexão e desconexão dos links em % Ex: 0.1 significa que 10% da conexão vai ser desenhada a cada frame
+const LINK_CONECTION_SPEED = 0.05; //Velocidade de conexão e desconexão dos links em % Ex: 0.1 significa que 10% da conexão vai ser desenhada a cada frame
 const LINK_CONNECTION_IS_DYMAMIC = true; //Animação da conexão sendo feita e desfeita é dinâmica ou não
 
 //Classe que define um no da rede
-class Node {    
+class Node {
     constructor() {
         let ang = random(0, 2 * Math.PI);
         let dx = Math.cos(ang);
@@ -36,7 +38,7 @@ class Node {
         this.spd = random(NODE_MIN_SPEED, NODE_MAX_SPEED);
         this.spdX = dx * this.spd;
         this.spdY = dy * this.spd;
-        this.radius = random(NODE_MIN_RADIUS, NODE_MAX_RADIUS);
+        this.size = random(NODE_MIN_SIZE, NODE_MAX_SIZE);
         this.color = NODE_COLOR;
     }
 
@@ -61,7 +63,11 @@ class Node {
         }
         c.lineWidth = NODE_BORDER_WIDTH;
         c.beginPath();
-        c.arc(this.px, this.py, this.radius, 0, 2 * Math.PI);
+        if (NODE_SHAPE == NODE_SHAPE_CIRCLE) {
+            c.arc(this.px, this.py, this.size, 0, 2 * Math.PI);
+        } else {
+            c.rect(this.px - this.size, this.py - this.size, this.size * 2, this.size * 2);
+        }
         if (!NODE_IS_FILLED) {
             c.stroke();
         } else {
