@@ -1,28 +1,31 @@
 var cv = document.getElementById('drawCanvas'); //Elemento html do canvas
 var c = cv.getContext('2d'); //Contexto do canvas onde os desenhos serão feitos
+var frameCount = 0;
 cv.width = cv.clientWidth;
 cv.height = cv.clientHeight;
 
 
 //Seção de constantes sobre o canvas
-const UPDATE_WAIT = 10; //Espera por atualização do canvas em milisegundos
 const GLOBAL_ALPHA = 0.2; //Transpacência com que todos os desenhos serão feitos no canvas, valores validos entre 0 e 1; 0 = transparente, 1 = opaco
 
 //Seção de constantes sobre os NÓS
-const NODE_MIN_RADIUS = 4, NODE_MAX_RADIUS = 8; //Tamanhos mínimo e máximo que os nós podem ter quando criádos (aleatório)
-const NODE_MIN_SPEED = 0.2, NODE_MAX_SPEED = 1; //Velocidades mínima e máxima que o nos pode ter ao ser criado (aleatório)
+const NODE_MIN_RADIUS = 4, NODE_MAX_RADIUS = 6; //Tamanhos mínimo e máximo que os nós podem ter quando criádos (aleatório)
+const NODE_BORDER_WIDTH = 1; //Espessura em pixels da borda do nó
+const NODE_MIN_SPEED = 0.2, NODE_MAX_SPEED = 0.6; //Velocidades mínima e máxima que o nos pode ter ao ser criado (aleatório)
 const NODE_COLOR = 'rgb(255, 255, 255)'; //Cor dos nós em rgb
-const NODE_AMOUNT = (cv.width * cv.height) / 10000; //Quantidade de nós na rede Ex: (cv.width * cv.height) / 10000 resulta em 1 nó por 10 mil de área do canvas
+const NODE_AMOUNT = (cv.width * cv.height) / 30000; //Quantidade de nós na rede Ex: (cv.width * cv.height) / 10000 resulta em 1 nó por 10 mil de área do canvas
 const NODE_IS_FILLED = false; //Valor booleano que define se os nós terão preenchimento
 
 //Seção de constantes sobre os LINKS
-const LINK_MAX_LENGTH_SQR = 14400; //Distância máxima ao quadrado para a existência de um link entre dois nós
-const LINK_MIN_WEIGHT = 0, LINK_MAX_WEIGHT = 2; //Espessuras mínima e máxima do link de acordo com a proximidade dos nós
+const LINK_MAX_LENGTH_SQR = 40000; //Distância máxima ao quadrado para a existência de um link entre dois nós
+const LINK_MIN_WEIGHT = 0.5, LINK_MAX_WEIGHT = 1; //Espessuras mínima e máxima do link de acordo com a proximidade dos nós
 const LINK_COLOR = 'rgb(255, 255, 255)'; //Cor dos links em rgb
-const LINK_WEIGHT_IS_DINAMIC = true; //Define se a força dos links cresce quando os nós estão próximos, caso falso, os nós sempre terão espessura igual a LINK_MAX_WEIGHT
+const LINK_WEIGHT_IS_DYNAMIC = true; //Define se a força dos links cresce quando os nós estão próximos, caso falso, os nós sempre terão espessura igual a LINK_MAX_WEIGHT
+const LINK_CONECTION_SPEED = 0.03; //Velocidade de conexão e desconexão dos links em % Ex: 0.1 significa que 10% da conexão vai ser desenhada a cada frame
+const LINK_CONNECTION_IS_DYMAMIC = true; //Animação da conexão sendo feita e desfeita é dinâmica ou não
 
 //Classe que define um no da rede
-class Node {
+class Node {    
     constructor() {
         let ang = random(0, 2 * Math.PI);
         let dx = Math.cos(ang);
@@ -51,36 +54,91 @@ class Node {
     }
 
     display() {
-        if (!NODE_IS_FILLED) { 
-            c.strokeStyle = this.color; 
-        } else { 
+        if (!NODE_IS_FILLED) {
+            c.strokeStyle = this.color;
+        } else {
             c.fillStyle = this.color;
         }
-        c.lineWidth = 1.5;
+        c.lineWidth = NODE_BORDER_WIDTH;
         c.beginPath();
         c.arc(this.px, this.py, this.radius, 0, 2 * Math.PI);
-        if(!NODE_IS_FILLED){
+        if (!NODE_IS_FILLED) {
             c.stroke();
         } else {
             c.fill();
         }
-        
+
     }
 }
 
 //Classe que define um link entre dois nós
 class Link {
 
-    constructor(n1, n2, strength) {
+    constructor(n1, n2) {
         this.no1 = n1;
         this.no2 = n2;
         this.color = LINK_COLOR;
-        if(LINK_WEIGHT_IS_DINAMIC){
-            this.wid = map(strength, 0, 1, LINK_MIN_WEIGHT, LINK_MAX_WEIGHT);
+        this.size = 0;
+        this.isLinked = false;
+        this.isUnlinked = false;
+        this.linking = true;
+        this.unlinking = false;
+        this.dist;
+        this.wid = LINK_MAX_WEIGHT;
+
+    }
+
+    update() {
+        this.dist = dist2dSqr(this.no1.px, this.no1.py, this.no2.px, this.no2.py);
+
+        if (this.linking) {
+            this.link();
+        } else if (!this.unlinking) {
+            this.checkLink();
         } else {
-            this.wid = LINK_MAX_WEIGHT;
+            this.unlink();
         }
-        
+        if (LINK_WEIGHT_IS_DYNAMIC) this.updateLinkWid();
+        this.display();
+    }
+
+    checkLink() {
+        if (this.dist > LINK_MAX_LENGTH_SQR) {
+            this.unlinking = true;
+            this.isLinked = false;
+        }
+    }
+
+    updateLinkWid() {
+        this.wid = map(this.dist, 0, LINK_MAX_LENGTH_SQR, LINK_MAX_WEIGHT, LINK_MIN_WEIGHT);
+    }
+
+    link() {
+        if (LINK_CONNECTION_IS_DYMAMIC) {
+            this.size += LINK_CONECTION_SPEED;
+            if (this.size >= 1) {
+                this.isLinked = true;
+                this.linking = false;
+            }
+        } else {
+            this.isLinked = true;
+            this.linking = false;
+        }
+    }
+
+    unlink() {
+        if (LINK_CONNECTION_IS_DYMAMIC) {
+            this.size -= LINK_CONECTION_SPEED;
+            if (this.size <= 0) {
+                this.size = 0;
+                this.isUnlinked = true;
+                this.unlinking = false;
+            }
+        } else {
+            this.size = 0;
+            this.isUnlinked = true;
+            this.unlinking = false;
+        }
     }
 
     display() {
@@ -88,7 +146,13 @@ class Link {
         c.lineWidth = this.wid;
         c.beginPath();
         c.moveTo(this.no1.px, this.no1.py);
-        c.lineTo(this.no2.px, this.no2.py);
+        if (this.isLinked) {
+            c.lineTo(this.no2.px, this.no2.py);
+        } else {
+            c.lineTo(this.no1.px + (this.no2.px - this.no1.px) * this.size / 2, this.no1.py + (this.no2.py - this.no1.py) * this.size / 2);
+            c.moveTo(this.no2.px, this.no2.py);
+            c.lineTo(this.no2.px + (this.no1.px - this.no2.px) * this.size / 2, this.no2.py + (this.no1.py - this.no2.py) * this.size / 2);
+        }
         c.stroke();
     }
 }
@@ -97,41 +161,54 @@ var nodes = []; //Array que guarda os nós
 
 //Loop de instanciamento dos nós
 for (let i = 0; i < NODE_AMOUNT; i++) {
-    nodes[i] = new Node();
+    nodes[i] = new Node(false);
 }
 
 var links = []; //Array que guarda os links
 
 //Função que cria os links entre os nós dependendo da distância entre eles
 function buildLinks() {
-    let newLinks = []
+    for (let i = links.length - 1; i >= 0; i--) {
+        if (links[i].isUnlinked) links.splice(i, 1);
+    }
+
     for (let i = 0; i < nodes.length - 1; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
             let distSqr = dist2dSqr(nodes[i].px, nodes[i].py, nodes[j].px, nodes[j].py);
             if (distSqr < LINK_MAX_LENGTH_SQR) {
-                newLinks.push(new Link(nodes[i], nodes[j], map(distSqr, 0, LINK_MAX_LENGTH_SQR, 1, 0)));
+                let linkExists = false;
+
+                for (let k = 0; k < links.length; k++) {
+                    if ((links[k].no1 == nodes[i] && links[k].no2 == nodes[j]) || (links[k].no2 == nodes[i] && links[k].no1 == nodes[j])) {
+                        linkExists = true;
+                        break;
+                    }
+                }
+
+                if (!linkExists) links.push(new Link(nodes[i], nodes[j], map(distSqr, 0, LINK_MAX_LENGTH_SQR, 1, 0)));
             }
         }
     }
 
-    return newLinks;
 }
 
 //Função de desenho anima a rede
 function draw() {
+    frameCount++;
+
     c.clearRect(0, 0, cv.width, cv.height);
 
-    links = buildLinks();
+    buildLinks();
 
     for (let i = 0; i < links.length; i++) {
-        links[i].display();
+        links[i].update();
     }
 
     for (let i = 0; i < nodes.length; i++) {
         nodes[i].update();
     }
 
-    setTimeout(draw, UPDATE_WAIT);
+    window.requestAnimationFrame(draw);
 }
 
 c.globalAlpha = GLOBAL_ALPHA; //Aplicando transparência global dos desenhos no canvas
