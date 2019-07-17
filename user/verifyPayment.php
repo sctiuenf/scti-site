@@ -32,7 +32,8 @@ try{
     $data = json_decode($result);
     
     if(isset($data->error))
-        throw new Exception('Erro ao buscar o pedido.');
+        throw new Exception('Erro ao buscar o pedido: '.$data->error);
+        
     
     curl_close($curl);
 

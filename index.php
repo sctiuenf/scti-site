@@ -93,46 +93,55 @@ require_once $root_dir_path.'/models/User.php';
     </section>
     <section id="programacao" class="container-fluid justify-content-center d-flex">
         <div class="col-12 col-sm-11 col-xl-10">
-            <h2>/ Programação</h2>
+            <h2 style="margin-bottom:3rem;">/ Programação</h2>
+           
+            <section class="day-slider slider">
+                <div class="slide">
+                    <div class="day-circle-container">
+                        <div id="day-4" class="day-circle circle-hovered">4<br>Segunda</div>
+                        <div class="day-circle-border">&nbsp;</div>
+                    </div>
+                </div>
 
-            <div class="scroll-carousel">
-                
-                    <div class="day-circle-container">
-                        <div class="day-circle">4<br>Segunda</div>
+                <div class="slide">
+                    <div class="slide day-circle-container">
+                        <div id="day-5" class="day-circle">5<br>Terça</div>
                         <div class="day-circle-border">&nbsp;</div>
                     </div>
-                
-              
-                    <div class="day-circle-container">
-                        <div class="day-circle">5<br>Terça</div>
-                        <div class="day-circle-border">&nbsp;</div>
-                    </div>
-               
-           
-                    <div class="day-circle-container">
-                        <div class="day-circle">6<br>Quarta</div>
-                        <div class="day-circle-border">&nbsp;</div>
-                    </div>
-              
-         
-                    <div class="day-circle-container">
-                        <div class="day-circle">7<br>Quinta</div>
-                        <div class="day-circle-border">&nbsp;</div>
-                    </div>
-           
-          
-                    <div class="day-circle-container">
-                        <div class="day-circle">8<br>Sexta</div>
-                        <div class="day-circle-border">&nbsp;</div>
-                    </div>
-           
-    
-                    <div class="day-circle-container">
-                        <div class="day-circle">9<br>Sábado</div>
-                        <div class="day-circle-border">&nbsp;</div>
-                    </div>
+                </div>
             
-            </div>
+                <div class="slide">
+                    <div class="slide day-circle-container">
+                        <div id="day-6" class="day-circle">6<br>Quarta</div>
+                        <div class="day-circle-border">&nbsp;</div>
+                    </div>
+                </div>
+            
+                <div class="slide">
+                    <div class="slide day-circle-container">
+                        <div id="day-7" class="day-circle">7<br>Quinta</div>
+                        <div class="day-circle-border">&nbsp;</div>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="slide day-circle-container">
+                        <div id="day-8" class="day-circle">8<br>Sexta</div>
+                        <div class="day-circle-border">&nbsp;</div>
+                    </div>
+                </div>
+        
+                <div class="slide">
+                    <div class="slide day-circle-container">
+                        <div id="day-9" class="day-circle">9<br>Sábado</div>
+                        <div class="day-circle-border">&nbsp;</div>
+                    </div>
+                </div>
+            </section>
+          
+            <section id="programacao-slider" class="card-slider slider">
+                <!-- Programação do evento -->
+            </section>
         </div>
     </section>
     <section class="container-fluid justify-content-center d-flex">
