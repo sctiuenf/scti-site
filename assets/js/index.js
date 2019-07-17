@@ -14,8 +14,8 @@ $(document).ready(function () {
         else label.removeClass ('translated-label');
     });
 
+    //navbarcolor
     navColorAndBtnUp();
-
     if(banner.length){
         $(window).scroll(function(e){
             navColorAndBtnUp();
@@ -31,16 +31,25 @@ $(document).ready(function () {
 });
 
 function navColorAndBtnUp(){
+   
     let scrollPos = $(window).scrollTop();
     let changePoint = banner.innerHeight() - navbar.innerHeight();
 
-    if(scrollPos > changePoint){
-        navbar.addClass('gradient');
-        btnUp.addClass('disp');
+    if(!banner.length || scrollPos > changePoint){
+
+        if(btnUp.css('display') == 'none'){
+            navbar.addClass('gradient');
+
+            if(banner.length){
+                btnUp.css('display', 'flex');
+                btnUp.animate({'opacity': 1}, 100);
+            }
+        }
     }
     else{
         navbar.removeClass('gradient');
-        //btnUp.css('display', 'none');
+        btnUp.css('display', 'none');
+        btnUp.css('opacity', 0);
     }
 }
 

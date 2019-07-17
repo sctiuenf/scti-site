@@ -5,10 +5,49 @@ class Event {
 
     private function __construct(){} 
 
-    public static function getCourseList(){
-        $courses = db_select('SELECT idEvento, tituloEvento, inicioEvento, fotoEvento, preRequisitosOrg, preRequisitosTec, vagasPadrao, vagasAlternativas, vagasOcupadas, vagasAlterOcupadas FROM eventos');
+    public static function getEvents($type = null){
+        if(!$type)
+            $courses = db_select('SELECT * FROM eventos INNER JOIN instrutores ON eventos.idInstrutor=instrutores.idInstrutor');
+        else{
+            $courses = db_select('SELECT * FROM eventos INNER JOIN instrutores ON eventos.idInstrutor=instrutores.idInstrutor WHERE eventos.tipo=?', $type);
+        }
 
         return $courses;
+    }
+
+    public static function getEventsByDay($day){
+
+        $date = '2019-11-'.$day;
+
+        $events = db_select(
+        'SELECT * FROM eventos e 
+            INNER JOIN instrutores i ON e.idInstrutor = i.idInstrutor 
+            INNER JOIN redessociais r ON i.idInstrutor = r.idInstrutor
+                WHERE CAST(e.inicioEvento as DATE) = ? 
+        ORDER BY e.inicioEvento ASC', 
+        $date);
+
+        if($events === null)    
+            return $events;
+
+        //como a junção com a tabela de redes sociais retorna registros duplicados do mesmo evento, é feita a filtragem dos eventos duplicados, e criado uma coluna "redesSociais" contendo as redes sociais associadas a cada instrutor de evento
+        $filteredEvents = array();
+        foreach($events as $event){
+            $idEvento = $event['idEvento'];
+            if(!array_key_exists($idEvento, $filteredEvents)){
+
+                $filteredEvents[$idEvento] = $event;
+
+                $filteredEvents[$idEvento]['redesSociais'] = array(
+                    $event['nomeRede'] => $event['url']
+                );
+            }else{
+
+                $filteredEvents[$idEvento]['redesSociais'][$event['nomeRede']] = $event['url'];
+            }
+        }
+
+        return array_values($filteredEvents);
     }
 
     public static function isEnrolled($userId, $eventId){

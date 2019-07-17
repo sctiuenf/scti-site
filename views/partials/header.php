@@ -11,8 +11,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-       <link rel="stylesheet" type="text/css" href="<?=$root_url?>/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="<?=$root_url?>/assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="<?=$root_url?>/assets/css/style.css">
+        <link rel="stylesheet" type="text/css" href="<?=$root_url?>/assets/css/slick.css">
 
         <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 
