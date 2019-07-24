@@ -11,14 +11,18 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <link rel="icon" href="<?=$root_url?>/favicon.ico">
+
         <link rel="stylesheet" type="text/css" href="<?=$root_url?>/assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="<?=$root_url?>/assets/css/style.css">
         <link rel="stylesheet" type="text/css" href="<?=$root_url?>/assets/css/slick.css">
+        <link rel="stylesheet" type="text/css" href="<?=$root_url?>/assets/css/account.css">
 
         <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree|Open+Sans&display=swap" rel="stylesheet">
 
 
         <script src="<?=$root_url?>/assets/js/libs/jquery-3.4.1.min.js"></script>
+        <script src="<?=$root_url?>/assets/js/libs/popper.js"></script>
         <script src="<?=$root_url?>/assets/js/libs/bootstrap.min.js"></script>
         <script src="<?=$root_url?>/assets/js/libs/fontawesome.js"></script>
     

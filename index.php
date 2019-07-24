@@ -39,7 +39,7 @@ require_once $root_dir_path.'/models/User.php';
                                 </div> 
                             </div>
                             <h3>Palestras</h3>
-                            <div class="row text-justify px-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis veniam eius tempore, facere nam sapiente nulla facilis?</div>
+                            <div class="row text-justify px-3">As palestras são uma ótima oportunidade de aprendizado com vários profissionais de diversas áreas apresentando temas super atuais no mercado de trabalho. Você não pode ficar de fora!!</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
                             <div class="row justify-content-center mb-3">
@@ -48,7 +48,7 @@ require_once $root_dir_path.'/models/User.php';
                                 </div>
                             </div>
                             <h3>Minicursos</h3>
-                            <div class="row text-justify px-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis veniam eius tempore, facere nam sapiente nulla facilis?</div>
+                            <div class="row text-justify px-3">Os minicursos são uma ótima maneira de introduzir técnicas, ferramentas e boas práticas que podem ser essenciais para sua carreira na área de computação. Quer aprender rápido e com uma visão geral do assunto? Então vem!</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
                             <div class="row justify-content-center mb-3">
@@ -57,7 +57,7 @@ require_once $root_dir_path.'/models/User.php';
                                 </div>
                             </div>
                             <h3>Networking</h3>
-                            <div class="row text-justify px-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis veniam eius tempore, facere nam sapiente nulla facilis?</div>
+                            <div class="row text-justify px-3">Um dos pontos altos do evento é a possibilidade de conhecer gente nova da área da informática e afins, em busca de aprendizado, oportunidades e de compartilhar boas histórias. Queremos te conhecer :D</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
                             <div class="row justify-content-center mb-3">
@@ -66,7 +66,7 @@ require_once $root_dir_path.'/models/User.php';
                                 </div>
                             </div>
                             <h3>Coffee-break</h3>
-                            <div class="row text-justify px-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis veniam eius tempore, facere nam sapiente nulla facilis?</div>
+                            <div class="row text-justify px-3">Não precisa ficar com fome durante a SCTI. A gente dá uma pausa, faz uma boquinha, bate um papo e volta com todo gás para mais uma carga de conhecimento. Além disso, a gente capricha nos petiscos!!</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
                             <div class="row justify-content-center mb-3">
@@ -75,7 +75,7 @@ require_once $root_dir_path.'/models/User.php';
                                 </div>
                             </div>
                             <h3>Brindes e sorteios</h3>
-                            <div class="row text-justify px-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis veniam eius tempore, facere nam sapiente nulla facilis?</div>
+                            <div class="row text-justify px-3">Se inscrevendo agora você garante os brindes que a comissão do evento oferece aos participantes. Além dos diversos livros, cursos, cupons de desconto e muitas outras coisas bacanas que são sorteadas para os participantes presentes.</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
                             <div class="row justify-content-center mb-3">
@@ -84,7 +84,7 @@ require_once $root_dir_path.'/models/User.php';
                                 </div>
                             </div>
                             <h3>Competições</h3>
-                            <div class="row text-justify px-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis veniam eius tempore, facere nam sapiente nulla facilis?</div>
+                            <div class="row text-justify px-3">A novidade da edição desse ano são as competições! Teste suas habilidades numa competição de programação, e seja consciente trazendo seu lixo eletrônico para um descarte adequado(e com prêmios hehe).</div>
                         </div>
                     </div>
                 </div>
@@ -146,15 +146,79 @@ require_once $root_dir_path.'/models/User.php';
     </section>
     <section class="container-fluid justify-content-center d-flex">
         <div class="col-12 col-sm-11 col-xl-10">
-            <h2>/ Patrocinadores</h2>
+            <!--<h2>/ Patrocinadores</h2>-->
+
+            <h3 class="text-center">Patrocínio Diamante</h3>
+            <div class="container-fluid sponsors diamante">
+                <div class="row justify-content-center align-items-center">
+                
+                    <img class="img-fluid" src="assets/imgs/patrocinadores/respondeai.jpeg">
+                   
+                </div>
+            </div>
+
+            <h3 class="text-center">Patrocínio Prata</h3>
+            <div class="container-fluid sponsors prata">
+                <div class="row justify-content-around align-items-center">
+                   
+                    <img class="img-fluid" src="assets/imgs/patrocinadores/alura.jpeg">
+                
+                    <img class="img-fluid choices" src="assets/imgs/patrocinadores/choices.jpeg">
+                
+                    <img class="img-fluid" src="assets/imgs/patrocinadores/fortetelecom.jpeg">
+                </div>
+            </div>
+
+            <h3 class="text-center">Patrocínio Bronze</h3>
+            <div class="container-fluid sponsors bronze">
+                <div class="row justify-content-around align-items-center">
+                 
+                    <img class="img-fluid" src="assets/imgs/patrocinadores/cerejanerd.jpeg">
+            
+                    <img class="img-fluid" src="assets/imgs/patrocinadores/infotrade.jpeg">
+            
+                    <img class="img-fluid" src="assets/imgs/patrocinadores/stickersdev.jpeg">
+                  
+                </div>
+            </div>
+
+            <h3 class="text-center">Apoio</h3>
+            <div class="container-fluid sponsors apoio">
+                <div class="row justify-content-around align-items-center">
+                 
+                    <img class="img-fluid" src="assets/imgs/patrocinadores/alobrownie.jpeg">
+                   
+                </div>
+            </div>
+
+            <h3 class="text-center">Apoio institucional</h3>
+            <div class="container-fluid sponsors apoio-inst">
+                <div class="row justify-content-around align-items-center">
+                 
+                    <img class="img-fluid" src="assets/imgs/patrocinadores/computacao.jpeg">
+                
+                    <img class="img-fluid" src="assets/imgs/patrocinadores/uenf.jpeg">
+            
+                    <img class="img-fluid" src="assets/imgs/patrocinadores/prefeituracampos.jpeg">
+                  
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="container-fluid justify-content-center d-flex">
+    <section id="sec-contato" class="container-fluid justify-content-center d-flex">
         <div class="col-12 col-sm-11 col-xl-10">
         <h2>/ Contato</h2>
             <div class="row justify-content-center">
             <div class="col-12 col-md-7 mr-3"> 
+                <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    Sua mensagem foi enviada com sucesso!
+                </div>
+                <div class="alert alert-danger alert-dismissible fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    Falha ao enviar mensagem. Por favor, contate a equipe através do email: sctiuenf@gmail.com.
+                </div>
                     <p>Tem dúvidas, críticas ou sugestões?<br>
                     Tem uma empresa e gostaria de apoiar o evento?<br>
                     Entre em contato com a gente!</p>
@@ -220,8 +284,8 @@ require_once $root_dir_path.'/models/User.php';
         </div>
         
     </section>
-    <div style="position:relative; overflow:hidden;">
-        <iframe style="position:absolute; top:0; left:0; width:100%; height:100%;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3705.4356947356514!2d-41.29398945029754!3d-21.763392303468844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xbdd5908f484d27%3A0x8c06a7ab4cbb9289!2sUENF!5e0!3m2!1spt-BR!2sbr!4v1560035526059!5m2!1spt-BR!2sbr" width="1920" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+    <div style="position:relative; overflow:hidden; height: 200px; width: 100%;">
+        <iframe style="position:absolute; top:-50px; left:0; width:100%; height: calc(100% + 50px);" src="https://www.google.com/maps/d/embed?mid=1XbXpi0odlYGq3b-98rMmPHlTxk5Xz_Et&hl=pt-BR" width="1920" height="200" allowfullscreen frameborder="0"></iframe>
     </div>
 </main>
 <?php require_once $root_dir_path.'/views/partials/footer.php' ?>

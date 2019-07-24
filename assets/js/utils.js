@@ -5,3 +5,7 @@ function capitalize(string){
 function addZero(time){
     return time < 10 ? '0' + time:time;
 }
+
+function getCurrentPath(){
+    return window.location.pathname.split('/').pop();
+}

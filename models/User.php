@@ -145,25 +145,40 @@ class User {
     }
 
     public function getEnrollments(){
-        $enrolls = db_select('SELECT e.tituloEvento, e.inicioEvento, e.fotoEvento, e.preRequisitosOrg, e.preRequisitosTec, e.vagasPadrao, e.vagasAlternativas, e.vagasOcupadas, e.vagasAlterOcupadas, i.idMinicurso FROM inscricoes INNER JOIN eventos ON i.idMinicurso=e.idEvento WHERE i.idParticipante=?', $this->id);
+        $enrolls = db_select('SELECT e.tituloEvento, e.inicioEvento, e.fotoEvento, e.preRequisitosOrg, e.preRequisitosTec, e.vagasPadrao, e.vagasAlternativas, e.vagasOcupadas, e.vagasAlterOcupadas, i.idMinicurso FROM inscricoes i INNER JOIN eventos e ON i.idMinicurso=e.idEvento WHERE i.idParticipante=?', $this->id);
 
         return $enrolls;
     }
 
     public function chooseShirt($name, $size){
+
+        if($name == -1){
+            db_query('UPDATE participantes SET idBrinde = NULL WHERE idParticipante = ?', $this->id);
+            
+            return 'clear';
+        }
+
         $result = db_select('SELECT idBrinde FROM brindes WHERE tituloBrinde = ? AND tamanhoBrinde = ?', $name, $size);
 
         if(!$result)
-            throw new Exception('Camisa não existente');
+            return 'notExist';
 
         $shirtId = $result[0]['idBrinde'];
 
         $currentShirt = db_select('SELECT idBrinde FROM participantes WHERE idParticipante=?', $this->id)[0]['idBrinde'];
 
         if($shirtId === $currentShirt)
-            throw new Exception('Você já selecionou essa camisa.');
+            return 'alreadySelected';
 
         db_query('UPDATE participantes SET idBrinde=? WHERE idParticipante=?', $shirtId, $this->id);
+
+        return 'success';
+    }
+
+    public function getShirt(){
+        $shirt = db_select('SELECT b.idBrinde, b.tituloBrinde, b.tamanhoBrinde FROM brindes b INNER JOIN participantes p ON b.idBrinde = p.idBrinde WHERE p.idParticipante = ?', $this->id);
+
+        return $shirt;
     }
 }
 ?>
