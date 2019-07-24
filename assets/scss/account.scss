@@ -1,0 +1,227 @@
+/*.account .card{
+    height: 100%;
+}
+.account .sec-title{
+    height: 10%;
+}
+#courses-slider{
+    height: 90%;
+}
+.slick-list{
+    height: 100%;
+}
+.slick-track{
+    height: 100%;
+}*/
+.account{
+    padding-right: 0;
+    padding-left: 0;
+}
+.account main{
+    overflow-y: hidden;
+}
+.account section{
+    height: 100vh;
+}
+#user-info{
+    background-color: rgb(21, 149, 91);
+}
+#courses{
+    background-color: rgb(21,125,115);
+}
+#shirts{
+    background-color: rgb(25, 105, 136);
+}
+.account div{
+    //border: 1px solid red;
+}
+
+.account h1, .account h2, .account h5, .account p{
+    color: white;
+    text-align: center;
+}
+.account .sec-btns{
+    margin-left: 1.2em;
+    margin-top: 1.2em;
+}
+#courses-slider{
+    height: 85%;
+}
+.sec-btns{
+    height: 15%;
+}
+.account .card{
+    height: 100%;
+}
+.slick-list{
+    height: 100%;
+}
+.slick-track{
+    height: 100%;
+}
+button.scroll-down{
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border: none;
+    background-color: transparent;
+    font-size: 2em;
+    color: white;
+    animation: bounce .7s infinite alternate;
+    z-index: 2;
+}
+.account .card p, .account .card h5{
+    color: #222;
+    text-align: left;
+}
+
+.account .card-footer{
+    height: 20%;
+    font-size: .9em;
+}
+
+.account .card-footer button{
+    margin:0;
+    padding: 0 .5em;
+}
+.account .card-footer > div{
+    height: fit-content !important;
+}
+
+.account .card-img-container{
+    width: 100%;
+    height: 80%;
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+/*.account .card-img-container img{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}*/
+.account #shirt-slider{
+    height: 85%;
+}
+.account #shirt-slider .card-body{
+    width: 100%;
+    height: 10%;
+}
+.account #shirt-slider .card-footer{
+    width: 100%;
+    height: 10%;
+}
+#shirt-slider .card-body{
+    padding: 0 1.25rem;
+}
+
+.account .slick-slider{
+    height: 100%;
+}
+
+.h-60{
+    height: 60% !important;
+}
+.modal-title{
+    color: #222 !important;
+}
+.card-overlay{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0);
+    margin: 0;
+    padding: 0;
+}
+.card-checkbox{
+    position: absolute;
+    right: 2%;
+    top: 2%;
+    width: 1em;
+    height: 1em;
+    z-index: 2;
+}
+
+.card .alert{
+    display: none;
+    z-index: 3;
+    width: fit-content;
+    height: fit-content;
+    padding: 0 .5em;
+    position: absolute;
+    top: 0;
+    right: 10%;
+}
+
+.account .help{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.account .help i{
+    margin: 0;
+}
+.account .help button{
+    color: white;
+    height: fit-content;
+    width: fit-content;
+    background-color: transparent;
+    border: none;
+}
+.modal-body p{
+    color: #222 !important;
+}
+
+.status{
+    background-color: rgb(241, 241, 241);
+    max-width: unset;
+}
+button.large{
+    width: 80%;
+    height: 50%;
+}
+
+@media (max-width: 1200px){
+    .account .sec-title{
+        font-size: 2.3em;
+    }
+    .account .sec-text{
+        font-size: .95em;
+    }
+}
+@media (max-width: 992px){
+    
+}
+@media (max-width: 768px){
+    
+}
+@media (max-width: 576px){
+    
+}
+@media (max-width: 400px){
+    .account .sec-title{
+        font-size: 1.5em;
+    }
+    .account .sec-text{
+        font-size: .90em;
+    }
+}
+
+@keyframes bounce{
+    from{
+        transform: translateY(0px);
+    }
+    to{
+        transform: translateY(-20px);
+    }
+}
