@@ -6,7 +6,7 @@ require_once $root_dir_path.'/models/User.php';
 
 <main class="home-main">
     <section id="banner" class="container-fluid gradient-banner vh-100 row align-items-center ">
-        <div class="row container-fluid">
+        <div class="row container- mx-0 px-0">
         <div class="col-12">
         <div class="row justify-content-center">
             <div class="main-logo">
@@ -14,11 +14,11 @@ require_once $root_dir_path.'/models/User.php';
             </div>
         </div>
         <div class="row justify-content-center">
-            <p class="title">9ª Semana de Ciência da Computação e Tecnologia da Informação<br><span class="subtitle">04 a 09 de novembro no Centro de Convenções da UENF</span></p>
+            <h1 class="title">9ª Semana de Ciência da Computação e Tecnologia da Informação<br><span class="subtitle">04 a 09 de novembro no Centro de Convenções da UENF</span></h1>
             
         </div>
         <div class="row justify-content-center">
-            <button class="btn btn-info" onclick="window.location.href='user/access'">Inscreva-se</button>
+            <button class="btn btn-3d-white" onclick="window.location.href='user/access'">Inscreva-se</button>
         </div>
 </div>
         </div>
@@ -38,7 +38,7 @@ require_once $root_dir_path.'/models/User.php';
                                     <img class="col-12" src="assets/imgs/lecture.png">
                                 </div> 
                             </div>
-                            <h4 class="text-center">Palestras</h4>
+                            <h3>Palestras</h3>
                             <div class="row text-justify px-3">As palestras são uma ótima oportunidade de aprendizado com vários profissionais de diversas áreas apresentando temas super atuais no mercado de trabalho. Você não pode ficar de fora!!</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
@@ -47,7 +47,7 @@ require_once $root_dir_path.'/models/User.php';
                                     <img class="col-12" src="assets/imgs/minicourse.png">
                                 </div>
                             </div>
-                            <h4 class="text-center">Minicursos</h4>
+                            <h3>Minicursos</h3>
                             <div class="row text-justify px-3">Os minicursos são uma ótima maneira de introduzir técnicas, ferramentas e boas práticas que podem ser essenciais para sua carreira na área de computação. Quer aprender rápido e com uma visão geral do assunto? Então vem!</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
@@ -56,7 +56,7 @@ require_once $root_dir_path.'/models/User.php';
                                     <img class="col-12" src="assets/imgs/networking.png">
                                 </div>
                             </div>
-                            <h4 class="text-center">Networking</h4>
+                            <h3>Networking</h3>
                             <div class="row text-justify px-3">Um dos pontos altos do evento é a possibilidade de conhecer gente nova da área da informática e afins, em busca de aprendizado, oportunidades e de compartilhar boas histórias. Queremos te conhecer :D</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
@@ -65,7 +65,7 @@ require_once $root_dir_path.'/models/User.php';
                                     <img class="col-12" src="assets/imgs/coffee-break.png">
                                 </div>
                             </div>
-                            <h4 class="text-center">Coffee-break</h4>
+                            <h3>Coffee-break</h3>
                             <div class="row text-justify px-3">Não precisa ficar com fome durante a SCTI. A gente dá uma pausa, faz uma boquinha, bate um papo e volta com todo gás para mais uma carga de conhecimento. Além disso, a gente capricha nos petiscos!!</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
@@ -74,7 +74,7 @@ require_once $root_dir_path.'/models/User.php';
                                     <img class="col-12" src="assets/imgs/gift.png">
                                 </div>
                             </div>
-                            <h4 class="text-center">Brindes e sorteios</h4>
+                            <h3>Brindes e sorteios</h3>
                             <div class="row text-justify px-3">Se inscrevendo agora você garante os brindes que a comissão do evento oferece aos participantes. Além dos diversos livros, cursos, cupons de desconto e muitas outras coisas bacanas que são sorteadas para os participantes presentes.</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
@@ -83,7 +83,7 @@ require_once $root_dir_path.'/models/User.php';
                                     <img class="col-12" src="assets/imgs/championship.png">
                                 </div>
                             </div>
-                            <h4 class="text-center">Competições</h4>
+                            <h3>Competições</h3>
                             <div class="row text-justify px-3">A novidade da edição desse ano são as competições! Teste suas habilidades numa competição de programação, e seja consciente trazendo seu lixo eletrônico para um descarte adequado(e com prêmios hehe).</div>
                         </div>
                     </div>
@@ -247,17 +247,17 @@ require_once $root_dir_path.'/models/User.php';
                             </div>
                             <div class="form-group">
                                 
-                                <div class="row container">
+                                <div class="row container mx-0 px-0">
                                     <textarea id="message" required name="message" class="form-control"></textarea>
                                     <label for="message">Digite sua mensagem</label>
                                 </div>
                             </div>
-                            <input class="btn btn-primary" type="submit" value="Enviar">
+                            <input class="btn btn-3d-blue" type="submit" value="Enviar">
                         </form>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-4 mt-5">
+                <div class="col-12 col-md-4 mt-5" id="scti-info">
                     <div class="row mb-1">
                         <div class="col-1 pr-0"><i class="fab fa-facebook-f text-gradient"></i></div>
                         <div class="col-11 pl-4 pr-0">/sctiuenf</div>
