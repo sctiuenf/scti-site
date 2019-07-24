@@ -1,11 +1,14 @@
-var navbar, banner, btnUp;
+var navbar, banner, btnUp, page;
 
 $(document).ready(function () {
+    page = getCurrentPath();
 
+    jWindow = $(window);
     navbar = $('.navbar');
     banner = $('#banner');
     btnUp = $('.btn-up');
-
+    btnDown = $('.scroll-down');
+  
     //labels
     $('.form-control').keyup(function(e){
         let elem = $(this);
@@ -13,20 +16,87 @@ $(document).ready(function () {
         if(elem.val() !== '') label.addClass('translated-label');
         else label.removeClass ('translated-label');
     });
-
+    
     //navbarcolor
     navColorAndBtnUp();
-    if(banner.length){
-        $(window).scroll(function(e){
-            navColorAndBtnUp();
-        });
-    }
+
+    //click listeners
+    btnUp.click(function(e){
+        scrollToDiv(0);
+    });
 
     $('.navbar-toggler').click(function(e){
         if($(this).hasClass('collapsed'))
             navbar.css('background-color', 'rgba(0, 0, 0, 0.6)');
         else
             navbar.css('background-color', 'transparent');
+    });
+
+    if(btnDown.length){
+        btnDown.click(function(){
+            scrollToNextSection();
+        });
+    }
+
+
+    //onScroll listeners
+    jWindow.scroll(function(e){
+        let actPos = jWindow.scrollTop();
+
+        if(banner.length)
+            navColorAndBtnUp();
+        
+        if(btnDown.length){
+            if(actPos >= $('section').last().offset().top){
+                if(btnDown.css('display') != 'none')
+                    btnDown.hide();    
+            }else{
+                if(btnDown.css('display') == 'none')
+                    btnDown.show();
+            }               
+        }
+        
+        if(actPos > $('section').eq(1).offset().top/2){
+            if(btnUp.css('display') === 'none'){
+                btnUp.css('display', 'flex');
+                btnUp.animate({'opacity': 1}, 100);
+            }
+        }else{
+            if(btnUp.css('display') !== 'none'){
+                btnUp.css('display', 'none');
+                btnUp.css('opacity', 0);
+            }
+        }
+    });
+
+    //contact request
+    $('form#contact').submit(function(e){
+        e.preventDefault();
+
+        let data = $(this).serialize();
+        showLoader();
+        $.ajax({
+            type: "post",
+            url: "utils/contact.php",
+            data,
+            dataType: "json",
+            success: function (response) {
+                hideLoader();
+                let sec = $('#sec-contato');
+
+                if(response['success']){
+                    sec.find('.alert-success').show();
+
+                }else{
+                    console.log(response['message']);
+                    sec.find('.alert-danger').show();
+                }
+            },
+            error: function(e){
+                hideLoader();
+                console.log(e);
+            }
+        });
     });
 });
 
@@ -37,31 +107,89 @@ function navColorAndBtnUp(){
 
     if(!banner.length || scrollPos > changePoint){
 
-        if(btnUp.css('display') == 'none'){
+        //remover isso depois, adicionar ao css da página account e separar os css's e js's por página
+        if(page == 'account'){
+            navbar.removeClass('gradient');
+            navbar.css('background-color', 'rgba(0, 0, 0, 0.4)');
+            $('footer').removeClass('gradient');
+            $('footer').css('background-color', 'rgba(0, 0, 0, .7)');
+            btnUp.removeClass('gradient');
+            btnUp.css('background-color', 'rgba(0, 0, 0, 0.4)');
+        }else
             navbar.addClass('gradient');
-
-            if(banner.length){
-                btnUp.css('display', 'flex');
-                btnUp.animate({'opacity': 1}, 100);
-            }
-        }
+        
     }
     else{
         navbar.removeClass('gradient');
-        btnUp.css('display', 'none');
-        btnUp.css('opacity', 0);
     }
 }
 
-function showLoader(){
-    document.getElementById('loader').style.display = 'flex';
+function showLoader(waitBeforeShow, target = 'body'){
+   
+    if(waitBeforeShow){
+        var timeOut = setTimeout(function(){
+            $(target).css('position', 'relative');
+
+            let loader = $('#loader');
+            let pos = target === 'body' ? 'fixed':'absolute';
+
+            loader.detach().appendTo(target);
+
+            loader.removeClass();
+            loader.css('display', 'flex');
+            loader.addClass(pos);
+        }, waitBeforeShow);
+
+        return timeOut;
+
+    }else{
+        $(target).css('position', 'relative');
+
+        let loader = $('#loader');
+        let pos = target === 'body' ? 'fixed':'absolute';
+
+        loader.detach().appendTo(target);
+
+        loader.removeClass();
+        loader.css('display', 'flex');
+        loader.addClass(pos);
+    }
 }
-function hideLoader(){
-    document.getElementById('loader').style.display = 'none';
+
+//se um timeout para executar o loader tiver sido chamado, o mesmo é limpo se a execução houver terminado
+function hideLoader(timeOut = null){
+    
+    if(timeOut)
+        clearTimeout(timeOut);
+    
+    $('#loader').hide();
 }
+
+//no parameter to top
 function scrollToDiv(id){
-    let scrollTo = $(id).offset().top;
+    
+    let scrollTo = 0;
+    if(id !== 0)
+        scrollTo = $(id).offset().top;
     
     //$(window).scrollTop(scrollTo);
     $('html, body').animate({scrollTop: scrollTo}, 500, 'swing');
+}
+
+function scrollToNextSection(){
+    let actPos = $(window).scrollTop();
+    let sections = $('section');
+
+    let divToScroll;
+    $.each(sections, function (i, section) {
+        let sec = $(section);
+
+        if(actPos < sec.offset().top){
+            divToScroll = sec;
+            return false;
+        }
+        
+    });
+
+    scrollToDiv('#'+divToScroll.attr('id'));
 }
