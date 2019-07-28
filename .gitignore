@@ -1,4 +1,4 @@
 vendor/
-config/
+.sass-cache/
 assets/.sass-cache/
 assets/css/*.map

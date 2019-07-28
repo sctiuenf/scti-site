@@ -18,7 +18,7 @@ require_once $root_dir_path.'/models/User.php';
             
         </div>
         <div class="row justify-content-center">
-            <button class="btn btn-3d-white" onclick="window.location.href='user/access'">Inscreva-se</button>
+            <button class="btn btn-3d" onclick="window.location.href='user/access'">Inscreva-se</button>
         </div>
 </div>
         </div>
