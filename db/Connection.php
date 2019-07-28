@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__.'/../config/database.php';
 class Connection {  
 
     private static $pdo;
@@ -8,10 +7,12 @@ class Connection {
 
     public static function getInstance() {  
     if (!isset(self::$pdo)) {  
+
+        include(__DIR__.'/../config/database.php');
        
         $opcoes = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8', PDO::ATTR_PERSISTENT => TRUE);  
 
-        self::$pdo = new PDO("mysql:host=" . HOST . "; dbname=" . DBNAME . "; charset=" . CHARSET . ";", USERNAME, PASSWORD, $opcoes);
+        self::$pdo = new PDO("mysql:host=" . $DB_HOST . "; dbname=" . $DB_NAME . "; charset=" . $DB_CHARSET . ";", $DB_USERNAME, $DB_PASSWORD, $opcoes);
         
     }  
         return self::$pdo;  
