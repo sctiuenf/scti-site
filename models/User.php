@@ -144,6 +144,23 @@ class User {
         return $status;
     }
 
+    public function getOrdercode(){
+       
+        $result = db_select('SELECT codigoPagamento FROM participantes INNER JOIN pagamentos ON participantes.idPagamento=pagamentos.idPagamento WHERE idParticipante=?', $this->id);
+        $codigo = $result[0]['codigoPagamento'];
+
+        
+        return $codigo;
+    }
+
+    public function getLastOrderUpdate(){
+
+        $result = db_select('SELECT dataConfirmacao FROM participantes INNER JOIN pagamentos ON participantes.idPagamento=pagamentos.idPagamento WHERE idParticipante=?', $this->id);
+        $update_date = $result[0]['dataConfirmacao'];
+
+        return $update_date;
+    }
+
     public function getEnrollments(){
         $enrolls = db_select('SELECT e.tituloEvento, e.inicioEvento, e.fotoEvento, e.preRequisitosOrg, e.preRequisitosTec, e.vagasPadrao, e.vagasAlternativas, e.vagasOcupadas, e.vagasAlterOcupadas, i.idMinicurso FROM inscricoes i INNER JOIN eventos e ON i.idMinicurso=e.idEvento WHERE i.idParticipante=?', $this->id);
 

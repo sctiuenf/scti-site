@@ -1,5 +1,5 @@
 $(document).ready(function () {
-   
+
     //authenticate
     $('form#authenticate').submit(function(e){
         e.preventDefault();
