@@ -24,11 +24,12 @@
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
     <head>
         <title>SCTI 2019</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="Description" content="Website da Semana Acadêmica de Ciência da Computação e Tecnologia da Informação da Universidade Estadual Darcy Ribeiro - UENF. Saiba mais sobre um dos maiores e melhores eventos de tecnologia da região.">
 
         <link rel="icon" href="<?=$root_url?>/favicon.ico">
 
@@ -48,7 +49,6 @@
     </head>
     <body <?php if(!$paymentComplete) echo 'style="overflow:hidden"'?>>
 
-    <button class="btn btn-up gradient" onclick="scrollToDiv('#banner')"><i class="fas fa-chevron-up"></i></button>
 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top <?php if($_SERVER['REQUEST_URI'] !== '/' && $_SERVER['REQUEST_URI'] !== '/scti/') echo "gradient"?>">
         <a class="navbar-brand" href="#">SCTI</a>
