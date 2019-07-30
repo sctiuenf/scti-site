@@ -18,12 +18,12 @@ require_once $root_dir_path.'/models/User.php';
             
         </div>
         <div class="row justify-content-center">
-            <button class="btn btn-3d" onclick="window.location.href='user/access'">Inscreva-se</button>
+            <button class="btn btn-3d-secondary mt-3" onclick="window.location.href='user/access'">Inscreva-se</button>
         </div>
 </div>
         </div>
     </section>
-    <section class="container-fluid justify-content-center d-flex">
+    <section id="sec-sobre" class="container-fluid justify-content-center d-flex">
         <div class="col-12 col-sm-11 col-xl-10">
             <h2>/ Sobre</h2>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti alias itaque ipsa, ipsam voluptatum ratione earum consequatur incidunt doloribus ad libero tempora ea est illum, totam praesentium nihil ullam pariatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere quisquam labore, repudiandae assumenda fuga deserunt id debitis, sint beatae commodi ad illum quibusdam quas, accusantium nisi hic! Mollitia, corporis dolores! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit harum nisi cumque et quaerat ullam cupiditate placeat pariatur maxime numquam explicabo quidem veritatis odio nam eos officiis, animi quo vel.</p>
@@ -144,7 +144,7 @@ require_once $root_dir_path.'/models/User.php';
             </section>
         </div>
     </section>
-    <section class="container-fluid justify-content-center d-flex">
+    <section id="patrocinadores-sec" class="container-fluid justify-content-center d-flex">
         <div class="col-12 col-sm-11 col-xl-10">
             <!--<h2>/ Patrocinadores</h2>-->
 
@@ -252,7 +252,7 @@ require_once $root_dir_path.'/models/User.php';
                                     <label for="message">Digite sua mensagem</label>
                                 </div>
                             </div>
-                            <input class="btn btn-3d-blue" type="submit" value="Enviar">
+                            <input class="btn btn-3d-primary" type="submit" value="Enviar">
                         </form>
                         </div>
                     </div>

@@ -1,5 +1,5 @@
 <?php 
-$EVENT_ID = '539997';
+$EVENT_ID = getenv('EVENT_ID');
 $API_KEY = getenv('SYMPLA_API_KEY');
 
 $ORDER_STATUS = array(

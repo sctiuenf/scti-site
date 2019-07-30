@@ -15,15 +15,20 @@ try{
         die;
     }
 
+    $user = unserialize($_SESSION['user']);
+
+    if($user->getPaymentStatus() !== 'A')
+        json_return(false, 'Você ainda não completou o pagamento da sua inscrição.');
+
     date_default_timezone_set("America/Sao_Paulo");
     //prazo final para escolha de camisa = último dia de inscrições (1 semana antes do evento)
     if(time() > strtotime(SHIRT_END))
         json_return(false, 'O período para escolha de camisa foi encerrado.');
 
-    if(!isset($_POST['shirt']) && !isset($_POST['shirt-size']))
+    if(!isset($_POST['shirt']) || !isset($_POST['shirt-size']))
         json_return(false, 'Dados não recebidos');
 
-    $user = unserialize($_SESSION['user']);
+
 
     $result = $user->chooseShirt($_POST['shirt'], $_POST['shirt-size']);
     
