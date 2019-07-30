@@ -24,3 +24,13 @@ function map(v, oldMin, oldMax, newMin, newMax){
 function dist2dSqr(x1, y1, x2, y2){
     return Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2);
 }
+
+//Função que retorna o menor entre dois valores
+function min(n1, n2){
+    return (n1 < n2 ? n1 : n2);
+}
+
+//Função que retorna o menor entre dois valores
+function max(n1, n2){
+    return (n1 < n2 ? n2 : n1);
+}
