@@ -46,7 +46,7 @@ function getEventCard(params){
 
     return `<div class="card">
     <div class="card-img-top-container">
-        <img id="event-fotoEvento" class="card-img-top" src="${params.fotoEvento}" alt="Card image cap">
+        <img id="event-fotoEvento" class="card-img-top" src="${params.fotoEvento}" alt="">
         <div class="img-instrutor-container">
             <img class="img-instrutor" src="${params.fotoInstrutor}">
         </div>

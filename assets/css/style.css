@@ -142,7 +142,7 @@ main {
   background-color: white; }
 
 .home-main > section:nth-child(2n+1) {
-  background-color: rgba(0, 0, 0, 0.04); }
+  background-color: #F6F6F6; }
 
 #programacao > div {
   padding-right: 0;
@@ -321,7 +321,7 @@ i {
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 100%;
-  background-color: white;
+  background-color: #F6F6F6;
   z-index: 1;
   transition: all .5s; }
 
