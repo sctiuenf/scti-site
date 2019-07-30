@@ -1,6 +1,6 @@
 <?php 
-   
-   if(strlen(getenv('DB_HOST') > 0)){
+   if(strlen(getenv('DB_HOST')) > 0){
+       echo 'dsadsa';
         $DB_HOST = getenv('DB_HOST');
         $DB_NAME = getenv('DB_NAME');
         $DB_USERNAME = getenv('DB_USERNAME');
