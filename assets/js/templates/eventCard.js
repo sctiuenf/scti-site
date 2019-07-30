@@ -141,7 +141,7 @@ function getShirtCard(params){
     <label for="camisa-${params.tituloBrinde}" class="card-overlay"></label>
     <div class="picked alert alert-success">Escolhida</div>
     <input id="camisa-${params.tituloBrinde}" class="card-checkbox" value="${params.tituloBrinde}" type="checkbox" onchange="selectItem(event, 'camisa')">
-    <div class="card-img-container" style="background-image:url(http://localhost/scti/assets/imgs/shirts/shirt.jpg)">  
+    <div class="card-img-container" style="background-image:url(${params.fotoBrinde})">  
     </div>
     <div class="card-body">
         <h4 id="event-tituloEvento" class="card-title">${params.tituloBrinde}</h4>     

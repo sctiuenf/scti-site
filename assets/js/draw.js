@@ -1,3 +1,5 @@
+if(getCurrentPath() == ''){
+
 var cv = document.getElementById('drawCanvas'); //Elemento html do canvas
 var c = cv.getContext('2d'); //Contexto do canvas onde os desenhos serão feitos
 cv.width = cv.clientWidth;
@@ -246,3 +248,4 @@ document.getElementsByTagName("BODY")[0].addEventListener("mousemove", function 
 
 c.globalAlpha = GLOBAL_ALPHA;
 draw(); //Iniciando a animação
+}

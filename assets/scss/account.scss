@@ -342,9 +342,9 @@ button.scroll-down{
     .list-group-item{
         padding: .3rem .6rem;
     }
-}
-
-@media (max-width: 340px){
+    .changeInfo-btn{
+        margin-right: 3rem !important;
+    }
     #showModalChangePass{
         margin-top: 1rem;
     }

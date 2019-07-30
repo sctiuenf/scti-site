@@ -310,8 +310,11 @@ button.scroll-down {
     font-size: .90em; }
 
   .list-group-item {
-    padding: .3rem .6rem; } }
-@media (max-width: 340px) {
+    padding: .3rem .6rem; }
+
+  .changeInfo-btn {
+    margin-right: 3rem !important; }
+
   #showModalChangePass {
     margin-top: 1rem; } }
 @keyframes bounce {

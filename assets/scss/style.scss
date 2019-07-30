@@ -15,6 +15,9 @@
 .secondary-dark-color{ color:$secondary-dark;}
 .secondary-dark-bg{ background-color: $secondary-dark;}
 
+.light-color:hover{
+    color: $light;
+}
 html, body{
     width: 100%;
     height: 100%;
@@ -83,8 +86,14 @@ main{
      background-clip: text;
      color: transparent;
 }
+.navbar-dark .navbar-toggler{
+    border:none;
+}
 
 #banner{
+    display:flex;
+    justify-content: center;
+    align-items: center;
     margin: 0;
 }
 #drawCanvas{
