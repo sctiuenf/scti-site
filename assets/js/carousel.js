@@ -304,6 +304,8 @@ function loadEventSchedule(day, slider){
     let sliderId = slider.attr('id');
     
     let timeOut = showLoader(100, '#'+sliderId);
+
+   
     
     $.ajax({
         type: "post",
@@ -311,7 +313,7 @@ function loadEventSchedule(day, slider){
         data: {day},
         dataType: "json",
         success: function (response) {
-           
+        
             hideLoader(timeOut);
      
             if(!response['success'])
@@ -330,6 +332,11 @@ function loadEventSchedule(day, slider){
                         let card = getEventCard(event);
                      
                         slider.slick('slickAdd', '<div class="slide">'+card+'</div>');
+
+                         //activate popovers
+                        $('button[data-toggle=popover]').click(function(){
+                            $(this).popover('show');
+                        });
                     });
                 }
             }

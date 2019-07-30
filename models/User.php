@@ -93,6 +93,48 @@ class User {
         return isset($_SESSION['user'], $_SESSION['logged']);
     }
 
+    public function changeInfo($params){
+
+        $query = 'UPDATE participantes SET ';
+        $values = array();
+
+        $first = true;
+        foreach($params as $column => $value){
+
+            if(!$first) $query .= ',';
+
+            $query.= $column.'=?';
+
+            array_push($values, $value);
+
+            $first = false;
+        }
+        array_push($values, $this->id);
+        $query .= ' WHERE idParticipante = ?';
+
+        db_query($query, ...$values);
+
+        $columns = array(
+            'nomeParticipante' => 'firstName',
+            'sobrenomeParticipante' => 'lastName',
+            'telefoneParticipante' => 'phone',
+            'emailParticipante' => 'email'
+        );
+
+        foreach($params as $column => $value){
+            $prop = $columns[$column];
+            $this->$prop = $value;
+        }
+    }
+
+    public function verifyPass($password){
+        
+        $result = db_select('SELECT senhaParticipante FROM participantes WHERE idParticipante = ?', $this->id);
+
+        $hash = $result[0]['senhaParticipante'];
+        
+        return password_verify($password, $hash);
+    }
     public function changePassword($password, $confirm){
         if(strlen($password) < 6)
             throw new Exception('A senha deve ter no mínimo 6 caracteres.');
@@ -104,6 +146,8 @@ class User {
 
         db_query('UPDATE participantes SET senhaParticipante=? WHERE idParticipante=?', $hash, $this->id);
     }
+
+    public function setName($name){$this->firstName = $name;}
 
     public function getName(){return $this->firstName;}
 
@@ -142,6 +186,23 @@ class User {
 
         
         return $status;
+    }
+
+    public function getOrdercode(){
+       
+        $result = db_select('SELECT codigoPagamento FROM participantes INNER JOIN pagamentos ON participantes.idPagamento=pagamentos.idPagamento WHERE idParticipante=?', $this->id);
+        $codigo = $result[0]['codigoPagamento'];
+
+        
+        return $codigo;
+    }
+
+    public function getLastOrderUpdate(){
+
+        $result = db_select('SELECT dataConfirmacao FROM participantes INNER JOIN pagamentos ON participantes.idPagamento=pagamentos.idPagamento WHERE idParticipante=?', $this->id);
+        $update_date = $result[0]['dataConfirmacao'];
+
+        return $update_date;
     }
 
     public function getEnrollments(){

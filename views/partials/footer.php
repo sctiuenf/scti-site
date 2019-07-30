@@ -1,5 +1,7 @@
 <footer class="container-fluid gradient text-white p-2 text-center">Copyright &copy; 2019 SCTI</footer>
 
+<button class="btn btn-up gradient" onclick="scrollToDiv('#banner')" tabindex="0" title="Rolar pro topo"><i class="fas fa-chevron-up"></i></button>
+
 <script src="<?=$root_url?>/assets/js/utils.js"></script>
 <script src="<?=$root_url?>/assets/js/index.js"></script>
 <script src="<?=$root_url?>/assets/js/requests/userRequests.js"></script>

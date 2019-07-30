@@ -1,6 +1,7 @@
 <?php 
 require_once __DIR__.'/../utils/root_dir_path.php';
 require_once $root_dir_path.'/utils/root_url.php';
+require_once $root_dir_path.'/config/sympla.php';
 require_once $root_dir_path.'/config/eventDate.php';
 require_once $root_dir_path.'/views/partials/header.php';
 require_once $root_dir_path.'/models/Shirt.php';
@@ -12,89 +13,261 @@ if(!isset($_SESSION['logged'])){
 }else{
     $user = unserialize($_SESSION['user']);
     $userInfo = $user->getInfo();
+
+    $hasPayment = $user->hasPayment();
+
+    $paymentComplete =  $hasPayment && $user->getPaymentStatus() === 'A';
+    $paymentPending = $hasPayment && $user->getPaymentStatus() !== 'A';
+
+    if(!$hasPayment){
+        $statusColor = 'status-ball-red';
+        $statusMessage = 'Inscrição não realizada';
+    }else{
+        $paymentStatus = $user->getPaymentStatus();
+
+        switch($paymentStatus){
+
+            case 'A':
+                $statusColor = 'status-ball-green';
+                $statusMessage = 'Inscrição realizada';
+                break;
+            case 'P':
+                $statusColor = 'status-ball-yellow';
+                $statusMessage = 'Aguardando aprovação do pagamento';
+                break;
+            case 'NA':
+                $statusColor = 'status-ball-orange';
+                $statusMessage = 'Pagamento não aprovado';
+                break;
+            case 'NP':
+                $statusColor = 'status-ball-orange';
+                $statusMessage = 'Pagamento não concluido';
+                break;
+            case 'R':
+                $statusColor = 'status-ball-orange';
+                $statusMessage = 'Reembolso solicitado';
+                break;
+            case 'C':
+                $statusColor = 'status-ball-red';
+                $statusMessage = 'Pagamento cancelado';
+                break;
+
+        }
+
+
+        $courses = '<li class="list-group-item">Vamo lá, escolhe seus cursos!</li>';
+        $shirt = 'Tem uma camisa irada te esperando ali em baixo :)';
+
+        if($paymentStatus == 'A'){
+           
+            $enrolls = $user->getEnrollments();
+            if($enrolls){
+                $courses = '';
+                foreach($enrolls as $course){
+                    $courses .= '<li class="list-group-item">'.$course['tituloEvento'].'</li>';
+                }
+            }
+            $userShirt = $user->getShirt()[0];
+            if($userShirt){
+                $shirt = $userShirt['tituloBrinde'].' - '.$userShirt['tamanhoBrinde'];
+            }   
+        }
+    }
+
 }
 ?>
 
-<button class="scroll-down">v</button>
+<?php if($paymentComplete){?>
+    <button class="scroll-down">v</button>
+<?php } ?>
 
 <main class="container-fluid account">
     <section id="user-info" class="container-fluid">
         <div class="row h-100 align-items-center px-3">
           
-            <div class="col-12 col-lg-6 h-75">
-                <?php if(!$user->hasPayment()){ ?>
-                <!-- Noscript content for added SEO -->
-                <noscript><a href="https://www.eventbrite.com/e/scti-2019-teste-tickets-62441107032" rel="noopener noreferrer" target="_blank"></noscript>
-                    <!-- You can customize this button any way you like -->
-                    <button id="eventbrite-widget-modal-trigger-62441107032" type="button">Buy Tickets</button>
-                    <noscript></a>Buy Tickets on Eventbrite</noscript>
+            <div class="col-12 col-lg-6 h-75 left-side">
+                        <div class="row h-100 align-items-center" >
+                            <div class="col-12 status-container h-100">
+                                <div class="status-col row align-items-center justify-content-center">
+                                    <div class="col-12 col-sm-9 h-100" >
+                                        <div class="row h-100 justify-content-center">
+                                            <div class="card status">
+                                                <div class="status-label">
+                                                    <div class="<?=$statusColor?>">&nbsp;</div>
+                                                    <span class="status-text"><?=$statusMessage?><span>
+                                                </div>
 
-                    <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
+                                                <?php if($paymentPending){?>
+                                                <button onclick="updatePaymentStatus()" class="btn btn-refresh"><i class="fas fa-sync-alt"></i></button>
+                                                <?php }?>
 
-                    <script type="text/javascript">
-                        var exampleCallback = function() {
-                            console.log('Order complete!');
-                        };
+                                            <?php 
+                                            $list_display = '';
+                                            $widget_display = '';
+                                            if($paymentComplete){ 
+                                                $widget_display = 'hide';
+                                            }else
+                                                $list_display = 'hide';
+                                            ?>
+                                                <div class="list-group-container <?=$list_display?>">
+                                                <ul class="list-group">
+                                                    <li class="primary-bg light-color list-group-item">Cursos escolhidos</li>
+                                                    <?=$courses?>
+                                                </ul>
+                                                <ul class="list-group">
+                                                    <li class=" primary-bg light-color list-group-item">Camisa escolhida</li>
+                                                    <li class="list-group-item"><?=$shirt?></li>
+                                                </ul>
+                                                </div>
+                                                    
+                                         
+                                                <div id="sympla-widget-<?=$EVENT_ID?>" class="sympla-widget <?=$widget_display?>" height="auto""></div> <script src="https://www.sympla.com.br/js/sympla.widget-pt.js/<?=$EVENT_ID?>"></script>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                        window.EBWidgets.createWidget({
-                            widgetType: 'checkout',
-                            eventId: '62441107032',
-                            modal: true,
-                            modalTriggerElementId: 'eventbrite-widget-modal-trigger-62441107032',
-                            onOrderComplete: exampleCallback
-                        });
-                    </script>
+                                <?php if(!$hasPayment || $paymentStatus != 'A'){?>
+                                <div class="row mt-3 justify-content-center">
+                                    <div class="col-12 col-sm-9">
+                                        <div class="row">
+                                            <div class="col-12 col-sm-10 form-group p-0 pr-3 m-0">
+                                                <form id="verifyPayment">
+                                                    <input id="code" name="codigoPedido" class="form-control" placeholder="Digite o código do seu pedido">
+                                                </form>
+                                            </div>
+                                            <div class="col-3 col-sm-2 p-0">
+                                                <button id="verifyPayment-btn" class="btn  btn-3d-primary w-100">Enviar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php }?>
 
-                    <form id="verifyPayment" method="POST">
-                        <div class="form-group">
-                            <input required class="form-control" name="codigoPedido" type="text" placeholder="Código do pedido">
-                        </div>
-                        <input class="btn btn-primary" type="submit" value="Confirmar">
-                    </form>
-                    <?php }else{ ?>
-                        <div class="row align-items-center justify-content-center h-100">
-                            <div class="row m-0">
-                                
+                                <div class="row mt-5 justify-content-center">
+                                    <div class="col-12 col-sm-8">
+                                        <div class="row">
+                                            <div class="col-6 pl-0" >
+                                                <button <?php if(!$paymentComplete) echo 'disabled'?> onclick="scrollToDiv('#courses')" class=" w-100 h-100 btn btn-3d-secondary"><i class="fas fa-laptop-code"></i>Cursos</button>
+                                            </div>
+                                            <div class="col-6 pr-0">
+                                                <button <?php if(!$paymentComplete) echo 'disabled'?> onclick="scrollToDiv('#shirts')" class=" w-100 h-100 btn btn-3d-secondary"><i class="fas fa-tshirt"></i>Camisas</button>
+                                            </div>
+                                        </div>
+                                        <!-- lista de cursos e camisas 
+                                        <div class="row mt-4">
+                                            <ul class="p-0">
+                                                <li>
+                                                    Cursos inscritos:
+                                                    <ul>
+                                                        <li>curso 1 doisandhiosajdiojsadsa</li>
+                                                        <li>curso 2 eiouwqeiouwqioeuwqioeu</li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    Camisa escolhida:
+                                                    <ul>
+                                                        <li>Camisa 1 eiuwqhgeuiwqhewq</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        -->
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                <?php } ?>
             </div>
   
-        <div class="col-6 d-flex justify-content-center align-items-center">
-        <div class="row w-75">
-        <form class="w-100" id="change" method="post">
-        <h1 class="mb-4">Informações pessoais</h1>
-            <div class="row">
-                <div class="col-6">
-                    <div class="form-group">
-                        <input class="form-control" required name="firstname" type="text" value="<?=$userInfo['firstName']?>">
-                        <label class="translated-label">Nome</label>
+            <div class="col-12 col-lg-6 h-75 d-flex justify-content-center align-items-center right-side">
+                <div id="" class="row w-100 justify-content-center" style="max-width:unset;">
+                    <div class="card info col-12 col-sm-9 col-lg-11 col-xl-10 p-5" style="max-width:unset;">
+                        <form class="w-100" id="changeInfo" method="post">
+                            <h2 class="mb-5 primary-color text-center">Informações pessoais</h2>
+                            <div class="alert alert-success alert-dismissible mb-5">
+                                <a href="#" class="close" aria-label="close">&times;</a>
+                                    Informações alteradas com sucesso.
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-xl-6">
+                                    <div class="form-group">
+                                        <input class="form-control" required name="firstname" type="text" value="<?=$userInfo['firstName']?>">
+                                        <label class="translated-label">Nome</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-xl-6">
+                                    <div class="form-group">
+                                        <input class="form-control" required name="lastname" type="text" value="<?=$userInfo['lastName']?>">
+                                        <label class="translated-label">Sobrenome</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" required name="email" type="email" value="<?=$userInfo['email']?>">
+                                <label class="translated-label">Email</label>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" name="phone" type="tel" pattern="[0-9]{11}" value="<?=$userInfo['phone']?>">
+                                <label class="<?php echo count($userInfo['phone']) > 0 ? 'translated-label':''?>">Telefone</label>
+                            </div>
+                            <div class="row">
+                                <input class="btn btn-3d-primary mr-3" type="submit" value="Alterar informações">
+                                
+                                <button id="showModalChangePass" type="button" data-toggle="modal" data-target="#changePass-modal"  class="btn btn-3d-primary">Alterar senha</button>
+                            </div>
+                        </form>
+                         <!-- Modal de requisitos de curso -->
+                         <div class="modal fade" id="changePass-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Trocar senha</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div class="alert alert-success">Senha alterada com sucesso!</div>
+
+                                            <div class="changePassBody">
+                                                <div class="mb-4 alert alert-danger">Erro</div>
+                                                <form id="changePass">
+
+                                                    <div class="form-group">
+                                                        <input required id="currentPass" name="currentPass" type="password" class="form-control">
+                                                        <label for="currentPass">Senha atual</label>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <input required id="newPass" name="newPass" type="password" class="form-control">
+                                                        <label for="newPass">Nova senha</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input required id="newPass-confirm" name="newPass-confirm" type="password" class="form-control">
+                                                        <label for="newPass-confirm">Confirmar senha</label>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="modal-footer">
+                                       
+                                            <div class="btns-confirm">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                <button type="button" id="changePassBtn" class="btn btn-primary">Confirmar</button>
+                                            </div>
+                                            <div class="btn-ok">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <input class="form-control" required name="lastname" type="text" value="<?=$userInfo['lastName']?>">
-                        <label class="translated-label">Sobrenome</label>
-                    </div>
-                </div>
             </div>
-            <div class="form-group">
-                <input class="form-control" required name="email" type="email" value="<?=$userInfo['email']?>">
-                <label class="translated-label">Email</label>
-            </div>
-            <div class="form-group">
-                <input class="form-control" name="phone" type="tel" pattern="[0-9]{11}" value="<?=$userInfo['phone']?>">
-                <label class="<?php echo count($userInfo['phone']) > 0 ? 'translated-label':''?>">Telefone</label>
-            </div>
-            <div class="row">
-                <input class="btn btn-primary" type="submit" value="Cadastrar">
-                <input class="btn btn-secondary" type="submit" value="Alterar senha">
-            </div>
-            
-            
-        </form>
-        </div>
-    </div>
         </div>
     </section>
     <?php 
@@ -103,8 +276,8 @@ if(!isset($_SESSION['logged'])){
     ?>
     <section id="courses" class="container-fluid">
         <div class="row h-100 align-items-center pt-5 px-3">
-            <div class="col-12 col-lg-3 h-25">
-                <h1 class="sec-title">Escolha dois cursos incríveis!</h1>
+            <div class="col-12 col-lg-3 h-25 light-color">
+                <h1 class="sec-title light-color text-center">Escolha dois cursos incríveis!</h1>
                 <p class="sec-text">E não se preocupe, você pode alterar os cursos escolhidos até o dia <?=$day?> de <?=$month?></p>
                 <div class="sec-text help">
                     Vagas alternativas
@@ -113,13 +286,13 @@ if(!isset($_SESSION['logged'])){
                     </button>
                 </div>
             </div>
-            <div class="col-12 col-lg-9 pl-3 h-75">
+            <div class="col-12 col-lg-9 pl-3 pt-3 h-75">
                 <div id="courses-slider" class="">
 
                 </div>
 
                  <!-- Modal de requisitos de curso -->
-                 <div class="modal fade" id="requisitos-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="requisitos-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                         <div class="modal-header">
@@ -141,10 +314,10 @@ if(!isset($_SESSION['logged'])){
                         </div>
                         </div>
                     </div>
-                    </div>
+                </div>
 
                 <div class="sec-btns">
-                    <button data-toggle="modal" data-target="#course-confirm-modal" id="confirm-courses" class="btn btn-primary">Confirmar</button>
+                    <button data-toggle="modal" data-target="#course-confirm-modal" id="confirm-courses" class="btn btn-3d-primary">Confirmar</button>
                   
 
                     <!-- Modal de confirmação de curso -->
@@ -184,8 +357,8 @@ if(!isset($_SESSION['logged'])){
     ?>
     <section id="shirts" class="container-fluid">
     <div class="row h-100 align-items-center pt-5 px-3">
-            <div class="col-12 col-lg-3 h-25">
-                <h1 class="sec-title">Escolha sua camisa :)</h1>
+            <div class="col-12 col-lg-3 h-25 light-color">
+                <h1 class="sec-title light-color text-center">Escolha sua camisa :)</h1>
                 <p class="sec-text">Uma dessas camisas iradas é sua! Escolhe a que mais gostar, e manda ver.</p>
                 <p class="sec-text">*A camisa escolhida pode ser alterada até o dia <?=$day?> de <?=$month?>.</p>
             </div>
@@ -194,7 +367,7 @@ if(!isset($_SESSION['logged'])){
 
                 </div>
                 <div class="sec-btns">
-                    <button data-toggle="modal" data-target="#shirt-confirm-modal" id="confirm-shirt" class="btn btn-primary">Confirmar</button>
+                    <button data-toggle="modal" data-target="#shirt-confirm-modal" id="confirm-shirt" class="btn btn-3d-accent">Confirmar</button>
 
                      <!-- Modal de confirmação de curso -->
                      <div class="modal fade" id="shirt-confirm-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

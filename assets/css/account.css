@@ -1,3 +1,9 @@
+/*branco*/
+/*cinza*/
+/*azul claro*/
+/*azul escuro*/
+/*verde*/
+/*verde escuro*/
 /*.account .card{
     height: 100%;
 }
@@ -17,8 +23,9 @@
   padding-right: 0;
   padding-left: 0; }
 
-.account main {
-  overflow-y: hidden; }
+.account {
+  padding-top: 2.7em;
+  background-color: #15955b; }
 
 .account section {
   height: 100vh; }
@@ -32,9 +39,9 @@
 #shirts {
   background-color: #196988; }
 
-.account h1, .account h2, .account h5, .account p {
-  color: white;
-  text-align: center; }
+#user-info > .row {
+  height: 45em;
+  max-height: 100vh; }
 
 .account .sec-btns {
   margin-left: 1.2em;
@@ -48,6 +55,10 @@
 
 .account .card {
   height: 100%; }
+
+.sympla-widget {
+  width: 90%;
+  margin-top: 10%; }
 
 .slick-list {
   height: 100%; }
@@ -171,25 +182,138 @@ button.scroll-down {
   color: #222 !important; }
 
 .status {
-  background-color: #f1f1f1;
-  max-width: unset; }
+  background-color: #FEFEFE;
+  max-width: unset;
+  position: relative; }
 
-button.large {
-  width: 80%;
-  height: 50%; }
+.status-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center; }
 
+.status-col {
+  height: 50vh; }
+
+.status-ball-green {
+  width: 20px;
+  height: 20px;
+  background-color: #45f345;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #496d02 0 -1px 9px, #45f345 0 2px 12px; }
+
+.status-ball-yellow {
+  width: 20px;
+  height: 20px;
+  background-color: #f1ef4d;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #a8a605 0 -1px 9px, #f3f045 0 2px 12px; }
+
+.status-ball-red {
+  width: 20px;
+  height: 20px;
+  background-color: #e00000;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #ad0202 0 -1px 9px, red 0 2px 12px; }
+
+.status-ball-orange {
+  width: 20px;
+  height: 20px;
+  background-color: #ff8800;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #cc6d00 0 -1px 9px, #ff8800 0 2px 12px; }
+
+.status-text {
+  margin-left: 10px; }
+
+.list-group-container {
+  width: 90%; }
+
+.list-group {
+  width: 100%;
+  margin-top: 5%; }
+
+.hide {
+  display: none; }
+
+.btn-refresh {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  font-size: 70%;
+  padding: 0; }
+
+.btn-refresh i {
+  margin: 0; }
+
+.info {
+  background-color: #FEFEFE; }
+
+.info .alert {
+  position: relative;
+  top: unset;
+  right: unset;
+  width: 100%;
+  padding: .75rem 1.25rem;
+  padding-right: 4rem; }
+
+.btn-ok {
+  display: none; }
+
+@media (min-width: 1200px) {
+  .right-side {
+    align-items: flex-start !important; } }
 @media (max-width: 1200px) {
   .account .sec-title {
     font-size: 2.3em; }
 
   .account .sec-text {
-    font-size: .95em; } }
+    font-size: .95em; }
+
+  .right-side > div {
+    height: fit-content !important; } }
+@media (max-width: 992px) {
+  #user-info {
+    height: 200vh; }
+
+  #user-info > .row {
+    max-height: unset; }
+
+  .status-container {
+    height: fit-content !important; }
+
+  .right-side {
+    padding: 0 !important; }
+
+  .right-side .card {
+    padding: 1em !important; }
+
+  .left-side, .right-side {
+    height: 50% !important; }
+
+  .status-col {
+    height: 50vh !important; } }
+@media (max-width: 576px) {
+  #verifyPayment-btn {
+    margin-top: 1rem; } }
 @media (max-width: 400px) {
   .account .sec-title {
     font-size: 1.5em; }
 
   .account .sec-text {
-    font-size: .90em; } }
+    font-size: .90em; }
+
+  .list-group-item {
+    padding: .3rem .6rem; } }
+@media (max-width: 340px) {
+  #showModalChangePass {
+    margin-top: 1rem; } }
 @keyframes bounce {
   from {
     transform: translateY(0px); }

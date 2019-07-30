@@ -10,7 +10,7 @@ require_once $root_dir_path.'/models/User.php';
         <div class="col-12">
         <div class="row justify-content-center">
             <div class="main-logo">
-                <img src="assets/imgs/logo_branco.png">
+                <img src="assets/imgs/logo_branco.png" alt="SCTI">
             </div>
         </div>
         <div class="row justify-content-center">
@@ -18,12 +18,12 @@ require_once $root_dir_path.'/models/User.php';
             
         </div>
         <div class="row justify-content-center">
-            <button class="btn btn-3d-white" onclick="window.location.href='user/access'">Inscreva-se</button>
+            <button class="btn btn-3d-secondary mt-3" onclick="window.location.href='user/access'">Inscreva-se</button>
         </div>
 </div>
         </div>
     </section>
-    <section class="container-fluid justify-content-center d-flex">
+    <section id="sec-sobre" class="container-fluid justify-content-center d-flex">
         <div class="col-12 col-sm-11 col-xl-10">
             <h2>/ Sobre</h2>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti alias itaque ipsa, ipsam voluptatum ratione earum consequatur incidunt doloribus ad libero tempora ea est illum, totam praesentium nihil ullam pariatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere quisquam labore, repudiandae assumenda fuga deserunt id debitis, sint beatae commodi ad illum quibusdam quas, accusantium nisi hic! Mollitia, corporis dolores! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit harum nisi cumque et quaerat ullam cupiditate placeat pariatur maxime numquam explicabo quidem veritatis odio nam eos officiis, animi quo vel.</p>
@@ -35,7 +35,7 @@ require_once $root_dir_path.'/models/User.php';
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
                             <div class="row justify-content-center mb-3">
                                 <div class="circle gradient row">
-                                    <img class="col-12" src="assets/imgs/lecture.png">
+                                    <img class="col-12" src="assets/imgs/lecture2.png" alt="">
                                 </div> 
                             </div>
                             <h3>Palestras</h3>
@@ -44,7 +44,7 @@ require_once $root_dir_path.'/models/User.php';
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
                             <div class="row justify-content-center mb-3">
                                 <div class="circle gradient row">
-                                    <img class="col-12" src="assets/imgs/minicourse.png">
+                                    <img class="col-12" src="assets/imgs/minicourse.png" alt="">
                                 </div>
                             </div>
                             <h3>Minicursos</h3>
@@ -53,7 +53,7 @@ require_once $root_dir_path.'/models/User.php';
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
                             <div class="row justify-content-center mb-3">
                                 <div class="circle gradient row">
-                                    <img class="col-12" src="assets/imgs/networking.png">
+                                    <img class="col-12" src="assets/imgs/networking.png" alt="">
                                 </div>
                             </div>
                             <h3>Networking</h3>
@@ -62,7 +62,7 @@ require_once $root_dir_path.'/models/User.php';
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
                             <div class="row justify-content-center mb-3">
                                 <div class="circle gradient row">
-                                    <img class="col-12" src="assets/imgs/coffee-break.png">
+                                    <img class="col-12" src="assets/imgs/coffee-break.png" alt="">
                                 </div>
                             </div>
                             <h3>Coffee-break</h3>
@@ -71,7 +71,7 @@ require_once $root_dir_path.'/models/User.php';
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
                             <div class="row justify-content-center mb-3">
                                 <div class="circle gradient row">
-                                    <img class="col-12" src="assets/imgs/gift.png">
+                                    <img class="col-12" src="assets/imgs/gift.png" alt="">
                                 </div>
                             </div>
                             <h3>Brindes e sorteios</h3>
@@ -80,7 +80,7 @@ require_once $root_dir_path.'/models/User.php';
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
                             <div class="row justify-content-center mb-3">
                                 <div class="circle gradient row">
-                                    <img class="col-12" src="assets/imgs/championship.png">
+                                    <img class="col-12" src="assets/imgs/championship.png" alt="">
                                 </div>
                             </div>
                             <h3>Competições</h3>
@@ -144,7 +144,7 @@ require_once $root_dir_path.'/models/User.php';
             </section>
         </div>
     </section>
-    <section class="container-fluid justify-content-center d-flex">
+    <section id="patrocinadores-sec" class="container-fluid justify-content-center d-flex">
         <div class="col-12 col-sm-11 col-xl-10">
             <!--<h2>/ Patrocinadores</h2>-->
 
@@ -152,7 +152,7 @@ require_once $root_dir_path.'/models/User.php';
             <div class="container-fluid sponsors diamante">
                 <div class="row justify-content-center align-items-center">
                 
-                    <img class="img-fluid" src="assets/imgs/patrocinadores/respondeai.jpeg">
+                    <a class="row justify-content-center align-items-center" href="https://www.respondeai.com.br/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/respondeai.jpeg" alt="Responde aí"></a>
                    
                 </div>
             </div>
@@ -161,11 +161,11 @@ require_once $root_dir_path.'/models/User.php';
             <div class="container-fluid sponsors prata">
                 <div class="row justify-content-around align-items-center">
                    
-                    <img class="img-fluid" src="assets/imgs/patrocinadores/alura.jpeg">
+                    <a class="row justify-content-center align-items-center" href="https://www.alura.com.br/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/alura.jpeg" alt="Alura cursos online de tecnologia"></a>
                 
-                    <img class="img-fluid choices" src="assets/imgs/patrocinadores/choices.jpeg">
+                    <a class="row justify-content-center align-items-center" href="http://choicessistemas.com.br/" target="_blank" rel="noopener"><img class="img-fluid choices" src="assets/imgs/patrocinadores/choices.jpeg" alt="Choices Sistemas"></a>
                 
-                    <img class="img-fluid" src="assets/imgs/patrocinadores/fortetelecom.jpeg">
+                    <a class="row justify-content-center align-items-center" href="http://www.fortetelecom.com.br/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/fortetelecom.jpeg" alt="Forte Telecom"></a>
                 </div>
             </div>
 
@@ -173,11 +173,11 @@ require_once $root_dir_path.'/models/User.php';
             <div class="container-fluid sponsors bronze">
                 <div class="row justify-content-around align-items-center">
                  
-                    <img class="img-fluid" src="assets/imgs/patrocinadores/cerejanerd.jpeg">
+                    <a class="row justify-content-center align-items-center" href="https://www.facebook.com/cerejalojanerd/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/cerejanerd.jpeg" alt="Loja Cereja Nerd"></a>
             
-                    <img class="img-fluid" src="assets/imgs/patrocinadores/infotrade.jpeg">
+                    <a class="row justify-content-center align-items-center" href="https://www.facebook.com/camposinfotrade/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/infotrade.jpeg" alt="Info Trade"></a>
             
-                    <img class="img-fluid" src="assets/imgs/patrocinadores/stickersdev.jpeg">
+                    <a class="row justify-content-center align-items-center" href="https://www.stickersdevs.com.br/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/stickersdev.jpeg" alt="Stickers Dev"></a>
                   
                 </div>
             </div>
@@ -186,7 +186,7 @@ require_once $root_dir_path.'/models/User.php';
             <div class="container-fluid sponsors apoio">
                 <div class="row justify-content-around align-items-center">
                  
-                    <img class="img-fluid" src="assets/imgs/patrocinadores/alobrownie.jpeg">
+                    <a class="row justify-content-center align-items-center" href="https://www.facebook.com/alobrownie/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/alobrownie.jpeg" alt="Alô Brownie"></a>
                    
                 </div>
             </div>
@@ -195,11 +195,11 @@ require_once $root_dir_path.'/models/User.php';
             <div class="container-fluid sponsors apoio-inst">
                 <div class="row justify-content-around align-items-center">
                  
-                    <img class="img-fluid" src="assets/imgs/patrocinadores/computacao.jpeg">
+                    <a class="row justify-content-center align-items-center" href="http://cc.uenf.br/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/computacao.jpeg" alt="Ciência da Computação UENF"></a>
                 
-                    <img class="img-fluid" src="assets/imgs/patrocinadores/uenf.jpeg">
+                    <a class="row justify-content-center align-items-center" href="http://www.uenf.br/portal/index.php/br/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/uenf.jpeg" alt="UENF"></a>
             
-                    <img class="img-fluid" src="assets/imgs/patrocinadores/prefeituracampos.jpeg">
+                     <a class="row justify-content-center align-items-center" href="https://www.campos.rj.gov.br/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/prefeituracampos.jpeg" alt="Prefeitura de Campos dos Goytacazes"></a>
                   
                 </div>
             </div>
@@ -223,7 +223,7 @@ require_once $root_dir_path.'/models/User.php';
                     Tem uma empresa e gostaria de apoiar o evento?<br>
                     Entre em contato com a gente!</p>
                     <div class="row justify-content-center">
-                        <div class="col-12">
+                        <div class="col-12 mt-2">
                         <form class="w-100" id="contact" method="post">
                             <div class="form-group">
                                 
@@ -252,7 +252,7 @@ require_once $root_dir_path.'/models/User.php';
                                     <label for="message">Digite sua mensagem</label>
                                 </div>
                             </div>
-                            <input class="btn btn-3d-blue" type="submit" value="Enviar">
+                            <input class="btn btn-3d-primary" type="submit" value="Enviar">
                         </form>
                         </div>
                     </div>
@@ -285,7 +285,7 @@ require_once $root_dir_path.'/models/User.php';
         
     </section>
     <div style="position:relative; overflow:hidden; height: 200px; width: 100%;">
-        <iframe style="position:absolute; top:-50px; left:0; width:100%; height: calc(100% + 50px);" src="https://www.google.com/maps/d/embed?mid=1XbXpi0odlYGq3b-98rMmPHlTxk5Xz_Et&hl=pt-BR" width="1920" height="200" allowfullscreen frameborder="0"></iframe>
+        <iframe title="Mapa da UENF" style="position:absolute; top:-50px; left:0; width:100%; height: calc(100% + 50px);" src="https://www.google.com/maps/d/embed?mid=1XbXpi0odlYGq3b-98rMmPHlTxk5Xz_Et&hl=pt-BR" width="1920" height="200" allowfullscreen frameborder="0"></iframe>
     </div>
 </main>
 <?php require_once $root_dir_path.'/views/partials/footer.php' ?>

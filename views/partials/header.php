@@ -3,13 +3,33 @@
     require_once  $root_dir_path.'/models/User.php';
     require_once $root_dir_path.'/utils/json_utils.php';
     session_start();
+
+    //gambiarra pra tirar o scroll do body, prometo que vou ajeitar um dia <3
+    
+    $page = '';
+    if(strpos($_SERVER["PHP_SELF"], 'account')  !== false)
+        $page = 'account';
+    else if(strpos($_SERVER["PHP_SELF"], 'index')  !== false)
+        $page = 'index';
+
+    $paymentComplete = true;
+    if($page == 'account'){
+        
+        if(isset($_SESSION['logged'], $_SESSION['user'])){
+            $user = unserialize($_SESSION['user']);
+
+            $paymentComplete = $user->hasPayment() && $user->getPaymentStatus() === 'A';
+        }
+    }
+
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
     <head>
         <title>SCTI 2019</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="Description" content="Website da Semana Acadêmica de Ciência da Computação e Tecnologia da Informação da Universidade Estadual Darcy Ribeiro - UENF. Saiba mais sobre um dos maiores e melhores eventos de tecnologia da região.">
 
         <link rel="icon" href="<?=$root_url?>/favicon.ico">
 
@@ -27,9 +47,8 @@
         <script src="<?=$root_url?>/assets/js/libs/fontawesome.js"></script>
     
     </head>
-    <body>
+    <body <?php if(!$paymentComplete) echo 'style="overflow:hidden"'?>>
 
-    <button class="btn btn-up gradient" onclick="scrollToDiv('#banner')"><i class="fas fa-chevron-up"></i></button>
 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top <?php if($_SERVER['REQUEST_URI'] !== '/' && $_SERVER['REQUEST_URI'] !== '/scti/') echo "gradient"?>">
         <a class="navbar-brand" href="#">SCTI</a>
@@ -41,9 +60,22 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="<?=$root_url?>">Home <span class="sr-only">(current)</span></a>
                 </li>
+                
+                <?php if($page == 'index'){?>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="scrollToDiv('#sec-sobre')">Sobre</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" onclick="scrollToDiv('#programacao')">Programação</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="scrollToDiv('#patrocinadores-sec')">Patrocinadores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="scrollToDiv('#sec-contato')">Contato</a>
+                </li>
+                <?php }?>
+                
             </ul>
             <ul class="navbar-nav">
                 <?php

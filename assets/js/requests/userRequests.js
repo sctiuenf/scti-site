@@ -1,13 +1,13 @@
 $(document).ready(function () {
-   
+
     //authenticate
     $('form#authenticate').submit(function(e){
         e.preventDefault();
         
         let form = $(this);
 
-        form[0].checkValidity();
         form[0].reportValidity();
+        if(!form[0].checkValidity()) return false;
 
         $.ajax({
             type: "post",
@@ -31,8 +31,8 @@ $(document).ready(function () {
         e.preventDefault();
         let form = $(this);
 
-        form[0].checkValidity();
         form[0].reportValidity();
+        if(!form[0].checkValidity()) return false;
         
         $.ajax({
             type: "post",
@@ -53,15 +53,17 @@ $(document).ready(function () {
         e.preventDefault();
         let form = $(this);
 
-        form[0].checkValidity();
         form[0].reportValidity();
+        if(!form[0].checkValidity()) return false;
         
+        showLoader(0);
         $.ajax({
             type: "post",
             url: "verifyPayment",
             data: form.serialize(),
             dataType: "json",
             success: function (response) {
+                hideLoader();
                 if(response['success'])
                     window.location.reload();
                 else
@@ -78,8 +80,8 @@ $(document).ready(function () {
         e.preventDefault();
         let form = $(this);
 
-        form[0].checkValidity();
         form[0].reportValidity();
+        if(!form[0].checkValidity()) return false;
         
         showLoader();
         $.ajax({
@@ -106,8 +108,8 @@ $(document).ready(function () {
         e.preventDefault();
         let form = $(this);
 
-        form[0].checkValidity();
         form[0].reportValidity();
+        if(!form[0].checkValidity()) return false;
         
         $.ajax({
             type: "post",
@@ -122,6 +124,81 @@ $(document).ready(function () {
             },
             error: function(e){
                 console.log(e);
+            }
+        });
+    });
+
+    //changeInfo
+    $('.info .alert .close, #changePass-modal .alert .close').click(function(){
+        $(this).parent().hide();
+    });
+    $('form#changeInfo').submit(function(e){
+        let timeOut = showLoader(300, '.info');
+        e.preventDefault();
+        let form = $(this);
+
+        form[0].reportValidity();
+        if(!form[0].checkValidity()) return false;
+
+        $.ajax({
+            type: "post",
+            url: "changeInfo",
+            data: form.serialize(),
+            dataType: "json",
+            success: function (response) {
+                hideLoader(timeOut);
+                if(response['success']){
+                    $('.info .alert-success').show();
+                }else
+                    alert(response['message']);
+            },
+            error: function(e){
+                console.log(e);
+            }
+        });
+    });
+
+    //changePass
+    $('#showModalChangePass').click(function(){
+        let modal = $('#changePass-modal');
+        modal.find('.btns-confirm').show();
+        modal.find('.btn-ok').hide();
+
+        modal.find('.alert-success').hide();
+        modal.find('.alert-danger').hide();
+        modal.find('.changePassBody').show();
+    });
+    $('#changePassBtn').click(function(){
+        $('form#changePass').trigger('submit');
+    });
+    $('form#changePass').submit(function(e){
+        e.preventDefault();
+        let modal = $('#changePass-modal');
+        let form = $(this);
+        
+        form[0].reportValidity();
+        if(!form[0].checkValidity()) return false;
+
+        $.ajax({
+            type: "post",
+            url: 'changePass',
+            data: form.serialize(),
+            dataType: "json",
+            success: function (response) {
+               
+                if(response['success']){
+                    modal.find('.btns-confirm').hide();
+                    modal.find('.btn-ok').show();
+
+                    modal.find('.alert-success').show();
+                    modal.find('.changePassBody').hide();
+                }else{
+                    let alert = modal.find('.alert-danger');
+                    alert.html(response['message']);
+                    alert.show();
+                }
+
+                console.log(response);
             }
         });
     });

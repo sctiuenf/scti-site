@@ -7,16 +7,17 @@ require_once __DIR__.'/../utils/json_utils.php';
 try{
     session_start();
 
-    if(!isset($_POST['email'], $_POST['password']))
+    if(isset($_POST['email'], $_POST['password'])){
+
+        $email = sanitize($_POST['email']);
+        $pass = $_POST['password'];
+
+        $user = new User();
+        $user->login($email, $pass);
+
+        json_return(true);
+    }else
         throw new Exception('Informações não recebidas.');
-
-    $email = sanitize($_POST['email']);
-    $pass = $_POST['password'];
-
-    $user = new User();
-    $user->login($email, $pass);
-
-    json_return(true);
 }catch(Exception $e){
    
     json_return(false, $e->getMessage(), $e);
