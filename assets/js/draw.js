@@ -2,30 +2,34 @@ if(getCurrentPath() == ''){
 
 var cv = document.getElementById('drawCanvas'); //Elemento html do canvas
 var c = cv.getContext('2d'); //Contexto do canvas onde os desenhos serão feitos
-cv.width = cv.clientWidth;
-cv.height = cv.clientHeight;
-var u = (cv.width * cv.height) / 200000;
+var baseArea = 1300 * 700;
+var u;
+cv.width = cv.clientWidth; //Alterando as dimensões do canvas para ocupar o PAI inteiro
+cv.height = cv.clientHeight; //Alterando as dimensões do canvas para ocupar o PAI inteiro
+var propArea = (cv.width * cv.height) / baseArea; //Unidade de medida conveniente
+var ratio = window.devicePixelRatio; //Densidade de pixel
+var u = propArea * ratio; //Unidade de medida conveniente
 
 
 //Seção de constantes sobre o canvas
-const GLOBAL_ALPHA = 0.2; //Transpacência com que todos os desenhos serão feitos no canvas, valores validos entre 0 e 1; 0 = transparente, 1 = opaco
+const GLOBAL_ALPHA = 0.18; //Transpacência com que todos os desenhos serão feitos no canvas, valores validos entre 0 e 1; 0 = transparente, 1 = opaco
 
 //Seção de constantes sobre os NÓS
 const NODE_SHAPE_CIRCLE = 'CIRCLE', NODE_SHAPE_SQUARE = 'SQUARE'; //Formatos possíveis para os nós
-const NODE_MIN_SIZE = 1.5, NODE_MAX_SIZE = 2; //Tamanhos mínimo e máximo que o raio(CIRCULO) ou a metade do lado(QUADRADO) que o nó pode ter(aleatório);
-const NODE_BORDER_WIDTH = 0.3; //Espessura em pixels da borda do nó
-const NODE_MIN_SPEED = 0.1, NODE_MAX_SPEED = 0.15; //Velocidades mínima e máxima que o nos pode ter ao ser criado (aleatório)
+const NODE_MIN_SIZE = 6, NODE_MAX_SIZE = 8; //Tamanhos mínimo e máximo que o raio(CIRCULO) ou a metade do lado(QUADRADO) que o nó pode ter(aleatório);
+const NODE_BORDER_WIDTH = 1; //Espessura em pixels da borda do nó
+const NODE_MIN_SPEED = 0.2, NODE_MAX_SPEED = 0.4; //Velocidades mínima e máxima que o nos pode ter ao ser criado (aleatório)
 const NODE_COLOR = 'rgb(255, 255, 255)'; //Cor dos nós em rgb
-const NODE_AMOUNT = 6; //Quantidade de nós na rede Ex: (cv.width * cv.height)
+const NODE_AMOUNT = 50; //Quantidade de nós na rede Ex: (cv.width * cv.height)
 const NODE_IS_FILLED = false; //Valor booleano que define se os nós terão preenchimento
 const NODE_SHAPE = NODE_SHAPE_CIRCLE; //Formato do nó, valores válidos são NODE_SHAPE_CIRCLE e NODE_SHAPE_SQUARE
 
 //Seção de constantes sobre os LINKS
-const LINK_MAX_LENGTH_SQR = 10000; //Distância máxima ao quadrado para a existência de um link entre dois nós
-const LINK_MIN_WEIGHT = 0.125, LINK_MAX_WEIGHT = 0.3; //Espessuras mínima e máxima do link de acordo com a proximidade dos nós
+const LINK_MAX_LENGTH_SQR = 30000; //Distância máxima ao quadrado para a existência de um link entre dois nós
+const LINK_MIN_WEIGHT = 0.5, LINK_MAX_WEIGHT = 1; //Espessuras mínima e máxima do link de acordo com a proximidade dos nós
 const LINK_COLOR = 'rgb(255, 255, 255)'; //Cor dos links em rgb
 const LINK_WEIGHT_IS_DYNAMIC = true; //Define se a força dos links cresce quando os nós estão próximos, caso falso, os nós sempre terão espessura igual a LINK_MAX_WEIGHT
-const LINK_CONECTION_SPEED = 0.1; //Velocidade de conexão e desconexão dos links em % Ex: 0.1 significa que 10% da conexão vai ser desenhada a cada frame
+const LINK_CONECTION_SPEED = 0.08; //Velocidade de conexão e desconexão dos links em % Ex: 0.1 significa que 10% da conexão vai ser desenhada a cada frame
 const LINK_CONNECTION_IS_DYMAMIC = true; //Animação da conexão sendo feita e desfeita é dinâmica ou não
 
 //Classe que define um no da rede
@@ -35,12 +39,12 @@ class Node {
         let dx = Math.cos(ang);
         let dy = Math.sin(ang);
 
-        this.px = random(0, cv.width);
-        this.py = random(0, cv.height);
+        this.px = random(-cv.width * 0.1, cv.width * 1.1);
+        this.py = random(-cv.height * 0.1, cv.height * 1.1);
         this.spd = random(NODE_MIN_SPEED * u, NODE_MAX_SPEED * u);
         this.spdX = dx * this.spd;
         this.spdY = dy * this.spd;
-        this.size = random(NODE_MIN_SIZE * u, NODE_MAX_SIZE * u);
+        this.size = min(max(5, random(NODE_MIN_SIZE * u, NODE_MAX_SIZE * u)), 10);
         this.color = NODE_COLOR;
         this.isMouse = isMouse;
     }
@@ -48,16 +52,16 @@ class Node {
     update() {
         if (this.isMouse) {
             this.move();
-            this.display();
         }
+        this.display();
     }
 
     move() {
         this.px += this.spdX;
-        if (this.px < 0 || this.px > cv.width) this.spdX *= -1;
+        if (this.px < -cv.width * 0.1 || this.px > cv.width * 1.1) this.spdX *= -1;
 
         this.py += this.spdY;
-        if (this.py < 0 || this.py > cv.height) this.spdY *= -1;
+        if (this.py < -cv.height * 0.1 || this.py > cv.height * 1.1) this.spdY *= -1;
     }
 
     display() {
@@ -66,7 +70,7 @@ class Node {
         } else {
             c.fillStyle = this.color;
         }
-        c.lineWidth = NODE_BORDER_WIDTH * u;
+        c.lineWidth = NODE_BORDER_WIDTH;
         c.beginPath();
         if (NODE_SHAPE == NODE_SHAPE_CIRCLE) {
             c.arc(this.px, this.py, this.size, 0, 2 * Math.PI);
@@ -121,7 +125,7 @@ class Link {
     }
 
     updateLinkWid() {
-        this.wid = map(this.dist, 0, LINK_MAX_LENGTH_SQR * u, LINK_MAX_WEIGHT * u, LINK_MIN_WEIGHT * u);
+        this.wid = map(this.dist, 0, LINK_MAX_LENGTH_SQR * u, LINK_MAX_WEIGHT, LINK_MIN_WEIGHT);
     }
 
     link() {
@@ -173,7 +177,7 @@ var nodes = []; //Array que guarda os nós
 var mouseNode = new Node(false);
 
 //Loop de instanciamento dos nós
-for (let i = 0; i < NODE_AMOUNT * u; i++) {
+for (let i = 0; i < NODE_AMOUNT * (propArea); i++) {
     nodes[i] = new Node(true);
 }
 
@@ -229,14 +233,18 @@ function resetAnimation() {
     cv.width = cv.clientWidth;
     cv.height = cv.clientHeight;
     c.globalAlpha = GLOBAL_ALPHA;
-    /*u = (cv.width * cv.height) / 200000;
+    propArea = (cv.width * cv.height) / baseArea; //Unidade de medida conveniente
+    ratio = window.devicePixelRatio; //Densidade de pixel
+    u = propArea * ratio; //Unidade de medida conveniente
 
     nodes = [];
-    for (let i = 0; i < NODE_AMOUNT * u; i++) {
+    for (let i = 0; i < NODE_AMOUNT * (propArea / ratio); i++) {
         nodes[i] = new Node(true);
     }
 
-    links = [];*/
+    nodes.push(mouseNode);
+
+    links = [];
 }
 
 window.onresize = resetAnimation; //Aplicando transparência global dos desenhos no canvas
