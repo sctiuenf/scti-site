@@ -108,6 +108,14 @@ main {
 #banner {
   margin: 0; }
 
+#drawCanvas {
+  z-index: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px; }
+
 .gradient-banner {
   background: #155799;
   background: linear-gradient(225deg, rgba(21, 87, 153, 0.8) 0%, rgba(21, 153, 87, 0.8) 100%), url("../imgs/banner.jpg");

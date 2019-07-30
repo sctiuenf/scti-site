@@ -6,7 +6,8 @@ require_once $root_dir_path.'/models/User.php';
 
 <main class="home-main">
     <section id="banner" class="container-fluid gradient-banner vh-100 row align-items-center ">
-        <div class="row container- mx-0 px-0">
+        <canvas id="drawCanvas"></canvas>
+        <div class="row container-fluid">
         <div class="col-12">
         <div class="row justify-content-center">
             <div class="main-logo">
@@ -20,7 +21,7 @@ require_once $root_dir_path.'/models/User.php';
         <div class="row justify-content-center">
             <button class="btn btn-3d-secondary mt-3" onclick="window.location.href='user/access'">Inscreva-se</button>
         </div>
-</div>
+        </div>
         </div>
     </section>
     <section id="sec-sobre" class="container-fluid justify-content-center d-flex">
