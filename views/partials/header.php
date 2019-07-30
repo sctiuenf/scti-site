@@ -38,6 +38,7 @@
         <link rel="stylesheet" type="text/css" href="<?=$root_url?>/assets/css/slick.css">
         <link rel="stylesheet" type="text/css" href="<?=$root_url?>/assets/css/account.css">
 
+
         <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree|Open+Sans&display=swap" rel="stylesheet">
 
 
@@ -51,7 +52,7 @@
 
 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top <?php if($_SERVER['REQUEST_URI'] !== '/' && $_SERVER['REQUEST_URI'] !== '/scti/') echo "gradient"?>">
-        <a class="navbar-brand" href="#">SCTI</a>
+        <a class="navbar-brand" href="<?=$root_url?>">SCTI</a>
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

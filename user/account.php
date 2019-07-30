@@ -211,8 +211,8 @@ if(!isset($_SESSION['logged'])){
                                 <input class="form-control" name="phone" type="tel" pattern="[0-9]{11}" value="<?=$userInfo['phone']?>">
                                 <label class="<?php echo count($userInfo['phone']) > 0 ? 'translated-label':''?>">Telefone</label>
                             </div>
-                            <div class="row">
-                                <input class="btn btn-3d-primary mr-3" type="submit" value="Alterar informações">
+                            <div class="row m-0">
+                                <input class="btn btn-3d-primary mr-3 changeInfo-btn" type="submit" value="Alterar informações">
                                 
                                 <button id="showModalChangePass" type="button" data-toggle="modal" data-target="#changePass-modal"  class="btn btn-3d-primary">Alterar senha</button>
                             </div>
@@ -275,7 +275,7 @@ if(!isset($_SESSION['logged'])){
         $month = MONTHS[$month = date('m', strtotime(COURSE_END))];
     ?>
     <section id="courses" class="container-fluid">
-        <div class="row h-100 align-items-center pt-5 px-3">
+        <div class="row h-100 align-items-center pt-5 pb-3 px-3">
             <div class="col-12 col-lg-3 h-25 light-color">
                 <h1 class="sec-title light-color text-center">Escolha dois cursos incríveis!</h1>
                 <p class="sec-text">E não se preocupe, você pode alterar os cursos escolhidos até o dia <?=$day?> de <?=$month?></p>
@@ -356,7 +356,7 @@ if(!isset($_SESSION['logged'])){
         $month = MONTHS[$month = date('m', strtotime(SHIRT_END))];
     ?>
     <section id="shirts" class="container-fluid">
-    <div class="row h-100 align-items-center pt-5 px-3">
+    <div class="row h-100 align-items-center pt-5 pb-3 px-3">
             <div class="col-12 col-lg-3 h-25 light-color">
                 <h1 class="sec-title light-color text-center">Escolha sua camisa :)</h1>
                 <p class="sec-text">Uma dessas camisas iradas é sua! Escolhe a que mais gostar, e manda ver.</p>

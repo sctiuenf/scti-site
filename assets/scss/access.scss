@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+@import "variables";
+
+main.access-main{
+    height: 95% !important;
+}
+footer{
+    height: 5% !important;
+}
+
+.access-card.register-card{
+    display: none;
+}
+.access-card{
+    display: flex;
+    position: relative;
+    max-width: 100%;
+    width: 30em;
+    background: rgb(21,87,153);
+    background: linear-gradient(225deg, rgba(21,87,153,.8) 0%, rgba(21,153,87,.8) 100%);
+    padding: 10rem 0 4rem 0;
+    border-radius: .25rem;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.translated-label, .form-control:focus + label{
+    color: $light;
+}
+.access-card-title{
+    position: absolute;
+    top: .5em;
+    left: .5em;
+}
+
+.access-btns button{
+    margin-left: 1rem;
+}
+
+main{
+    min-height: fit-content;
+    padding: 5rem 0 3rem 0;
+}
+
+@media (max-width: 492px){
+    .access-btns-container{
+        flex-direction: column-reverse;
+        margin-top: 1rem !important;
+    }
+    .access-card{
+        padding: 8rem 0 2rem 0;
+    }
+    .access-btns{
+        flex-direction: column;
+        margin-top: 1.5rem;
+    }
+    .access-btns button{
+        margin-top: 1rem;
+        margin-left: 0;
+    }
+    .register-btns{
+        flex-direction: column;
+    }
+    .register-btns button{
+        margin: 0;
+        margin-top: 1rem;
+        margin-left: 0 !important;
+    }
+}
