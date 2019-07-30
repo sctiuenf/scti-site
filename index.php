@@ -39,7 +39,7 @@ require_once $root_dir_path.'/models/User.php';
                                     <img class="col-12" src="assets/imgs/lecture2.png" alt="">
                                 </div> 
                             </div>
-                            <h3>Palestras</h3>
+                            <h3 class="text-center">Palestras</h3>
                             <div class="row text-justify px-3">As palestras são uma ótima oportunidade de aprendizado com vários profissionais de diversas áreas apresentando temas super atuais no mercado de trabalho. Você não pode ficar de fora!!</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
@@ -48,7 +48,7 @@ require_once $root_dir_path.'/models/User.php';
                                     <img class="col-12" src="assets/imgs/minicourse.png" alt="">
                                 </div>
                             </div>
-                            <h3>Minicursos</h3>
+                            <h3 class="text-center">Minicursos</h3>
                             <div class="row text-justify px-3">Os minicursos são uma ótima maneira de introduzir técnicas, ferramentas e boas práticas que podem ser essenciais para sua carreira na área de computação. Quer aprender rápido e com uma visão geral do assunto? Então vem!</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
@@ -57,7 +57,7 @@ require_once $root_dir_path.'/models/User.php';
                                     <img class="col-12" src="assets/imgs/networking.png" alt="">
                                 </div>
                             </div>
-                            <h3>Networking</h3>
+                            <h3 class="text-center">Networking</h3>
                             <div class="row text-justify px-3">Um dos pontos altos do evento é a possibilidade de conhecer gente nova da área da informática e afins, em busca de aprendizado, oportunidades e de compartilhar boas histórias. Queremos te conhecer :D</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
@@ -66,7 +66,7 @@ require_once $root_dir_path.'/models/User.php';
                                     <img class="col-12" src="assets/imgs/coffee-break.png" alt="">
                                 </div>
                             </div>
-                            <h3>Coffee-break</h3>
+                            <h3 class="text-center">Coffee-break</h3>
                             <div class="row text-justify px-3">Não precisa ficar com fome durante a SCTI. A gente dá uma pausa, faz uma boquinha, bate um papo e volta com todo gás para mais uma carga de conhecimento. Além disso, a gente capricha nos petiscos!!</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
@@ -75,7 +75,7 @@ require_once $root_dir_path.'/models/User.php';
                                     <img class="col-12" src="assets/imgs/gift.png" alt="">
                                 </div>
                             </div>
-                            <h3>Brindes e sorteios</h3>
+                            <h3 class="text-center">Brindes e sorteios</h3>
                             <div class="row text-justify px-3">Se inscrevendo agora você garante os brindes que a comissão do evento oferece aos participantes. Além dos diversos livros, cursos, cupons de desconto e muitas outras coisas bacanas que são sorteadas para os participantes presentes.</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
@@ -84,7 +84,7 @@ require_once $root_dir_path.'/models/User.php';
                                     <img class="col-12" src="assets/imgs/championship.png" alt="">
                                 </div>
                             </div>
-                            <h3>Competições</h3>
+                            <h3 class="text-center">Competições</h3>
                             <div class="row text-justify px-3">A novidade da edição desse ano são as competições! Teste suas habilidades numa competição de programação, e seja consciente trazendo seu lixo eletrônico para um descarte adequado(e com prêmios hehe).</div>
                         </div>
                     </div>
