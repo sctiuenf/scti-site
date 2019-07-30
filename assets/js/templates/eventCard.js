@@ -1,5 +1,5 @@
 function getEventCard(params){
-
+ 
     params.tipo = capitalize(params.tipo)
 
     let inicio = addZero(new Date(params.inicioEvento).getHours());
@@ -45,13 +45,21 @@ function getEventCard(params){
     });
 
     return `<div class="card">
-
-    <img id="event-fotoEvento" class="card-img-top" src="${params.fotoEvento}" alt="Card image cap">
+    <div class="card-img-top-container">
+        <img id="event-fotoEvento" class="card-img-top" src="${params.fotoEvento}" alt="Card image cap">
+        <div class="img-instrutor-container">
+            <img class="img-instrutor" src="${params.fotoInstrutor}">
+        </div>
+    </div>
     <div class="card-body">
         <h6 id="event-tipo">${params.tipo}</h6>
         <h4 id="event-tituloEvento" class="card-title">${params.tituloEvento}</h4>
+        <div class="row m-0 nome-instrutor">
         <h5 id="event-nomeInstrutor" class="card-title">${params.nomeInstrutor} ${params.sobrenomeInstrutor}</h5>
-        
+        <button data-toggle="popover" data-placement="right" data-trigger="focus" data-content="${params.bioInstrutor}">
+            <i class="far fa-question-circle"></i>
+        </button>
+        </div>
         <div class="card-text">
             <div class="scrollbar scrollbar-primary">
                 <div id="event-descricaoEvento">

@@ -23,14 +23,14 @@ if(isset($_SESSION['logged'])){
         
         <h1 class="mb-4">Login</h1>
             <div class="form-group">
-                <input class="form-control" required name="email" type="email">
-                <label>Email</label>
+                <input id="signin-email" class="form-control" required name="email" type="email">
+                <label for="signin-email">Email</label>
             </div>
             <div class="form-group">
-                <input class="form-control" required name="password" type="password">
-                <label>Senha</label>
+                <input id="signin-password" class="form-control" required name="password" type="password">
+                <label for="signin-password">Senha</label>
             </div>
-            <input class="btn btn-primary" type="submit" value="Entrar">
+            <input class="btn btn-3d-primary" type="submit" value="Entrar">
             <a class="float-right" href="forgotPassword">Esqueci minha senha</a>
         </form>
         
@@ -44,41 +44,41 @@ if(isset($_SESSION['logged'])){
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
-                        <input class="form-control" required name="firstname" type="text" >
-                        <label>Nome</label>
+                        <input id="firstname" class="form-control" required name="firstname" type="text" >
+                        <label for="firstname">Nome</label>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <input class="form-control" required name="lastname" type="text">
-                        <label>Sobrenome</label>
+                        <input id="lastname" class="form-control" required name="lastname" type="text">
+                        <label for="lastname">Sobrenome</label>
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <input class="form-control" required name="email" type="email">
-                <label>Email</label>
+                <input id="signup-email" class="form-control" required name="email" type="email">
+                <label for="signup-email">Email</label>
             </div>
             <div class="form-group">
-                <input class="form-control" name="phone" type="tel" pattern="[0-9]{11}">
-                <label>Telefone</label>
+                <input id="phone" class="form-control" name="phone" type="tel" pattern="[0-9]{11}">
+                <label for="phone">Telefone</label>
             </div>
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
-                        <input class="form-control" required name="password" type="password">
-                        <label>Senha</label>
+                        <input id="signup-password" class="form-control" required name="password" type="password">
+                        <label for="signup-password">Senha</label>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <input class="form-control" required name="passwordConfirm" type="password">
-                        <label>Confirmar senha</label>
+                        <input id="confirm-password" class="form-control" required name="passwordConfirm" type="password">
+                        <label for="confirm-password">Confirmar senha</label>
                     </div>
                 </div>
             </div>
             
-            <input class="btn btn-primary" type="submit" value="Cadastrar">
+            <input class="btn btn-3d-primary" type="submit" value="Cadastrar">
         </form>
         </div>
     </div>

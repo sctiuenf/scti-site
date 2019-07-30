@@ -15,6 +15,12 @@ if(!isset($_SESSION['logged']) || !isset($_SESSION['user'])){
     die;
 }
 
+$user = unserialize($_SESSION['user']);
+
+
+if($user->getPaymentStatus() !== 'A')
+    json_return(false, 'Você ainda não completou o pagamento da sua inscrição.');
+
 $c1 = array('info'=>null, 'tipo'=>null, 'status'=>null);
 $c2 = array('info'=>null, 'tipo'=>null, 'status'=>null);
 
@@ -34,7 +40,7 @@ $twoCourses = $c1Id != -1 && $c2Id != -1;
 if($twoCourses && $c1Id === $c2Id)
     json_return(false, 'Você escolheu dois cursos iguais.');
 
-$user = unserialize($_SESSION['user']);
+
 
 Event::deleteUnwantedEnrolls($user->getId(), $c1Id, $c2Id);
 

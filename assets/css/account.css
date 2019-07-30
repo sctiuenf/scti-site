@@ -1,3 +1,9 @@
+/*branco*/
+/*cinza*/
+/*azul claro*/
+/*azul escuro*/
+/*verde*/
+/*verde escuro*/
 /*.account .card{
     height: 100%;
 }
@@ -37,10 +43,6 @@
   height: 45em;
   max-height: 100vh; }
 
-.account h1, .account h2, .account h5, .account p {
-  color: white;
-  text-align: center; }
-
 .account .sec-btns {
   margin-left: 1.2em;
   margin-top: 1.2em; }
@@ -53,9 +55,6 @@
 
 .account .card {
   height: 100%; }
-
-.card h1 {
-  color: #222 !important; }
 
 .sympla-widget {
   width: 90%;
@@ -183,7 +182,7 @@ button.scroll-down {
   color: #222 !important; }
 
 .status {
-  background-color: #f1f1f1;
+  background-color: #FEFEFE;
   max-width: unset;
   position: relative; }
 
@@ -253,6 +252,20 @@ button.scroll-down {
 .btn-refresh i {
   margin: 0; }
 
+.info {
+  background-color: #FEFEFE; }
+
+.info .alert {
+  position: relative;
+  top: unset;
+  right: unset;
+  width: 100%;
+  padding: .75rem 1.25rem;
+  padding-right: 4rem; }
+
+.btn-ok {
+  display: none; }
+
 @media (min-width: 1200px) {
   .right-side {
     align-items: flex-start !important; } }
@@ -286,6 +299,9 @@ button.scroll-down {
 
   .status-col {
     height: 50vh !important; } }
+@media (max-width: 576px) {
+  #verifyPayment-btn {
+    margin-top: 1rem; } }
 @media (max-width: 400px) {
   .account .sec-title {
     font-size: 1.5em; }
@@ -295,6 +311,9 @@ button.scroll-down {
 
   .list-group-item {
     padding: .3rem .6rem; } }
+@media (max-width: 340px) {
+  #showModalChangePass {
+    margin-top: 1rem; } }
 @keyframes bounce {
   from {
     transform: translateY(0px); }

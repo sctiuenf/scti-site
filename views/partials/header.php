@@ -3,6 +3,25 @@
     require_once  $root_dir_path.'/models/User.php';
     require_once $root_dir_path.'/utils/json_utils.php';
     session_start();
+
+    //gambiarra pra tirar o scroll do body, prometo que vou ajeitar um dia <3
+    
+    $page = '';
+    if(strpos($_SERVER["PHP_SELF"], 'account')  !== false)
+        $page = 'account';
+    else if(strpos($_SERVER["PHP_SELF"], 'index')  !== false)
+        $page = 'index';
+
+    $paymentComplete = true;
+    if($page == 'account'){
+        
+        if(isset($_SESSION['logged'], $_SESSION['user'])){
+            $user = unserialize($_SESSION['user']);
+
+            $paymentComplete = $user->hasPayment() && $user->getPaymentStatus() === 'A';
+        }
+    }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,7 +46,7 @@
         <script src="<?=$root_url?>/assets/js/libs/fontawesome.js"></script>
     
     </head>
-    <body>
+    <body <?php if(!$paymentComplete) echo 'style="overflow:hidden"'?>>
 
     <button class="btn btn-up gradient" onclick="scrollToDiv('#banner')"><i class="fas fa-chevron-up"></i></button>
 
@@ -41,9 +60,22 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="<?=$root_url?>">Home <span class="sr-only">(current)</span></a>
                 </li>
+                
+                <?php if($page == 'index'){?>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="scrollToDiv('#sec-sobre')">Sobre</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" onclick="scrollToDiv('#programacao')">Programação</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="scrollToDiv('#patrocinadores-sec')">Patrocinadores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="scrollToDiv('#sec-contato')">Contato</a>
+                </li>
+                <?php }?>
+                
             </ul>
             <ul class="navbar-nav">
                 <?php

@@ -119,7 +119,10 @@ function navColorAndBtnUp(){
             navbar.removeClass('gradient');
             navbar.css('background-color', 'rgba(0, 0, 0, 0.4)');
             $('footer').removeClass('gradient');
-            $('footer').css('background-color', 'rgba(0, 0, 0, .7)');
+            $('footer').css('background-color', 'rgba(0, 0, 0, .4)');
+
+            $('body').css('background-color', '#155799');
+
             btnUp.removeClass('gradient');
             btnUp.css('background-color', 'rgba(0, 0, 0, 0.4)');
         }else
