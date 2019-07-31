@@ -50,7 +50,7 @@ if(isset($_SESSION['logged'])){
         <h1 class="mb-4 light-color access-card-title">Cadastro</h1>
         <div class="row w-100 justify-content-center">
             <div class="col-12 col-sm-11">
-    <form class="w-100" id="create" method="post">
+            <form class="w-100" id="create" method="post">
                 <div class="row">
                     <div class="col-12 col-sm-6">
                         <div class="form-group">

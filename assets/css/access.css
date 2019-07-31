@@ -17,10 +17,10 @@ footer {
   display: flex;
   position: relative;
   max-width: 100%;
-  width: 30em;
+  width: 28em;
   background: #155799;
   background: linear-gradient(225deg, rgba(21, 87, 153, 0.8) 0%, rgba(21, 153, 87, 0.8) 100%);
-  padding: 10rem 0 4rem 0;
+  padding: 9rem 0 4rem 0;
   border-radius: .25rem;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
 
@@ -61,6 +61,9 @@ main {
   .register-btns button {
     margin: 0;
     margin-top: 1rem;
-    margin-left: 0 !important; } }
+    margin-left: 0 !important; }
+
+  main.access-main {
+    height: fit-content !important; } }
 
 /*# sourceMappingURL=access.css.map */
