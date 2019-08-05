@@ -1,48 +1,66 @@
 function getEventCard(params){
- 
-    params.tipo = capitalize(params.tipo)
 
     let inicio = addZero(new Date(params.inicioEvento).getHours());
     let fim = addZero(new Date(params.fimEvento).getHours());
 
-    let redesSociais = '';
-    Object.keys(params.redesSociais).forEach(function(rede){
-        let icon;
-        switch(rede){
-            
-            case 'facebook':
-                icon = '<i title="Facebook" class="fab fa-facebook-square"></i>';
-                break;
-            case 'linkedin':
-                icon = '<i title="Linkedin" class="fab fa-linkedin"></i>';
-                break;
-            case 'instagram':
-                icon = '<i title="Instagram" class="fab fa-instagram"></i>';
-                break;
-            case 'behance':
-                icon = '<i title="Behance" class="fab fa-behance-square"></i>';
-                break;
-            case 'twitter':
-                icon = '<i title="Twitter" class="fab fa-twitter-square"></i>';
-                break;
-            case 'youtube':
-                icon = '<i title="Youtube" class="fab fa-youtube-square"></i>';
-                break;
-            case 'website':
-                icon = '<i title="Website" class="fas fa-globe"></i>';
-                break;
-            default:
-                icon = '<i title="Website" class="fas fa-globe"></i>';
-                break;
 
-        }
-        url = params.redesSociais[rede];
-        
-        icon = $(icon).attr('onclick', `window.open('${url}')`);
-        icon = $('<div>').append(icon).html();
-
-        redesSociais += icon;
+    Object.keys(params).forEach(function(key){
+        if(!params[key]) params[key] = '';
     });
+
+    let bioPopover = `<button data-toggle="popover" data-placement="right" data-trigger="focus" data-content="${params.bioInstrutor}">
+            <i class="far fa-question-circle"></i>
+        </button>`;
+
+    if(params.tipo !== 'minicurso' && params.tipo !== 'palestra'){
+        params.nomeInstrutor = '';
+        params.sobrenomeInstrutor = '';
+        bioPopover = '';
+    }
+
+    params.tipo = capitalize(params.tipo);
+    
+    let redesSociais = '';
+    let redes = Object.keys(params.redesSociais);
+    if(redes[0]){
+        redes.forEach(function(rede){
+            let icon;
+            switch(rede){
+                
+                case 'facebook':
+                    icon = '<i title="Facebook" class="fab fa-facebook-square"></i>';
+                    break;
+                case 'linkedin':
+                    icon = '<i title="Linkedin" class="fab fa-linkedin"></i>';
+                    break;
+                case 'instagram':
+                    icon = '<i title="Instagram" class="fab fa-instagram"></i>';
+                    break;
+                case 'behance':
+                    icon = '<i title="Behance" class="fab fa-behance-square"></i>';
+                    break;
+                case 'twitter':
+                    icon = '<i title="Twitter" class="fab fa-twitter-square"></i>';
+                    break;
+                case 'youtube':
+                    icon = '<i title="Youtube" class="fab fa-youtube-square"></i>';
+                    break;
+                case 'website':
+                    icon = '<i title="Website" class="fas fa-globe"></i>';
+                    break;
+                default:
+                    icon = '<i title="Website" class="fas fa-globe"></i>';
+                    break;
+
+            }
+            url = params.redesSociais[rede];
+            
+            icon = $(icon).attr('onclick', `window.open('${url}')`);
+            icon = $('<div>').append(icon).html();
+
+            redesSociais += icon;
+        });
+    }
 
     return `<div class="card">
     <div class="card-img-top-container">
@@ -56,9 +74,7 @@ function getEventCard(params){
         <h4 id="event-tituloEvento" class="card-title">${params.tituloEvento}</h4>
         <div class="row m-0 nome-instrutor">
         <h5 id="event-nomeInstrutor" class="card-title">${params.nomeInstrutor} ${params.sobrenomeInstrutor}</h5>
-        <button data-toggle="popover" data-placement="right" data-trigger="focus" data-content="${params.bioInstrutor}">
-            <i class="far fa-question-circle"></i>
-        </button>
+        ${bioPopover}
         </div>
         <div class="card-text">
             <div class="scrollbar scrollbar-primary">
