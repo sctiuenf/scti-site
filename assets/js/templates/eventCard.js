@@ -1,17 +1,25 @@
 function getEventCard(params){
 
-    let inicio = addZero(new Date(params.inicioEvento).getHours());
-    let fim = addZero(new Date(params.fimEvento).getHours());
-
+    let inicio = formatHour(params.inicioEvento);
+    let fim = formatHour(params.fimEvento);
 
     Object.keys(params).forEach(function(key){
         if(!params[key]) params[key] = '';
     });
 
-    let bioPopover = `<button data-toggle="popover" data-placement="right" data-trigger="focus" data-content="${params.bioInstrutor}">
-            <i class="far fa-question-circle"></i>
-        </button>`;
+    let bioPopover = `
+    <button data-toggle="popover" data-placement="right" data-trigger="focus" data-content="${params.bioInstrutor}">
+        <i class="far fa-question-circle"></i>
+    </button>`;
 
+    let instrutorImg = `
+    <div class="img-instrutor-container">
+        <img class="img-instrutor" src="${params.fotoInstrutor}">
+    </div>`;
+
+    if(!params.fotoInstrutor){
+        instrutorImg = '';
+    }
     if(params.tipo !== 'minicurso' && params.tipo !== 'palestra'){
         params.nomeInstrutor = '';
         params.sobrenomeInstrutor = '';
@@ -65,9 +73,7 @@ function getEventCard(params){
     return `<div class="card">
     <div class="card-img-top-container">
         <img id="event-fotoEvento" class="card-img-top" src="${params.fotoEvento}" alt="">
-        <div class="img-instrutor-container">
-            <img class="img-instrutor" src="${params.fotoInstrutor}">
-        </div>
+        ${instrutorImg}
     </div>
     <div class="card-body">
         <h6 id="event-tipo">${params.tipo}</h6>

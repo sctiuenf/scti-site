@@ -111,7 +111,7 @@ $(document).ready(function () {
                     sec.find('.alert-success').show();
 
                 }else{
-                
+                    console.log(response);
                     sec.find('.alert-danger').show();
                 }
             },

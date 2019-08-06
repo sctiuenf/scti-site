@@ -65,7 +65,7 @@ require_once $root_dir_path.'/models/User.php';
                                     <img class="col-12" src="assets/imgs/coffee-break.png" alt="">
                                 </div>
                             </div>
-                            <h3 class="text-center">Coffee-break</h3>
+                            <h3 class="text-center">Coffee break</h3>
                             <div class="row text-justify px-3">Não precisa ficar com fome durante a SCTI. A gente dá uma pausa, faz uma boquinha, bate um papo e volta com todo gás para mais uma carga de conhecimento. Além disso, a gente capricha nos petiscos!!</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
@@ -215,7 +215,7 @@ require_once $root_dir_path.'/models/User.php';
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     Sua mensagem foi enviada com sucesso!
                 </div>
-                <div class="alert alert-danger alert-dismissible fade in">
+                <div class="alert alert-danger alert-dismissible">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     Falha ao enviar mensagem. Por favor, contate a equipe através do email: sctiuenf@gmail.com.
                 </div>
