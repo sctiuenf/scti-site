@@ -27,6 +27,12 @@
 <html lang="pt-br">
     <head>
         <title>SCTI 2019</title>
+        <meta name="title" content="SCTI 2019">
+        <meta name="keywords" content="scti, computação, tecnologia, uenf">
+        <meta name="robots" content="index, follow">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="language" content="Portuguese">
+        <meta name="author" content="Pedro Leal, Diana de Sales, Ian Louzada">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="Description" content="Website da Semana Acadêmica de Ciência da Computação e Tecnologia da Informação da Universidade Estadual Darcy Ribeiro - UENF. Saiba mais sobre um dos maiores e melhores eventos de tecnologia da região.">
