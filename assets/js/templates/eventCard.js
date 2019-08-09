@@ -115,8 +115,9 @@ function getCourseCard(params){
     return `<div class="card">
     <label for="evento-${params.idEvento}" class="card-overlay"></label>
     <div class="picked alert alert-success">Inscrito</div>
-    <input id="evento-${params.idEvento}" class="card-checkbox" value="${params.idEvento}" type="checkbox" onchange="selectItem(event, 'minicurso')">
-
+    
+    <input id="evento-${params.idEvento}" class="card-checkbox" value="${params.idEvento}" type="checkbox" aria-label="selecionar curso" onchange="selectItem(event, 'minicurso')">
+   
     <div hidden class="req-org">${params.preRequisitosOrg}</div>
     <div hidden class="req-tec">${params.preRequisitosTec}</div>
 

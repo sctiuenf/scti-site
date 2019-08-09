@@ -70,16 +70,16 @@
                 
                 <?php if($page == 'index'){?>
                 <li class="nav-item">
-                    <a class="nav-link" onclick="scrollToDiv('#sec-sobre')">Sobre</a>
+                    <a class="nav-link" tabindex="0" onclick="scrollToDiv('#sec-sobre')">Sobre</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" onclick="scrollToDiv('#programacao')">Programação</a>
+                    <a class="nav-link" tabindex="0" onclick="scrollToDiv('#programacao')">Programação</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" onclick="scrollToDiv('#patrocinadores-sec')">Patrocinadores</a>
+                    <a class="nav-link" tabindex="0" onclick="scrollToDiv('#patrocinadores-sec')">Patrocinadores</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" onclick="scrollToDiv('#sec-contato')">Contato</a>
+                    <a class="nav-link" tabindex="0" onclick="scrollToDiv('#sec-contato')">Contato</a>
                 </li>
                 <?php }?>
                 

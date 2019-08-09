@@ -259,19 +259,19 @@ require_once $root_dir_path.'/models/User.php';
                 </div>
                 <div class="col-12 col-md-4 mt-5" id="scti-info">
                     <div class="row mb-1">
-                        <div class="col-1 pr-0"><i class="fab fa-facebook-f text-gradient"></i></div>
+                        <a class="col-1 pr-0" href="https://www.facebook.com/sctiuenf/" target="_blank" rel="noopener" title="facebook"><i class="fab fa-facebook-f text-gradient"></i></a>
                         <div class="col-11 pl-4 pr-0">/sctiuenf</div>
                     </div>
                     <div class="row mb-1"> 
-                        <div class="col-1 pr-0"><i class="fab fa-instagram text-gradient"></i></div>
+                        <a class="col-1 pr-0" href="https://www.instagram.com/sctiuenf/" target="_blank" rel="noopener"><i class="fab fa-instagram text-gradient" title="instagram"></i></a>
                         <div class="col-11 pl-4 pr-0">@sctiuenf</div>
                     </div>
                     <div class="row mb-1">
-                        <div class="col-1 pr-0"><i class="fas fa-phone text-gradient"></i></div>
+                        <a class="col-1 pr-0" href="tel:(22)91231-1231" rel="noopener" title="telefone"><i class="fas fa-phone text-gradient"></i></a>
                         <div class="col-11 pl-4 pr-0">(22)91231-1231</div>
                     </div>
                     <div class="row mb-1">
-                        <div class="col-1 pr-0"><i class="fas fa-envelope text-gradient"></i></div>
+                        <a class="col-1 pr-0" href="mailto:sctiuenf@gmail.com" rel="noopener" title="email"><i class="fas fa-envelope text-gradient"></i></a>
                         <div class="col-11 pl-4 pr-0">sctiuenf@gmail.com</div>
                     </div>
                     <div class="row mb-1">

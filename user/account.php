@@ -78,7 +78,7 @@ if(!isset($_SESSION['logged'])){
 ?>
 
 <?php if($paymentComplete){?>
-    <button class="scroll-down">v</button>
+    <button class="scroll-down" title="Rolar pra baixo"><i class="fas fa-chevron-down"></i></button>
 <?php } ?>
 
 <main class="container-fluid account">
@@ -192,24 +192,24 @@ if(!isset($_SESSION['logged'])){
                             <div class="row">
                                 <div class="col-lg-12 col-xl-6">
                                     <div class="form-group">
-                                        <input class="form-control" required name="firstname" type="text" value="<?=$userInfo['firstName']?>">
-                                        <label class="translated-label">Nome</label>
+                                        <input class="form-control" required id="firstname" name="firstname" type="text" value="<?=$userInfo['firstName']?>">
+                                        <label for="firstname" class="translated-label">Nome</label>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-xl-6">
                                     <div class="form-group">
-                                        <input class="form-control" required name="lastname" type="text" value="<?=$userInfo['lastName']?>">
-                                        <label class="translated-label">Sobrenome</label>
+                                        <input class="form-control" required id="lastname" name="lastname" type="text" value="<?=$userInfo['lastName']?>">
+                                        <label for="lastname" class="translated-label">Sobrenome</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" required name="email" type="email" value="<?=$userInfo['email']?>">
-                                <label class="translated-label">Email</label>
+                                <input class="form-control" required id="email" name="email" type="email" value="<?=$userInfo['email']?>">
+                                <label for="email" class="translated-label">Email</label>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" name="phone" type="tel" pattern="[0-9]{11}" value="<?=$userInfo['phone']?>">
-                                <label class="<?php echo count($userInfo['phone']) > 0 ? 'translated-label':''?>">Telefone</label>
+                                <input class="form-control" id="phone" name="phone" type="tel" pattern="[0-9]{11}" value="<?=$userInfo['phone']?>">
+                                <label for="phone"class="<?php echo count($userInfo['phone']) > 0 ? 'translated-label':''?>">Telefone</label>
                             </div>
                             <div class="row m-0">
                                 <input class="btn btn-3d-primary mr-3 changeInfo-btn" type="submit" value="Alterar informações">
@@ -281,7 +281,7 @@ if(!isset($_SESSION['logged'])){
                 <p class="sec-text">E não se preocupe, você pode alterar os cursos escolhidos até o dia <?=$day?> de <?=$month?></p>
                 <div class="sec-text help">
                     Vagas alternativas
-                    <button data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="As vagas alternativas são destinadas a participantes que possam levar seu próprio notebook para participarem dos minicursos.">
+                    <button data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="As vagas alternativas são destinadas a participantes que possam levar seu próprio notebook para participarem dos minicursos." aria-label="Vagas alternativas">
                         <i class="far fa-question-circle"></i>
                     </button>
                 </div>
