@@ -51,8 +51,8 @@ class Event {
         if(!$type){
             $events = db_select(
             'SELECT * FROM eventos e 
-                INNER JOIN instrutores i ON e.idInstrutor = i.idInstrutor 
-                INNER JOIN redessociais r ON i.idInstrutor = r.idInstrutor
+                LEFT JOIN instrutores i ON e.idInstrutor = i.idInstrutor 
+                LEFT JOIN redessociais r ON i.idInstrutor = r.idInstrutor
                     WHERE CAST(e.inicioEvento as DATE) = ?
             ORDER BY e.inicioEvento ASC', 
             $date);
@@ -60,7 +60,7 @@ class Event {
             $events = db_select(
             'SELECT * FROM eventos e 
                 INNER JOIN instrutores i ON e.idInstrutor = i.idInstrutor 
-                INNER JOIN redessociais r ON i.idInstrutor = r.idInstrutor
+                LEFT JOIN redessociais r ON i.idInstrutor = r.idInstrutor
                     WHERE CAST(e.inicioEvento as DATE) = ? AND e.tipo = ?
             ORDER BY e.inicioEvento ASC', 
             $date, $type);

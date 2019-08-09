@@ -78,7 +78,7 @@ if(!isset($_SESSION['logged'])){
 ?>
 
 <?php if($paymentComplete){?>
-    <button class="scroll-down">v</button>
+    <button class="scroll-down" title="Rolar pra baixo"><i class="fas fa-chevron-down"></i></button>
 <?php } ?>
 
 <main class="container-fluid account">
@@ -192,27 +192,27 @@ if(!isset($_SESSION['logged'])){
                             <div class="row">
                                 <div class="col-lg-12 col-xl-6">
                                     <div class="form-group">
-                                        <input class="form-control" required name="firstname" type="text" value="<?=$userInfo['firstName']?>">
-                                        <label class="translated-label">Nome</label>
+                                        <input class="form-control" required id="firstname" name="firstname" type="text" value="<?=$userInfo['firstName']?>">
+                                        <label for="firstname" class="translated-label">Nome</label>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-xl-6">
                                     <div class="form-group">
-                                        <input class="form-control" required name="lastname" type="text" value="<?=$userInfo['lastName']?>">
-                                        <label class="translated-label">Sobrenome</label>
+                                        <input class="form-control" required id="lastname" name="lastname" type="text" value="<?=$userInfo['lastName']?>">
+                                        <label for="lastname" class="translated-label">Sobrenome</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" required name="email" type="email" value="<?=$userInfo['email']?>">
-                                <label class="translated-label">Email</label>
+                                <input class="form-control" required id="email" name="email" type="email" value="<?=$userInfo['email']?>">
+                                <label for="email" class="translated-label">Email</label>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" name="phone" type="tel" pattern="[0-9]{11}" value="<?=$userInfo['phone']?>">
-                                <label class="<?php echo count($userInfo['phone']) > 0 ? 'translated-label':''?>">Telefone</label>
+                                <input class="form-control" id="phone" name="phone" type="tel" pattern="[0-9]{11}" value="<?=$userInfo['phone']?>">
+                                <label for="phone"class="<?php echo count($userInfo['phone']) > 0 ? 'translated-label':''?>">Telefone</label>
                             </div>
-                            <div class="row">
-                                <input class="btn btn-3d-primary mr-3" type="submit" value="Alterar informações">
+                            <div class="row m-0">
+                                <input class="btn btn-3d-primary mr-3 changeInfo-btn" type="submit" value="Alterar informações">
                                 
                                 <button id="showModalChangePass" type="button" data-toggle="modal" data-target="#changePass-modal"  class="btn btn-3d-primary">Alterar senha</button>
                             </div>
@@ -275,13 +275,13 @@ if(!isset($_SESSION['logged'])){
         $month = MONTHS[$month = date('m', strtotime(COURSE_END))];
     ?>
     <section id="courses" class="container-fluid">
-        <div class="row h-100 align-items-center pt-5 px-3">
+        <div class="row h-100 align-items-center pt-5 pb-3 px-3">
             <div class="col-12 col-lg-3 h-25 light-color">
                 <h1 class="sec-title light-color text-center">Escolha dois cursos incríveis!</h1>
                 <p class="sec-text">E não se preocupe, você pode alterar os cursos escolhidos até o dia <?=$day?> de <?=$month?></p>
                 <div class="sec-text help">
                     Vagas alternativas
-                    <button data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="As vagas alternativas são destinadas a participantes que possam levar seu próprio notebook para participarem dos minicursos.">
+                    <button data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="As vagas alternativas são destinadas a participantes que possam levar seu próprio notebook para participarem dos minicursos." aria-label="Vagas alternativas">
                         <i class="far fa-question-circle"></i>
                     </button>
                 </div>
@@ -356,7 +356,7 @@ if(!isset($_SESSION['logged'])){
         $month = MONTHS[$month = date('m', strtotime(SHIRT_END))];
     ?>
     <section id="shirts" class="container-fluid">
-    <div class="row h-100 align-items-center pt-5 px-3">
+    <div class="row h-100 align-items-center pt-5 pb-3 px-3">
             <div class="col-12 col-lg-3 h-25 light-color">
                 <h1 class="sec-title light-color text-center">Escolha sua camisa :)</h1>
                 <p class="sec-text">Uma dessas camisas iradas é sua! Escolhe a que mais gostar, e manda ver.</p>

@@ -19,11 +19,9 @@
 .account{
     padding-right: 0;
     padding-left: 0;
-}
-.account{
-    //overflow-y: hidden;
-    padding-top: 2.7em;
-    background-color: rgb(21, 149, 91);
+     //overflow-y: hidden;
+     padding-top: .5em;
+     background-color: rgb(21, 149, 91);
 }
 .account section{
     height: 100vh;
@@ -342,9 +340,9 @@ button.scroll-down{
     .list-group-item{
         padding: .3rem .6rem;
     }
-}
-
-@media (max-width: 340px){
+    .changeInfo-btn{
+        margin-right: 3rem !important;
+    }
     #showModalChangePass{
         margin-top: 1rem;
     }

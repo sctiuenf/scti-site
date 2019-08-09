@@ -27,6 +27,12 @@
 <html lang="pt-br">
     <head>
         <title>SCTI 2019</title>
+        <meta name="title" content="SCTI 2019">
+        <meta name="keywords" content="scti, computação, tecnologia, uenf">
+        <meta name="robots" content="index, follow">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="language" content="Portuguese">
+        <meta name="author" content="Pedro Leal, Diana de Sales, Ian Louzada">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="Description" content="Website da Semana Acadêmica de Ciência da Computação e Tecnologia da Informação da Universidade Estadual Darcy Ribeiro - UENF. Saiba mais sobre um dos maiores e melhores eventos de tecnologia da região.">
@@ -37,6 +43,7 @@
         <link rel="stylesheet" type="text/css" href="<?=$root_url?>/assets/css/style.css">
         <link rel="stylesheet" type="text/css" href="<?=$root_url?>/assets/css/slick.css">
         <link rel="stylesheet" type="text/css" href="<?=$root_url?>/assets/css/account.css">
+
 
         <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree|Open+Sans&display=swap" rel="stylesheet">
 
@@ -51,7 +58,7 @@
 
 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top <?php if($_SERVER['REQUEST_URI'] !== '/' && $_SERVER['REQUEST_URI'] !== '/scti/') echo "gradient"?>">
-        <a class="navbar-brand" href="#">SCTI</a>
+        <a class="navbar-brand" href="<?=$root_url?>">SCTI</a>
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -63,16 +70,16 @@
                 
                 <?php if($page == 'index'){?>
                 <li class="nav-item">
-                    <a class="nav-link" onclick="scrollToDiv('#sec-sobre')">Sobre</a>
+                    <a class="nav-link" tabindex="0" onclick="scrollToDiv('#sec-sobre')">Sobre</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" onclick="scrollToDiv('#programacao')">Programação</a>
+                    <a class="nav-link" tabindex="0" onclick="scrollToDiv('#programacao')">Programação</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" onclick="scrollToDiv('#patrocinadores-sec')">Patrocinadores</a>
+                    <a class="nav-link" tabindex="0" onclick="scrollToDiv('#patrocinadores-sec')">Patrocinadores</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" onclick="scrollToDiv('#sec-contato')">Contato</a>
+                    <a class="nav-link" tabindex="0" onclick="scrollToDiv('#sec-contato')">Contato</a>
                 </li>
                 <?php }?>
                 

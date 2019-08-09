@@ -46,35 +46,51 @@ $(document).ready(function () {
         $('form#verifyPayment').submit();
     });
 
-    //onScroll listeners
-    jWindow.scroll(function(e){
-        let actPos = jWindow.scrollTop();
+    if(page == 'access'){
+        let loginCard = $('.login-card');
+        let registerCard = $('.register-card');
+        //access cards listeners
+        $('#show-register-card').click(function(){
+            loginCard.hide();
+            registerCard.css('display', 'flex');
+        });
+        $('#show-login-card').click(function(){
+            registerCard.hide();
+            loginCard.css('display', 'flex');
+        });
+    }
 
-        if(banner.length)
-            navColorAndBtnUp();
-        
-        if(btnDown.length){
-            if(actPos >= $('section').last().offset().top){
-                if(btnDown.css('display') != 'none')
-                    btnDown.hide();    
+    //onScroll listeners
+    if(page !== 'access'){
+        jWindow.scroll(function(e){
+            let actPos = jWindow.scrollTop();
+
+            if(banner.length)
+                navColorAndBtnUp();
+            
+            if(btnDown.length){
+                if(actPos >= $('section').last().offset().top){
+                    if(btnDown.css('display') != 'none')
+                        btnDown.hide();    
+                }else{
+                    if(btnDown.css('display') == 'none')
+                        btnDown.show();
+                }               
+            }
+            
+            if(actPos > $('section').eq(1).offset().top/2){
+                if(btnUp.css('display') === 'none'){
+                    btnUp.css('display', 'flex');
+                    btnUp.animate({'opacity': 1}, 100);
+                }
             }else{
-                if(btnDown.css('display') == 'none')
-                    btnDown.show();
-            }               
-        }
-        
-        if(actPos > $('section').eq(1).offset().top/2){
-            if(btnUp.css('display') === 'none'){
-                btnUp.css('display', 'flex');
-                btnUp.animate({'opacity': 1}, 100);
+                if(btnUp.css('display') !== 'none'){
+                    btnUp.css('display', 'none');
+                    btnUp.css('opacity', 0);
+                }
             }
-        }else{
-            if(btnUp.css('display') !== 'none'){
-                btnUp.css('display', 'none');
-                btnUp.css('opacity', 0);
-            }
-        }
-    });
+        });
+    }
 
     //contact request
     $('form#contact').submit(function(e){
@@ -95,7 +111,7 @@ $(document).ready(function () {
                     sec.find('.alert-success').show();
 
                 }else{
-                    console.log(response['message']);
+                    console.log(response);
                     sec.find('.alert-danger').show();
                 }
             },

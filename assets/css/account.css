@@ -21,10 +21,8 @@
 }*/
 .account {
   padding-right: 0;
-  padding-left: 0; }
-
-.account {
-  padding-top: 2.7em;
+  padding-left: 0;
+  padding-top: .5em;
   background-color: #15955b; }
 
 .account section {
@@ -310,8 +308,11 @@ button.scroll-down {
     font-size: .90em; }
 
   .list-group-item {
-    padding: .3rem .6rem; } }
-@media (max-width: 340px) {
+    padding: .3rem .6rem; }
+
+  .changeInfo-btn {
+    margin-right: 3rem !important; }
+
   #showModalChangePass {
     margin-top: 1rem; } }
 @keyframes bounce {

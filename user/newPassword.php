@@ -1,9 +1,10 @@
 <?php 
 require_once __DIR__.'/../utils/root_dir_path.php';
+require_once $root_dir_path.'/utils/root_url.php';
 require_once $root_dir_path.'/views/partials/header.php';
 
 if(!isset($_GET['selector'], $_GET['token'])){
-    header('Location: http://localhost/scti/');
+    header('Location: '.$root_url);
     die;
 }
 ?>

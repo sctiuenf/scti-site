@@ -6,7 +6,7 @@ require_once $root_dir_path.'/models/User.php';
 
 <main class="home-main">
     <section id="banner" class="container-fluid gradient-banner vh-100 row align-items-center ">
-        <div class="row container- mx-0 px-0">
+        <div class="row container-fluid">
         <div class="col-12">
         <div class="row justify-content-center">
             <div class="main-logo">
@@ -20,7 +20,7 @@ require_once $root_dir_path.'/models/User.php';
         <div class="row justify-content-center">
             <button class="btn btn-3d-secondary mt-3" onclick="window.location.href='user/access'">Inscreva-se</button>
         </div>
-</div>
+        </div>
         </div>
     </section>
     <section id="sec-sobre" class="container-fluid justify-content-center d-flex">
@@ -38,7 +38,7 @@ require_once $root_dir_path.'/models/User.php';
                                     <img class="col-12" src="assets/imgs/lecture2.png" alt="">
                                 </div> 
                             </div>
-                            <h3>Palestras</h3>
+                            <h3 class="text-center">Palestras</h3>
                             <div class="row text-justify px-3">As palestras são uma ótima oportunidade de aprendizado com vários profissionais de diversas áreas apresentando temas super atuais no mercado de trabalho. Você não pode ficar de fora!!</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
@@ -47,7 +47,7 @@ require_once $root_dir_path.'/models/User.php';
                                     <img class="col-12" src="assets/imgs/minicourse.png" alt="">
                                 </div>
                             </div>
-                            <h3>Minicursos</h3>
+                            <h3 class="text-center">Minicursos</h3>
                             <div class="row text-justify px-3">Os minicursos são uma ótima maneira de introduzir técnicas, ferramentas e boas práticas que podem ser essenciais para sua carreira na área de computação. Quer aprender rápido e com uma visão geral do assunto? Então vem!</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
@@ -56,7 +56,7 @@ require_once $root_dir_path.'/models/User.php';
                                     <img class="col-12" src="assets/imgs/networking.png" alt="">
                                 </div>
                             </div>
-                            <h3>Networking</h3>
+                            <h3 class="text-center">Networking</h3>
                             <div class="row text-justify px-3">Um dos pontos altos do evento é a possibilidade de conhecer gente nova da área da informática e afins, em busca de aprendizado, oportunidades e de compartilhar boas histórias. Queremos te conhecer :D</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
@@ -65,7 +65,7 @@ require_once $root_dir_path.'/models/User.php';
                                     <img class="col-12" src="assets/imgs/coffee-break.png" alt="">
                                 </div>
                             </div>
-                            <h3>Coffee-break</h3>
+                            <h3 class="text-center">Coffee break</h3>
                             <div class="row text-justify px-3">Não precisa ficar com fome durante a SCTI. A gente dá uma pausa, faz uma boquinha, bate um papo e volta com todo gás para mais uma carga de conhecimento. Além disso, a gente capricha nos petiscos!!</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
@@ -74,7 +74,7 @@ require_once $root_dir_path.'/models/User.php';
                                     <img class="col-12" src="assets/imgs/gift.png" alt="">
                                 </div>
                             </div>
-                            <h3>Brindes e sorteios</h3>
+                            <h3 class="text-center">Brindes e sorteios</h3>
                             <div class="row text-justify px-3">Se inscrevendo agora você garante os brindes que a comissão do evento oferece aos participantes. Além dos diversos livros, cursos, cupons de desconto e muitas outras coisas bacanas que são sorteadas para os participantes presentes.</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
@@ -83,7 +83,7 @@ require_once $root_dir_path.'/models/User.php';
                                     <img class="col-12" src="assets/imgs/championship.png" alt="">
                                 </div>
                             </div>
-                            <h3>Competições</h3>
+                            <h3 class="text-center">Competições</h3>
                             <div class="row text-justify px-3">A novidade da edição desse ano são as competições! Teste suas habilidades numa competição de programação, e seja consciente trazendo seu lixo eletrônico para um descarte adequado(e com prêmios hehe).</div>
                         </div>
                     </div>
@@ -215,7 +215,7 @@ require_once $root_dir_path.'/models/User.php';
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     Sua mensagem foi enviada com sucesso!
                 </div>
-                <div class="alert alert-danger alert-dismissible fade in">
+                <div class="alert alert-danger alert-dismissible">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     Falha ao enviar mensagem. Por favor, contate a equipe através do email: sctiuenf@gmail.com.
                 </div>
@@ -259,19 +259,19 @@ require_once $root_dir_path.'/models/User.php';
                 </div>
                 <div class="col-12 col-md-4 mt-5" id="scti-info">
                     <div class="row mb-1">
-                        <div class="col-1 pr-0"><i class="fab fa-facebook-f text-gradient"></i></div>
+                        <a class="col-1 pr-0" href="https://www.facebook.com/sctiuenf/" target="_blank" rel="noopener" title="facebook"><i class="fab fa-facebook-f text-gradient"></i></a>
                         <div class="col-11 pl-4 pr-0">/sctiuenf</div>
                     </div>
                     <div class="row mb-1"> 
-                        <div class="col-1 pr-0"><i class="fab fa-instagram text-gradient"></i></div>
+                        <a class="col-1 pr-0" href="https://www.instagram.com/sctiuenf/" target="_blank" rel="noopener"><i class="fab fa-instagram text-gradient" title="instagram"></i></a>
                         <div class="col-11 pl-4 pr-0">@sctiuenf</div>
                     </div>
                     <div class="row mb-1">
-                        <div class="col-1 pr-0"><i class="fas fa-phone text-gradient"></i></div>
+                        <a class="col-1 pr-0" href="tel:(22)91231-1231" rel="noopener" title="telefone"><i class="fas fa-phone text-gradient"></i></a>
                         <div class="col-11 pl-4 pr-0">(22)91231-1231</div>
                     </div>
                     <div class="row mb-1">
-                        <div class="col-1 pr-0"><i class="fas fa-envelope text-gradient"></i></div>
+                        <a class="col-1 pr-0" href="mailto:sctiuenf@gmail.com" rel="noopener" title="email"><i class="fas fa-envelope text-gradient"></i></a>
                         <div class="col-11 pl-4 pr-0">sctiuenf@gmail.com</div>
                     </div>
                     <div class="row mb-1">

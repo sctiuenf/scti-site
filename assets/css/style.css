@@ -40,6 +40,9 @@
 .secondary-dark-bg {
   background-color: #0C5430; }
 
+.light-color:hover {
+  color: #FEFEFE; }
+
 html, body {
   width: 100%;
   height: 100%;
@@ -105,8 +108,22 @@ main {
   background-clip: text;
   color: transparent; }
 
+.navbar-dark .navbar-toggler {
+  border: none; }
+
 #banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0; }
+
+#drawCanvas {
+  z-index: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px; }
 
 .gradient-banner {
   background: #155799;

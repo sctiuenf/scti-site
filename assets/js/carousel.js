@@ -157,7 +157,7 @@ $(document).ready(function () {
                 if(response['success']){
 
                     let courses = response['data_array'];
-                    console.log(courses);
+              
                     courses.forEach(function(course){
                         
                         let card = getCourseCard(course);
@@ -247,7 +247,7 @@ $(document).ready(function () {
                 if(response['success']){
 
                     let shirts = response['data_array'];
-                    console.log(shirts);
+               
 
                     shirts.forEach(function(shirt){
                         
@@ -269,7 +269,7 @@ $(document).ready(function () {
                                     return;
 
                                 let shirt = response['data_array'][0];
-                                console.log(shirt);
+                      
                                 if(!shirt)
                                     return;
 
@@ -303,10 +303,8 @@ function loadEventSchedule(day, slider){
 
     let sliderId = slider.attr('id');
     
-    let timeOut = showLoader(100, '#'+sliderId);
+    let timeOut = showLoader(500);
 
-   
-    
     $.ajax({
         type: "post",
         url: "events/getEvents",
@@ -345,6 +343,7 @@ function loadEventSchedule(day, slider){
             console.log(e);
         }
     });
+
 }
 
 function selectItem(event, type){
@@ -353,8 +352,6 @@ function selectItem(event, type){
 
     let checked = elem.prop('checked');
     let wasChecked = !checked;
-
-    console.log(wasChecked);
 
     if(wasChecked){
         checkItem(elem);
