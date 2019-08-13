@@ -6,6 +6,7 @@ require_once $root_dir_path.'/models/User.php';
 
 <main class="home-main">
     <section id="banner" class="container-fluid gradient-banner vh-100 row align-items-center ">
+        <canvas id="drawCanvas"></canvas>
         <div class="row container-fluid">
         <div class="col-12">
         <div class="row justify-content-center">
