@@ -7,9 +7,10 @@
     //gambiarra pra tirar o scroll do body, prometo que vou ajeitar um dia <3
     
     $page = '';
-    if(strpos($_SERVER["PHP_SELF"], 'account')  !== false)
+    $uri = $_SERVER["REQUEST_URI"];
+    if(strpos($uri, 'account')  !== false)
         $page = 'account';
-    else if(strpos($_SERVER["PHP_SELF"], 'index')  !== false)
+    else if($uri === '/' ||  $uri === '/scti/')
         $page = 'index';
 
     $paymentComplete = true;
@@ -55,9 +56,8 @@
     
     </head>
     <body <?php if(!$paymentComplete) echo 'style="overflow:hidden"'?>>
-
-
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top <?php if($_SERVER['REQUEST_URI'] !== '/' && $_SERVER['REQUEST_URI'] !== '/scti/') echo "gradient"?>">
+  
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top <?php if($page !== 'index') echo "gradient"?>">
         <a class="navbar-brand" href="<?=$root_url?>">SCTI</a>
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

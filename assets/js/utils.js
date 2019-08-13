@@ -20,3 +20,13 @@ function addZero(time){
 function getCurrentPath(){
     return window.location.pathname.split('/').pop();
 }
+
+function rootUrl(){
+    let protocol = window.location.protocol;
+    let hostname = window.location.hostname;
+
+    if(hostname.indexOf('localhost') !== -1)
+        hostname += '/scti';
+    
+    return protocol + '//' + hostname;
+}
