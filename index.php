@@ -6,7 +6,6 @@ require_once $root_dir_path.'/models/User.php';
 
 <main class="home-main">
     <section id="banner" class="container-fluid gradient-banner vh-100 row align-items-center ">
-        <canvas id="drawCanvas"></canvas>
         <div class="row container-fluid">
         <div class="col-12">
         <div class="row justify-content-center">
@@ -66,7 +65,7 @@ require_once $root_dir_path.'/models/User.php';
                                     <img class="col-12" src="assets/imgs/coffee-break.png" alt="">
                                 </div>
                             </div>
-                            <h3 class="text-center">Coffee-break</h3>
+                            <h3 class="text-center">Coffee break</h3>
                             <div class="row text-justify px-3">Não precisa ficar com fome durante a SCTI. A gente dá uma pausa, faz uma boquinha, bate um papo e volta com todo gás para mais uma carga de conhecimento. Além disso, a gente capricha nos petiscos!!</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
@@ -216,7 +215,7 @@ require_once $root_dir_path.'/models/User.php';
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     Sua mensagem foi enviada com sucesso!
                 </div>
-                <div class="alert alert-danger alert-dismissible fade in">
+                <div class="alert alert-danger alert-dismissible">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     Falha ao enviar mensagem. Por favor, contate a equipe através do email: sctiuenf@gmail.com.
                 </div>
@@ -260,19 +259,19 @@ require_once $root_dir_path.'/models/User.php';
                 </div>
                 <div class="col-12 col-md-4 mt-5" id="scti-info">
                     <div class="row mb-1">
-                        <div class="col-1 pr-0"><i class="fab fa-facebook-f text-gradient"></i></div>
+                        <a class="col-1 pr-0" href="https://www.facebook.com/sctiuenf/" target="_blank" rel="noopener" title="facebook"><i class="fab fa-facebook-f text-gradient"></i></a>
                         <div class="col-11 pl-4 pr-0">/sctiuenf</div>
                     </div>
                     <div class="row mb-1"> 
-                        <div class="col-1 pr-0"><i class="fab fa-instagram text-gradient"></i></div>
+                        <a class="col-1 pr-0" href="https://www.instagram.com/sctiuenf/" target="_blank" rel="noopener"><i class="fab fa-instagram text-gradient" title="instagram"></i></a>
                         <div class="col-11 pl-4 pr-0">@sctiuenf</div>
                     </div>
                     <div class="row mb-1">
-                        <div class="col-1 pr-0"><i class="fas fa-phone text-gradient"></i></div>
+                        <a class="col-1 pr-0" href="tel:(22)91231-1231" rel="noopener" title="telefone"><i class="fas fa-phone text-gradient"></i></a>
                         <div class="col-11 pl-4 pr-0">(22)91231-1231</div>
                     </div>
                     <div class="row mb-1">
-                        <div class="col-1 pr-0"><i class="fas fa-envelope text-gradient"></i></div>
+                        <a class="col-1 pr-0" href="mailto:sctiuenf@gmail.com" rel="noopener" title="email"><i class="fas fa-envelope text-gradient"></i></a>
                         <div class="col-11 pl-4 pr-0">sctiuenf@gmail.com</div>
                     </div>
                     <div class="row mb-1">

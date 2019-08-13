@@ -8,7 +8,6 @@
 <script src="<?=$root_url?>/assets/js/libs/slick.min.js"></script>
 <script src="<?=$root_url?>/assets/js/templates/eventCard.js"></script>
 <script src="<?=$root_url?>/assets/js/carousel.js"></script>
-<script src="<?=$root_url?>/assets/js/draw.js"></script>
     <!-- Loader -->
     <div id="loader">
         <div class="loader-content">

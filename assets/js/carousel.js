@@ -303,10 +303,8 @@ function loadEventSchedule(day, slider){
 
     let sliderId = slider.attr('id');
     
-    let timeOut = showLoader(100, '#'+sliderId);
+    let timeOut = showLoader(500);
 
-   
-    
     $.ajax({
         type: "post",
         url: "events/getEvents",
@@ -345,6 +343,7 @@ function loadEventSchedule(day, slider){
             console.log(e);
         }
     });
+
 }
 
 function selectItem(event, type){

@@ -1,64 +1,86 @@
 function getEventCard(params){
- 
-    params.tipo = capitalize(params.tipo)
 
-    let inicio = addZero(new Date(params.inicioEvento).getHours());
-    let fim = addZero(new Date(params.fimEvento).getHours());
+    let inicio = formatHour(params.inicioEvento);
+    let fim = formatHour(params.fimEvento);
 
-    let redesSociais = '';
-    Object.keys(params.redesSociais).forEach(function(rede){
-        let icon;
-        switch(rede){
-            
-            case 'facebook':
-                icon = '<i title="Facebook" class="fab fa-facebook-square"></i>';
-                break;
-            case 'linkedin':
-                icon = '<i title="Linkedin" class="fab fa-linkedin"></i>';
-                break;
-            case 'instagram':
-                icon = '<i title="Instagram" class="fab fa-instagram"></i>';
-                break;
-            case 'behance':
-                icon = '<i title="Behance" class="fab fa-behance-square"></i>';
-                break;
-            case 'twitter':
-                icon = '<i title="Twitter" class="fab fa-twitter-square"></i>';
-                break;
-            case 'youtube':
-                icon = '<i title="Youtube" class="fab fa-youtube-square"></i>';
-                break;
-            case 'website':
-                icon = '<i title="Website" class="fas fa-globe"></i>';
-                break;
-            default:
-                icon = '<i title="Website" class="fas fa-globe"></i>';
-                break;
-
-        }
-        url = params.redesSociais[rede];
-        
-        icon = $(icon).attr('onclick', `window.open('${url}')`);
-        icon = $('<div>').append(icon).html();
-
-        redesSociais += icon;
+    Object.keys(params).forEach(function(key){
+        if(!params[key]) params[key] = '';
     });
+
+    let bioPopover = `
+    <button data-toggle="popover" data-placement="right" data-trigger="focus" data-content="${params.bioInstrutor}">
+        <i class="far fa-question-circle"></i>
+    </button>`;
+
+    let instrutorImg = `
+    <div class="img-instrutor-container">
+        <img class="img-instrutor" src="${params.fotoInstrutor}">
+    </div>`;
+
+    if(!params.fotoInstrutor){
+        instrutorImg = '';
+    }
+    if(params.tipo !== 'minicurso' && params.tipo !== 'palestra'){
+        params.nomeInstrutor = '';
+        params.sobrenomeInstrutor = '';
+        bioPopover = '';
+    }
+
+    params.tipo = capitalize(params.tipo);
+    
+    let redesSociais = '';
+    let redes = Object.keys(params.redesSociais);
+    if(redes[0]){
+        redes.forEach(function(rede){
+            let icon;
+            switch(rede){
+                
+                case 'facebook':
+                    icon = '<i title="Facebook" class="fab fa-facebook-square"></i>';
+                    break;
+                case 'linkedin':
+                    icon = '<i title="Linkedin" class="fab fa-linkedin"></i>';
+                    break;
+                case 'instagram':
+                    icon = '<i title="Instagram" class="fab fa-instagram"></i>';
+                    break;
+                case 'behance':
+                    icon = '<i title="Behance" class="fab fa-behance-square"></i>';
+                    break;
+                case 'twitter':
+                    icon = '<i title="Twitter" class="fab fa-twitter-square"></i>';
+                    break;
+                case 'youtube':
+                    icon = '<i title="Youtube" class="fab fa-youtube-square"></i>';
+                    break;
+                case 'website':
+                    icon = '<i title="Website" class="fas fa-globe"></i>';
+                    break;
+                default:
+                    icon = '<i title="Website" class="fas fa-globe"></i>';
+                    break;
+
+            }
+            url = params.redesSociais[rede];
+            
+            icon = $(icon).attr('onclick', `window.open('${url}')`);
+            icon = $('<div>').append(icon).html();
+
+            redesSociais += icon;
+        });
+    }
 
     return `<div class="card">
     <div class="card-img-top-container">
         <img id="event-fotoEvento" class="card-img-top" src="${params.fotoEvento}" alt="">
-        <div class="img-instrutor-container">
-            <img class="img-instrutor" src="${params.fotoInstrutor}">
-        </div>
+        ${instrutorImg}
     </div>
     <div class="card-body">
         <h6 id="event-tipo">${params.tipo}</h6>
         <h4 id="event-tituloEvento" class="card-title">${params.tituloEvento}</h4>
         <div class="row m-0 nome-instrutor">
         <h5 id="event-nomeInstrutor" class="card-title">${params.nomeInstrutor} ${params.sobrenomeInstrutor}</h5>
-        <button data-toggle="popover" data-placement="right" data-trigger="focus" data-content="${params.bioInstrutor}">
-            <i class="far fa-question-circle"></i>
-        </button>
+        ${bioPopover}
         </div>
         <div class="card-text">
             <div class="scrollbar scrollbar-primary">
@@ -93,8 +115,9 @@ function getCourseCard(params){
     return `<div class="card">
     <label for="evento-${params.idEvento}" class="card-overlay"></label>
     <div class="picked alert alert-success">Inscrito</div>
-    <input id="evento-${params.idEvento}" class="card-checkbox" value="${params.idEvento}" type="checkbox" onchange="selectItem(event, 'minicurso')">
-
+    
+    <input id="evento-${params.idEvento}" class="card-checkbox" value="${params.idEvento}" type="checkbox" aria-label="selecionar curso" onchange="selectItem(event, 'minicurso')">
+   
     <div hidden class="req-org">${params.preRequisitosOrg}</div>
     <div hidden class="req-tec">${params.preRequisitosTec}</div>
 

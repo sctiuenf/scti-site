@@ -118,7 +118,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (response) {
                 if(response['success'])
-                    window.location = 'http://localhost/scti/user/access?passReseted=true';
+                    window.location = rootUrl();
                 else
                     alert(response['message']);
             },
