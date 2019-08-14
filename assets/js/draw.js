@@ -5,6 +5,7 @@ var NODE_COUNT = 40;
 var MAX_LINK_DISTANCE_SQR;
 var globalAlpha = 0.3;
 var nodes, mouseNode;
+var lastW = 0, lastH = 0;
 
 class Node {
     constructor() {
@@ -43,15 +44,22 @@ class Node {
 }
 
 function reset() {
-    cv.width = cv.parentElement.clientWidth;
-    cv.height = cv.parentElement.clientHeight;
-    c.globalAlpha = globalAlpha;
-    MAX_LINK_DISTANCE_SQR = cv.width / 10 + cv.height / 10;
-    MAX_LINK_DISTANCE_SQR *= MAX_LINK_DISTANCE_SQR;
-    mouseNode = new Node();
+    let newW = cv.parentElement.clientWidth;
+    let newH = cv.parentElement.clientHeight;
+    if (Math.abs(newW - lastW) > 100 || Math.abs(newH - lastH) > 100) {
+        cv.width = newW;
+        cv.height = newH;
+        c.globalAlpha = globalAlpha;
+        MAX_LINK_DISTANCE_SQR = cv.width / 10 + cv.height / 10;
+        MAX_LINK_DISTANCE_SQR *= MAX_LINK_DISTANCE_SQR;
+        mouseNode = new Node();
 
-    nodes = [];
-    buildNodes();
+        nodes = [];
+        buildNodes();
+
+        lastW = newW;
+        lastH = newH;
+    }
 }
 
 function buildNodes() {
@@ -96,5 +104,6 @@ document.getElementsByTagName("BODY")[0].addEventListener("mousemove", function 
 });
 
 window.onresize = reset;
+//cv.parentElement.addEventListener("resize", reset);
 reset();
 draw();
