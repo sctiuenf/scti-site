@@ -8,8 +8,9 @@
 <script src="<?=$root_url?>/assets/js/libs/slick.min.js"></script>
 <script src="<?=$root_url?>/assets/js/templates/eventCard.js"></script>
 <script src="<?=$root_url?>/assets/js/carousel.js"></script>
+<script src="<?=$root_url?>/assets/js/draw.js"></script>
     <!-- Loader -->
-    <div id="loader">
+    <!--<div id="loader">
         <div class="loader-content">
             <div class="ring"></div>
             <div class="ring"></div>
@@ -20,7 +21,7 @@
             <div class="ring"></div>
             <div class="ring"></div> 
         </div>
-    </div>
+    </div>-->
     <!-- Loader -->
     </body>
 </html>
