@@ -70,7 +70,7 @@ if(isset($_SESSION['logged'])){
                     <label for="signup-email">Email</label>
                 </div>
                 <div class="form-group">
-                    <input id="phone" class="form-control" name="phone" type="tel" pattern="[0-9]{11}">
+                    <input id="phone" class="form-control" name="phone" type="tel" data-inputmask="mask': '99-9999999" pattern="[0-9]{11}">
                     <label for="phone">Telefone</label>
                 </div>
                 <div class="row">
