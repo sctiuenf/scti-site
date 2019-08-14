@@ -177,6 +177,7 @@ function getShirtCard(params){
             <option>m</option>
             <option>g</option>
             <option>gg</option>
+            <option>xg</option>
         </select>
     </div>
 </div>`;
