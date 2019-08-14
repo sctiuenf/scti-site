@@ -1,3 +1,5 @@
+if(getCurrentPath() == ''){
+
 var cv = document.getElementById("drawCanvas");
 var c = cv.getContext("2d");
 
@@ -106,3 +108,5 @@ document.getElementsByTagName("BODY")[0].addEventListener("mousemove", function 
 window.onresize = reset;
 reset();
 draw();
+
+}
