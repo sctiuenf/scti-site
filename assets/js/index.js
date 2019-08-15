@@ -79,7 +79,8 @@ $(document).ready(function () {
                 navColorAndBtnUp();
             
             if(btnDown.length){
-                if(actPos >= $('section').last().offset().top){
+                let tolerance = 50;
+                if(actPos >= $('section').last().offset().top-tolerance){
                     if(btnDown.css('display') != 'none')
                         btnDown.hide();    
                 }else{

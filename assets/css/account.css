@@ -292,6 +292,14 @@ button.scroll-down i {
     min-height: 100vh;
     height: fit-content; }
 
+  .account .card {
+    max-height: 100%;
+    height: 60vh; }
+
+  .account #shirt-slider .card-body {
+    height: 10%;
+    min-height: fit-content; }
+
   .card-text {
     min-height: 20vh; }
 
