@@ -118,7 +118,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (response) {
                 if(response['success'])
-                    window.location = rootUrl();
+                    window.location = rootUrl() + '/user/access';
                 else
                     alert(response['message']);
             },

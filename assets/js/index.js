@@ -49,14 +49,22 @@ $(document).ready(function () {
     if(page == 'access'){
         let loginCard = $('.login-card');
         let registerCard = $('.register-card');
+        let forgotCard = $('.forgot-card');
+
         //access cards listeners
         $('#show-register-card').click(function(){
             loginCard.hide();
             registerCard.css('display', 'flex');
         });
-        $('#show-login-card').click(function(){
+        $('button.show-login-card').click(function(){
             registerCard.hide();
+            forgotCard.hide();
             loginCard.css('display', 'flex');
+        });
+        $('#show-forgot-card').click(function(e){
+            e.preventDefault();
+            loginCard.hide();
+            forgotCard.css('display', 'flex');
         });
     }
 
@@ -64,6 +72,8 @@ $(document).ready(function () {
     if(page !== 'access'){
         jWindow.scroll(function(e){
             let actPos = jWindow.scrollTop();
+
+            highlightNavItem();
 
             if(banner.length)
                 navColorAndBtnUp();
@@ -210,7 +220,8 @@ function scrollToNextSection(){
     $.each(sections, function (i, section) {
         let sec = $(section);
 
-        if(actPos < sec.offset().top){
+        //i!==0 para garantir que n seja possível scrollar para a primeira seção
+        if(i !== 0 && actPos < sec.offset().top){
             divToScroll = sec;
             return false;
         }
@@ -286,4 +297,11 @@ function updatePaymentStatus(){
             console.log(e);
         }
     });
+}
+
+function highlightNavItem(){
+    let secId = currentSection().attr('id');
+
+    $('.nav-item').removeClass('active');
+    $('#link-to-'+secId).parent().addClass('active');
 }

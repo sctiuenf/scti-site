@@ -38,7 +38,7 @@ if(isset($_SESSION['logged'])){
                         </div>
 
                         <div class="forgot-btn">
-                            <a class="light-color" href="forgotPassword">Esqueci minha senha</a>
+                            <a id="show-forgot-card" class="light-color" href="#">Esqueci minha senha</a>
                         </div>
                     </div>
                 </form>
@@ -89,9 +89,27 @@ if(isset($_SESSION['logged'])){
                 </div>
                 <div class="register-btns d-flex">
                     <input class="btn btn-3d-primary" type="submit" value="Confirmar">
-                    <button  id="show-login-card" class="btn btn-3d-secondary ml-3">Voltar</button>
+                    <button type="button" class="show-login-card btn btn-3d-secondary ml-3">Voltar</button>
                 </div>
             </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="access-card forgot-card justify-content-center align-items-center">
+        <h1 class="mb-4 light-color access-card-title">Esqueci minha senha</h1>
+        <div class="row w-100 justify-content-center">
+            <div class="col-12 col-sm-11">
+                <form id="setupForgotPass" method="post">  
+                    <div class="form-group">
+                        <input required class="form-control" type="email" name="email" id="forgot-email">
+                        <label for="forgot-email" class="label-float">Email</label>
+                    </div>
+                    <div class="form-group">        
+                        <input class="btn btn-3d-primary" type="submit">
+                        <button type="button" class="show-login-card btn btn-3d-secondary ml-3">Voltar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
