@@ -209,6 +209,9 @@ main{
 .circle:not(:hover) img{
     animation: unshake .5s forwards; 
 }
+#day-select{
+    display: none;
+}
 .btn-up{
     display: none;
     opacity: 0;
@@ -555,6 +558,12 @@ i{
 @media (max-width: 576px){
     .title{
         font-size: 1.5em;
+    }
+    .day-slider{
+        display: none !important;
+    }
+    #day-select{
+        display: block;
     }
 }
 

@@ -95,7 +95,8 @@ require_once $root_dir_path.'/models/User.php';
     <section id="programacao" class="container-fluid justify-content-center d-flex">
         <div class="col-12 col-sm-11 col-xl-10">
             <h2>/ Programação</h2>
-            <p style="margin-bottom:3rem;">dsadsadsadsa</p>
+            <p style="margin-bottom:3rem;">Preparamos uma programação muito bacana contando tudo vai rolar no evento do dia <b>4 (segunda-feira) ao 9 (sábado)</b> de novembro. Ah! O <b>credenciamento</b> é realizado a partir das <b>07:30 horas</b>, durante todo o evento. Além disso, contamos com um <b>coffee-break</b> caprichado todos os dias na pausa do minicurso de <b>10:00 às 10:30</b>, e outro um pouquinho maior de <b>16:00 as 17:00</b> visando o networking entre os participantes e convidados, e outras atividades bem legais :) Vale lembrar que a elaboração da programação está em andamento, então fique ligado nos próximos eventos anunciados ;) </p>
+
             <div class="day-slider slider">
                 <div class="slide">
                     <div class="day-circle-container">
@@ -139,6 +140,15 @@ require_once $root_dir_path.'/models/User.php';
                     </div>
                 </div>
             </div>
+          
+            <select class="form-control" id="day-select">
+                <option value="4">Segunda-feira</option>
+                <option value="5">Terça-feira</option>
+                <option value="6">Quarta-feira</option>
+                <option value="7">Quinta-feira</option>
+                <option value="8">Sexta-feira</option>
+                <option value="9">Sábado-feira</option>
+            </select>
           
             <div id="programacao-slider" class="card-slider slider">
                 <!-- Programação do evento -->

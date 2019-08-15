@@ -115,6 +115,8 @@ main {
   display: none;
   position: fixed;
   z-index: 1031;
+  min-width: fit-content;
+  max-width: 50%;
   left: 50%;
   top: -5%;
   transform: translateX(-50%);
@@ -223,6 +225,9 @@ main {
 
 .circle:not(:hover) img {
   animation: unshake .5s forwards; }
+
+#day-select {
+  display: none; }
 
 .btn-up {
   display: none;
@@ -557,7 +562,13 @@ i {
     margin-right: auto !important; } }
 @media (max-width: 576px) {
   .title {
-    font-size: 1.5em; } }
+    font-size: 1.5em; }
+
+  .day-slider {
+    display: none !important; }
+
+  #day-select {
+    display: block; } }
 @keyframes animateBack {
   0% {
     transform: rotateZ(0deg); }

@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     //authenticate
     $('form#authenticate').submit(function(e){
+        let timeout = showLoader(500);
         e.preventDefault();
         
         let form = $(this);
@@ -15,6 +16,7 @@ $(document).ready(function () {
             data: form.serialize(),
             dataType: "json",
             success: function (response) {
+                hideLoader(timeout);
                 if(response['success'])
                     window.location.reload();
                 else

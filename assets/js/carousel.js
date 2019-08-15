@@ -99,16 +99,19 @@ $(document).ready(function () {
         
         //coloring and sliding to the correct day-circle
         if(date.getMonth()+1 >= 11 && date.getDate() > 4 && slidesNumber !== 6){
-            dayToLoad = date.getDate();
+            dayToLoad = date.getDay()+3;
             $('.day-circle').removeClass('circle-hovered');
-            $('#day-'+date.getDay()).addClass('circle-hovered');
+            $('#day-'+dayToLoad).addClass('circle-hovered');
         
-            let laterais = slidesNumber%2 == 1 ? Math.floor(slidesNumber/2):(slidesNumber/2) - 1; 
+            let laterais = slidesNumber%2 == 1 ? Math.floor(slidesNumber/2):(slidesNumber/2) - 1;
 
-            //-4 pois o primeiro do carrossel tem indíce 0, e o primeiro dia é 4
-            daySlider.slick('slickGoTo', date.getDay()-4-laterais);
+            //-3 pois o primeiro do carrossel tem indíce 0, e o primeiro dia é 4
+            daySlider.slick('slickGoTo', dayToLoad-3-laterais);
+
+            $('#day-select').val(date.getDay()+3);
         }
-        
+       
+    
         $('.day-circle').click(function(){
             $('.day-circle').removeClass('circle-hovered');
 
@@ -118,6 +121,13 @@ $(document).ready(function () {
             //pega o dia pelo id do circulo clicado
             let day = elem.attr('id').split('-').pop();
         
+            loadEventSchedule(day, scheduleSlider);
+        });
+
+        $('#day-select').change(function(){
+            let select = $(this);
+            let day = select.val();
+
             loadEventSchedule(day, scheduleSlider);
         });
 
