@@ -96,7 +96,7 @@ require_once $root_dir_path.'/models/User.php';
         <div class="col-12 col-sm-11 col-xl-10">
             <h2 style="margin-bottom:3rem;">/ Programação</h2>
             
-            <section class="day-slider slider">
+            <div class="day-slider slider">
                 <div class="slide">
                     <div class="day-circle-container">
                         <div id="day-4" class="day-circle circle-hovered">4<br>Segunda</div>
@@ -138,11 +138,11 @@ require_once $root_dir_path.'/models/User.php';
                         <div class="day-circle-border">&nbsp;</div>
                     </div>
                 </div>
-            </section>
+            </div>
           
-            <section id="programacao-slider" class="card-slider slider">
+            <div id="programacao-slider" class="card-slider slider">
                 <!-- Programação do evento -->
-            </section>
+            </div>
         </div>
     </section>
     <section id="patrocinadores-sec" class="container-fluid justify-content-center d-flex">

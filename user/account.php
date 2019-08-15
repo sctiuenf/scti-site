@@ -110,7 +110,7 @@ if(!isset($_SESSION['logged'])){
                                                 $list_display = 'hide';
                                             ?>
                                                 <div class="list-group-container <?=$list_display?>">
-                                                <ul class="list-group">
+                                                <ul class="list-group m-0">
                                                     <li class="primary-bg light-color list-group-item">Cursos escolhidos</li>
                                                     <?=$courses?>
                                                 </ul>
@@ -120,8 +120,10 @@ if(!isset($_SESSION['logged'])){
                                                 </ul>
                                                 </div>
                                                     
-                                         
-                                                <div id="sympla-widget-<?=$EVENT_ID?>" class="sympla-widget <?=$widget_display?>" height="auto""></div> <script src="https://www.sympla.com.br/js/sympla.widget-pt.js/<?=$EVENT_ID?>"></script>
+
+                                                <?php if(!$paymentComplete){ ?>
+                                                <div id="sympla-widget-<?=$EVENT_ID?>" class="sympla-widget <?=$widget_display?>" height="auto"></div> <script src="https://www.sympla.com.br/js/sympla.widget-pt.js/<?=$EVENT_ID?>"></script>
+                                                <?php } ?>
                                                
                                             </div>
                                         </div>
@@ -271,8 +273,9 @@ if(!isset($_SESSION['logged'])){
         </div>
     </section>
     <?php 
-        $day = date('j', strtotime(COURSE_END))-1;
-        $month = MONTHS[$month = date('m', strtotime(COURSE_END))];
+        if($paymentComplete){
+            $day = date('j', strtotime(COURSE_END))-1;
+            $month = MONTHS[$month = date('m', strtotime(COURSE_END))];
     ?>
     <section id="courses" class="container-fluid">
         <div class="row h-100 align-items-center pt-5 pb-3 px-3">
@@ -352,11 +355,11 @@ if(!isset($_SESSION['logged'])){
     </section>
 
     <?php 
-        $day = date('j', strtotime(SHIRT_END))-1;
-        $month = MONTHS[$month = date('m', strtotime(SHIRT_END))];
+            $day = date('j', strtotime(SHIRT_END))-1;
+            $month = MONTHS[$month = date('m', strtotime(SHIRT_END))];
     ?>
     <section id="shirts" class="container-fluid">
-    <div class="row h-100 align-items-center pt-5 pb-3 px-3">
+        <div class="row h-100 align-items-center pt-5 pb-3 px-3">
             <div class="col-12 col-lg-3 h-25 light-color">
                 <h1 class="sec-title light-color text-center">Escolha sua camisa :)</h1>
                 <p class="sec-text">Uma dessas camisas iradas é sua! Escolhe a que mais gostar, e manda ver.</p>
@@ -398,6 +401,7 @@ if(!isset($_SESSION['logged'])){
             </div>
         </div>
     </section>
+    <?php } ?>
 </main>
 
 <script src="<?=$root_url?>/assets/js/requests/chooseRequests.js"></script>

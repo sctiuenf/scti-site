@@ -55,7 +55,7 @@
         <script src="<?=$root_url?>/assets/js/libs/fontawesome.js"></script>
     
     </head>
-    <body <?php if(!$paymentComplete) echo 'style="overflow:hidden"'?>>
+    <body>
   
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top <?php if($page !== 'index') echo "gradient"?>">
         <a class="navbar-brand" href="<?=$root_url?>">SCTI</a>
@@ -64,24 +64,38 @@
         </button>
         <div id="navbarNavDropdown" class="navbar-collapse collapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="<?=$root_url?>">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item <?php if($page == 'index') echo 'active'?>">
+                    <a id="link-to-banner" class="nav-link" href="<?=$root_url?>">Home <span class="sr-only">(current)</span></a>
                 </li>
                 
                 <?php if($page == 'index'){?>
                 <li class="nav-item">
-                    <a class="nav-link" tabindex="0" onclick="scrollToDiv('#sec-sobre')">Sobre</a>
+                    <a id="link-to-sec-sobre" class="nav-link" tabindex="0" onclick="scrollToDiv('#sec-sobre')">Sobre</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" tabindex="0" onclick="scrollToDiv('#programacao')">Programação</a>
+                    <a id="link-to-programacao" class="nav-link" tabindex="0" onclick="scrollToDiv('#programacao')">Programação</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" tabindex="0" onclick="scrollToDiv('#patrocinadores-sec')">Patrocinadores</a>
+                    <a id="link-to-patrocinadores-sec" class="nav-link" tabindex="0" onclick="scrollToDiv('#patrocinadores-sec')">Patrocinadores</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" tabindex="0" onclick="scrollToDiv('#sec-contato')">Contato</a>
+                    <a id="link-to-sec-contato" class="nav-link" tabindex="0" onclick="scrollToDiv('#sec-contato')">Contato</a>
                 </li>
-                <?php }?>
+                <?php } else if($page == 'account'){?>
+                <li class="nav-item <?php if($page == 'account') echo 'active'?>">
+                    <a id="link-to-user-info" class="nav-link" tabindex="0" onclick="scrollToDiv('#user-info')">Perfil</a>
+                </li>
+
+                    <?php if($paymentComplete){?>
+                    <li class="nav-item">
+                        <a id="link-to-courses" class="nav-link" tabindex="0" onclick="scrollToDiv('#courses')">Cursos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="link-to-shirts" class="nav-link" tabindex="0" onclick="scrollToDiv('#shirts')">Camisas</a>
+                    </li>
+                    <?php }?>
+
+                <?php } ?>
                 
             </ul>
             <ul class="navbar-nav">
@@ -91,9 +105,12 @@
                  <li class="nav-item"><a class="nav-link" href="<?=$root_url?>/user/access">Acessar</a></li>
 
                 <?php }else{ 
-                $user = unserialize($_SESSION['user']);    
+                $user = unserialize($_SESSION['user']);  
+                
+                if($page !== 'account'){
                 ?>
                 <li class="nav-item"><a class="nav-link" href="<?=$root_url?>/user/account">Conta</a></li>
+                <?php } ?>
                 <li class="nav-item"><a class="nav-link" href="<?=$root_url?>/user/logout">Sair</a></li>
                 <?php } ?>
             </ul>

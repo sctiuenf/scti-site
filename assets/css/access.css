@@ -5,12 +5,16 @@
 /*verde*/
 /*verde escuro*/
 main.access-main {
-  height: 95% !important; }
+  height: 95% !important;
+  min-height: 95%; }
 
 footer {
   height: 5% !important; }
 
 .access-card.register-card {
+  display: none; }
+
+.access-card.forgot-card {
   display: none; }
 
 .access-card {

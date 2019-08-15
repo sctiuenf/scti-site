@@ -45,3 +45,24 @@ function map(v, oldMin, oldMax, newMin, newMax){
     let prop = (v - oldMin) / (oldMax - oldMin);
     return newMin + prop * (newMax - newMin);
 }
+
+function currentSection(){
+    let secs = $('section');
+    let scrollPos = $(window).scrollTop();
+    let tolerance = window.innerHeight*0.2;
+    console.log(window.innerHeight*0.3);
+
+    let closerSec = null;
+
+    $.each(secs, function (i, v) {
+        let sec = $(v);
+        secDist = sec.offset().top - scrollPos;
+
+        if(closerSec === null)
+            closerSec = sec;
+        else if(Math.abs(secDist) < Math.abs(closerSec.offset().top - scrollPos) && secDist < tolerance)
+            closerSec = sec;
+    });
+
+    return closerSec;
+}

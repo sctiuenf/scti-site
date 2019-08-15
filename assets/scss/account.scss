@@ -73,10 +73,13 @@ button.scroll-down{
     transform: translateX(-50%);
     border: none;
     background-color: transparent;
-    font-size: 2em;
+    font-size: 1.5em;
     color: white;
     animation: bounce .7s infinite alternate;
     z-index: 2;
+}
+button.scroll-down i{
+    margin: 0;
 }
 .account .card p, .account .card h5{
     color: #222;
@@ -193,13 +196,17 @@ button.scroll-down{
     background-color: $light;
     max-width: unset;
     position: relative;
+    justify-content: unset;
+    height: fit-content !important;
 }
 .status-label{
-    position: absolute;
-    top: 10px;
-    left: 10px;
     display: flex;
     align-items: center;
+    width: 100%;
+    padding-top: 1em;
+    padding-left: 1em;
+    height: 10%;
+    min-height: fit-content;
 }
 .status-col{
     height: 50vh;
@@ -237,7 +244,11 @@ button.scroll-down{
 }
 
 .list-group-container{
+    padding-top: 1em;
+    padding-bottom: 1.5em;
     width: 90%;
+    height: 90%;
+    min-height: fit-content;
 }
 .list-group{
     width: 100%;
@@ -350,9 +361,9 @@ button.scroll-down{
 
 @keyframes bounce{
     from{
-        transform: translateY(0px);
+        transform: translate(-50%, 0px);
     }
     to{
-        transform: translateY(-20px);
+        transform: translate(-50%, -20px);
     }
 }
