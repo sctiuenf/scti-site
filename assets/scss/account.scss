@@ -308,6 +308,16 @@ button.scroll-down i{
     }
 }
 @media (max-width: 992px){
+    .account section{
+        min-height: 100vh;
+        height: fit-content;
+    }
+    .card-text{
+        min-height: 20vh;
+    }
+    .account .card-img-container{
+        min-height: 40vh;
+    }
     #user-info{
         height: 200vh;
     }
@@ -329,7 +339,8 @@ button.scroll-down i{
     }
     
     .status-col{
-        height: 50vh !important;
+        min-height: 50vh;
+        height: auto;
     }
 }
 @media (max-width: 768px){
@@ -341,6 +352,11 @@ button.scroll-down i{
     }
 }
 @media (max-width: 400px){
+    .courses-slider-container, .shirt-slider-container{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
     .account .sec-title{
         font-size: 1.5em;
     }

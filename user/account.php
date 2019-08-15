@@ -281,7 +281,7 @@ if(!isset($_SESSION['logged'])){
         <div class="row h-100 align-items-center pt-5 pb-3 px-3">
             <div class="col-12 col-lg-3 h-25 light-color">
                 <h1 class="sec-title light-color text-center">Escolha dois cursos incríveis!</h1>
-                <p class="sec-text">E não se preocupe, você pode alterar os cursos escolhidos até o dia <?=$day?> de <?=$month?></p>
+                <p class="sec-text text-center">E não se preocupe, você pode alterar os cursos escolhidos até o dia <?=$day?> de <?=$month?></p>
                 <div class="sec-text help">
                     Vagas alternativas
                     <button data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="As vagas alternativas são destinadas a participantes que possam levar seu próprio notebook para participarem dos minicursos." aria-label="Vagas alternativas">
@@ -289,7 +289,7 @@ if(!isset($_SESSION['logged'])){
                     </button>
                 </div>
             </div>
-            <div class="col-12 col-lg-9 pl-3 pt-3 h-75">
+            <div class="courses-slider-container col-12 col-lg-9 pl-3 pt-3 h-75">
                 <div id="courses-slider" class="">
 
                 </div>
@@ -362,10 +362,10 @@ if(!isset($_SESSION['logged'])){
         <div class="row h-100 align-items-center pt-5 pb-3 px-3">
             <div class="col-12 col-lg-3 h-25 light-color">
                 <h1 class="sec-title light-color text-center">Escolha sua camisa :)</h1>
-                <p class="sec-text">Uma dessas camisas iradas é sua! Escolhe a que mais gostar, e manda ver.</p>
-                <p class="sec-text">*A camisa escolhida pode ser alterada até o dia <?=$day?> de <?=$month?>.</p>
+                <p class="sec-text text-center">Uma dessas camisas iradas é sua! Escolhe a que mais gostar, e manda ver.</p>
+                <p class="sec-text text-center">*A camisa escolhida pode ser alterada até o dia <?=$day?> de <?=$month?>.</p>
             </div>
-            <div class="col-12 col-lg-9 pl-3 h-75">
+            <div class="shirt-slider-container col-12 col-lg-9 pl-3 h-75">
                 <div id="shirt-slider" class="">
 
                 </div>
