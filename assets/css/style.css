@@ -172,7 +172,7 @@ main {
   position: relative;
   margin-bottom: 2rem; }
 
-label {
+.label-float {
   position: absolute;
   left: 10px;
   top: 6px;
@@ -184,7 +184,7 @@ label {
   transform: translate(-10px, -30px);
   font-size: .9rem; }
 
-.form-control:focus + label {
+.form-control:focus + .label-float {
   transform: translate(-10px, -30px);
   font-size: .9rem; }
 

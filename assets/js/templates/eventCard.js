@@ -114,7 +114,7 @@ function getCourseCard(params){
 
     return `<div class="card">
     <label for="evento-${params.idEvento}" class="card-overlay"></label>
-    <div class="picked alert alert-success">Inscrito</div>
+    <div class="picked alert alert-success mt-1">Inscrito</div>
     
     <input id="evento-${params.idEvento}" class="card-checkbox" value="${params.idEvento}" type="checkbox" aria-label="selecionar curso" onchange="selectItem(event, 'minicurso')">
    
@@ -122,7 +122,7 @@ function getCourseCard(params){
     <div hidden class="req-tec">${params.preRequisitosTec}</div>
 
     <div class="card-body">
-        <h4 id="event-tituloEvento" class="card-title">${params.tituloEvento}</h4>
+        <label for="evento-${params.idEvento}"><h4 id="event-tituloEvento" class="card-title">${params.tituloEvento}</h4></label>
         <h5 id="event-nomeInstrutor" class="card-title">${params.nomeInstrutor} ${params.sobrenomeInstrutor}</h5>
         <div class="card-text">
             <div class="scrollbar scrollbar-primary">
@@ -137,7 +137,7 @@ function getCourseCard(params){
         <div class="row h-100 w-100 m-0 align-items-end">
 
             <div class="col-9">
-                <div class="row"><button data-toggle="modal" data-target="#requisitos-modal" class="btn-requisitos btn btn-secondary">Pré-requisitos</button></div>
+                <div class="row mb-1"><button data-toggle="modal" data-target="#requisitos-modal" class="btn-requisitos btn btn-secondary">Pré-requisitos</button></div>
                 <div class="row">   
                     Vagas regulares: ${vagasRegulares}
                 </div>
@@ -162,21 +162,22 @@ function getShirtCard(params){
     return `<div class="card">
 
     <label for="camisa-${params.tituloBrinde}" class="card-overlay"></label>
-    <div class="picked alert alert-success">Escolhida</div>
+    <div class="picked alert alert-success mt-1">Escolhida</div>
     <input id="camisa-${params.tituloBrinde}" class="card-checkbox" value="${params.tituloBrinde}" type="checkbox" onchange="selectItem(event, 'camisa')">
     <div class="card-img-container" style="background-image:url(${params.fotoBrinde})">  
     </div>
     <div class="card-body">
-        <h4 id="event-tituloEvento" class="card-title">${params.tituloBrinde}</h4>     
+        <label for="camisa-${params.tituloBrinde}"><h4 id="event-tituloEvento" class="card-title">${params.tituloBrinde}</h4></label>   
     </div>
     <div class="card-footer">
-        <select name="camisa-tamanho" class="form-control">
+        <select name="camisa-tamanho" class="form-control" id="tamanho-${params.tituloBrinde}">
             <option selected disabled>Escolha um tamanho</option>
             <option>pp</option>
             <option>p</option>
             <option>m</option>
             <option>g</option>
             <option>gg</option>
+            <option>xg</option>
         </select>
     </div>
 </div>`;
