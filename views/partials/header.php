@@ -115,7 +115,12 @@
                 <?php } ?>
             </ul>
         </div>
-    </nav> 
+    </nav>
+
+    <div id="custom-alert" class="alert alert-success alert-dismissible">
+        <a href="#" class="close" aria-label="close">&times;</a>
+        <span>Informativo</span>
+    </div>
    
 
 

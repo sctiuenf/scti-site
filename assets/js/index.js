@@ -30,6 +30,12 @@ $(document).ready(function () {
         scrollToDiv(0);
     });
 
+    //close alert
+    $('.alert .close').click(function(e){
+        e.preventDefault();
+        hideAlert();
+    });
+
     $('.navbar-toggler').click(function(e){
         if($(this).hasClass('collapsed'))
             navbar.css('background-color', 'rgba(0, 0, 0, 0.6)');
@@ -116,14 +122,13 @@ $(document).ready(function () {
             dataType: "json",
             success: function (response) {
                 hideLoader();
-                let sec = $('#sec-contato');
 
                 if(response['success']){
-                    sec.find('.alert-success').show();
+                    showAlert('alert-success', 'Mensagem enviada com sucesso!');
 
                 }else{
                     console.log(response);
-                    sec.find('.alert-danger').show();
+                    showAlert('alert-danger', 'Falha ao enviar mensagem. Por favor, entre em contato com a equipe do evento através do email: sctiuenf@gmail.com.');
                 }
             },
             error: function(e){

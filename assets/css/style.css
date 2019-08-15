@@ -111,6 +111,18 @@ main {
 .navbar-dark .navbar-toggler {
   border: none; }
 
+#custom-alert {
+  display: none;
+  position: fixed;
+  z-index: 1031;
+  left: 50%;
+  top: -5%;
+  transform: translateX(-50%);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+
+.shaking-alert {
+  animation: shake-alert .5s; }
+
 #banner {
   display: flex;
   justify-content: center;
@@ -581,5 +593,14 @@ i {
     transform: scale(1.2); }
   100% {
     transform: scale(1); } }
+@keyframes shake-alert {
+  25% {
+    transform: translateX(-50%) rotateZ(-5deg); }
+  50% {
+    transform: translateX(-50%) rotateZ(10deg); }
+  75% {
+    transform: translateX(-50%) rotateZ(-10deg); }
+  100% {
+    transform: translateX(-50%) rotateZ(0deg); } }
 
 /*# sourceMappingURL=style.css.map */

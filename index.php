@@ -94,8 +94,8 @@ require_once $root_dir_path.'/models/User.php';
     </section>
     <section id="programacao" class="container-fluid justify-content-center d-flex">
         <div class="col-12 col-sm-11 col-xl-10">
-            <h2 style="margin-bottom:3rem;">/ Programação</h2>
-            
+            <h2>/ Programação</h2>
+            <p style="margin-bottom:3rem;">dsadsadsadsa</p>
             <div class="day-slider slider">
                 <div class="slide">
                     <div class="day-circle-container">

@@ -292,7 +292,7 @@ button.scroll-down i {
     min-height: 100vh;
     height: fit-content; }
 
-  .account .card {
+  #courses .card, #shirts .card {
     max-height: 100%;
     height: 60vh; }
 

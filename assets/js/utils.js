@@ -66,3 +66,49 @@ function currentSection(){
 
     return closerSec;
 }
+
+function showAlert(type, text){
+    let alert = $('#custom-alert');
+    let alertText = alert.find('span');
+
+    let animationEvent = 'webkitAnimationEnd oanimationend msAnimationEnd animationend';
+
+    alert.on(animationEvent, function(){
+        alert.removeClass('shaking-alert');
+    })
+
+    //if the same alert is visible
+    if(alert.css('display') !== 'none' && alert.hasClass(type) && alertText.html() === text){
+        
+        alert.addClass('shaking-alert');
+
+        setTimeout(function(){
+            alert.fadeOut(3000, function(){
+                hideAlert();
+            });
+        }, 5000);
+
+        return;
+    }
+
+    alertText.html(text);
+    alert.attr('class', 'alert alert-dismissible');
+    alert.addClass(type);
+    alert.show();
+
+    alert.animate({'top': '10%'}, 500, function(){
+        setTimeout(function(){
+            alert.fadeOut(2000, function(){
+                hideAlert();
+            });
+        }, 5000);
+    });
+}
+
+function hideAlert(){
+    let alert = $('#custom-alert');
+
+    alert.css('top', '-5%');
+    alert.hide();
+}
+
