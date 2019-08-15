@@ -437,8 +437,8 @@ function courseConfirmModal(c1Id, c2Id){
     courses.forEach(function(course){
         modalContent.append(`
             ${course.title}<br>
-            <input checked value="padrao" name="c${course.id}-tipo" type="radio">Inscrição Padrão
-            <input value="alternativa" name="c${course.id}-tipo" type="radio">Inscrição Alternativa<br><br>
+            <label for="padrao">Inscrição Padrão</label><input checked value="padrao" name="c${course.id}-tipo" type="radio" id="padrao">
+            <label for="alternativa">Inscrição Alternativa</label><input value="alternativa" name="c${course.id}-tipo" type="radio" id="alternativa"><br><br>
         `);
     });
 

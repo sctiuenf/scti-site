@@ -17,7 +17,7 @@ $(document).ready(function () {
     //labels
     $('.form-control').keyup(function(e){
         let elem = $(this);
-        let label = elem.siblings('label');
+        let label = elem.siblings('.label-float');
         if(elem.val() !== '') label.addClass('translated-label');
         else label.removeClass ('translated-label');
     });

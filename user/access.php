@@ -24,11 +24,11 @@ if(isset($_SESSION['logged'])){
                     <?php } ?>
                     <div class="form-group mb-5">
                         <input id="signin-email" class="form-control" required name="email" type="email">
-                        <label for="signin-email">Email</label>
+                        <label class="label-float" for="signin-email">Email</label>
                     </div>
                     <div class="form-group m-0">
                         <input id="signin-password" class="form-control" required name="password" type="password">
-                        <label for="signin-password">Senha</label>
+                        <label class="label-float" for="signin-password">Senha</label>
                     </div>
 
                     <div class="access-btns-container d-flex justify-content-between mt-4">
@@ -55,35 +55,35 @@ if(isset($_SESSION['logged'])){
                     <div class="col-12 col-sm-6">
                         <div class="form-group">
                             <input id="firstname" class="form-control" required name="firstname" type="text" >
-                            <label for="firstname">Nome</label>
+                            <label class="label-float" for="firstname">Nome</label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-6">
                         <div class="form-group">
                             <input id="lastname" class="form-control" required name="lastname" type="text">
-                            <label for="lastname">Sobrenome</label>
+                            <label class="label-float" for="lastname">Sobrenome</label>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <input id="signup-email" class="form-control" required name="email" type="email">
-                    <label for="signup-email">Email</label>
+                    <label class="label-float" for="signup-email">Email</label>
                 </div>
                 <div class="form-group">
-                    <input id="phone" class="form-control" name="phone" type="tel" data-inputmask="mask': '99-9999999" pattern="[0-9]{11}">
-                    <label for="phone">Telefone</label>
+                    <input id="phone" class="form-control" name="phone" type="tel" pattern="[0-9]{11}">
+                    <label class="label-float" for="phone">Telefone</label>
                 </div>
                 <div class="row">
                     <div class="col-12 col-sm-6">
                         <div class="form-group">
                             <input id="signup-password" class="form-control" required name="password" type="password">
-                            <label for="signup-password">Senha</label>
+                            <label class="label-float" for="signup-password">Senha</label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-6">
                         <div class="form-group">
                             <input id="confirm-password" class="form-control" required name="passwordConfirm" type="password">
-                            <label for="confirm-password">Confirmar senha</label>
+                            <label class="label-float" for="confirm-password">Confirmar senha</label>
                         </div>
                     </div>
                 </div>

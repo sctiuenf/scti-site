@@ -193,23 +193,23 @@ if(!isset($_SESSION['logged'])){
                                 <div class="col-lg-12 col-xl-6">
                                     <div class="form-group">
                                         <input class="form-control" required id="firstname" name="firstname" type="text" value="<?=$userInfo['firstName']?>">
-                                        <label for="firstname" class="translated-label">Nome</label>
+                                        <label for="firstname" class="label-float translated-label">Nome</label>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-xl-6">
                                     <div class="form-group">
                                         <input class="form-control" required id="lastname" name="lastname" type="text" value="<?=$userInfo['lastName']?>">
-                                        <label for="lastname" class="translated-label">Sobrenome</label>
+                                        <label for="lastname" class="label-float translated-label">Sobrenome</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <input class="form-control" required id="email" name="email" type="email" value="<?=$userInfo['email']?>">
-                                <label for="email" class="translated-label">Email</label>
+                                <label for="email" class="label-float translated-label">Email</label>
                             </div>
                             <div class="form-group">
                                 <input class="form-control" id="phone" name="phone" type="tel" pattern="[0-9]{11}" value="<?=$userInfo['phone']?>">
-                                <label for="phone"class="<?php echo count($userInfo['phone']) > 0 ? 'translated-label':''?>">Telefone</label>
+                                <label for="phone"class="label-float <?php echo count($userInfo['phone']) > 0 ? 'translated-label':''?>">Telefone</label>
                             </div>
                             <div class="row m-0">
                                 <input class="btn btn-3d-primary mr-3 changeInfo-btn" type="submit" value="Alterar informações">
@@ -237,16 +237,16 @@ if(!isset($_SESSION['logged'])){
 
                                                     <div class="form-group">
                                                         <input required id="currentPass" name="currentPass" type="password" class="form-control">
-                                                        <label for="currentPass">Senha atual</label>
+                                                        <label class="label-float" for="currentPass">Senha atual</label>
                                                     </div>
 
                                                     <div class="form-group">
                                                         <input required id="newPass" name="newPass" type="password" class="form-control">
-                                                        <label for="newPass">Nova senha</label>
+                                                        <label class="label-float" for="newPass">Nova senha</label>
                                                     </div>
                                                     <div class="form-group">
                                                         <input required id="newPass-confirm" name="newPass-confirm" type="password" class="form-control">
-                                                        <label for="newPass-confirm">Confirmar senha</label>
+                                                        <label class="label-float" for="newPass-confirm">Confirmar senha</label>
                                                     </div>
                                                 </form>
                                             </div>

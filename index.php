@@ -27,7 +27,7 @@ require_once $root_dir_path.'/models/User.php';
     <section id="sec-sobre" class="container-fluid justify-content-center d-flex">
         <div class="col-12 col-sm-11 col-xl-10">
             <h2>/ Sobre</h2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti alias itaque ipsa, ipsam voluptatum ratione earum consequatur incidunt doloribus ad libero tempora ea est illum, totam praesentium nihil ullam pariatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere quisquam labore, repudiandae assumenda fuga deserunt id debitis, sint beatae commodi ad illum quibusdam quas, accusantium nisi hic! Mollitia, corporis dolores! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit harum nisi cumque et quaerat ullam cupiditate placeat pariatur maxime numquam explicabo quidem veritatis odio nam eos officiis, animi quo vel.</p>
+            <p>A Semana de Ciência da Computação e Tecnologia da Informação da UENF (SCTI) tem como principais objetivos o aprimoramento técnico-científico dos par&shy;ti&shy;ci&shy;pan&shy;tes, a difusão de novas tecnologias e a aproximação dos estudantes uni&shy;ver&shy;sitários com a realidade do mercado de trabalho. A SCTI busca também incentivar e mo&shy;tivar a pesquisa científica, a inovação tecnológica e o em&shy;preende&shy;dorismo na região, fortalecendo a formação dos alunos de graduação em Ciência da Com&shy;pu&shy;ta&shy;ção e áreas afins e oferecendo a oportunidade de conhecer tópicos não abordados nos cursos regulares. Confira abaixo as atividades que você pode aproveitar durante o evento:</p>
 
             
             <div class="row events justify-content-center">
@@ -40,7 +40,7 @@ require_once $root_dir_path.'/models/User.php';
                                 </div> 
                             </div>
                             <h3 class="text-center">Palestras</h3>
-                            <div class="row text-justify px-3">As palestras são uma ótima oportunidade de aprendizado com vários profissionais de diversas áreas apresentando temas super atuais no mercado de trabalho. Você não pode ficar de fora!!</div>
+                            <div class="row text-justify px-3">As palestras são uma ótima oportunidade de aprendizado com vários profissionais de diversas áreas apresentando temas super atuais no mercado de trabalho. Você não pode ficar de fora!</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
                             <div class="row justify-content-center mb-3">
@@ -58,7 +58,7 @@ require_once $root_dir_path.'/models/User.php';
                                 </div>
                             </div>
                             <h3 class="text-center">Networking</h3>
-                            <div class="row text-justify px-3">Um dos pontos altos do evento é a possibilidade de conhecer gente nova da área da informática e afins, em busca de aprendizado, oportunidades e de compartilhar boas histórias. Queremos te conhecer :D</div>
+                            <div class="row text-justify px-3">Um dos pontos altos do evento é a possibilidade de conhecer gente nova da área da informática e afins, em busca de aprendizado, oportunidades e de compartilhar boas histórias. Queremos te conhecer :)</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
                             <div class="row justify-content-center mb-3">
@@ -67,7 +67,7 @@ require_once $root_dir_path.'/models/User.php';
                                 </div>
                             </div>
                             <h3 class="text-center">Coffee break</h3>
-                            <div class="row text-justify px-3">Não precisa ficar com fome durante a SCTI. A gente dá uma pausa, faz uma boquinha, bate um papo e volta com todo gás para mais uma carga de conhecimento. Além disso, a gente capricha nos petiscos!!</div>
+                            <div class="row text-justify px-3">Não precisa ficar com fome durante a SCTI. A gente dá uma pausa, faz uma boquinha, bate um papo e volta com todo gás para mais uma carga de conhecimento. Além disso, a gente capricha nos petiscos!</div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 py-4">
                             <div class="row justify-content-center mb-3">
@@ -85,7 +85,7 @@ require_once $root_dir_path.'/models/User.php';
                                 </div>
                             </div>
                             <h3 class="text-center">Competições</h3>
-                            <div class="row text-justify px-3">A novidade da edição desse ano são as competições! Teste suas habilidades numa competição de programação, e seja consciente trazendo seu lixo eletrônico para um descarte adequado(e com prêmios hehe).</div>
+                            <div class="row text-justify px-3">A novidade da edição desse ano são as competições! Teste suas habilidades numa competição de programação, e seja consciente trazendo seu lixo eletrônico para um descarte adequado (e com prêmios hehe).</div>
                         </div>
                     </div>
                 </div>
@@ -95,7 +95,7 @@ require_once $root_dir_path.'/models/User.php';
     <section id="programacao" class="container-fluid justify-content-center d-flex">
         <div class="col-12 col-sm-11 col-xl-10">
             <h2 style="margin-bottom:3rem;">/ Programação</h2>
-           
+            
             <section class="day-slider slider">
                 <div class="slide">
                     <div class="day-circle-container">
@@ -229,20 +229,20 @@ require_once $root_dir_path.'/models/User.php';
                             <div class="form-group">
                                 
                                 <input id="email" class="form-control" required name="email" type="email">
-                                <label for="email">Email</label>
+                                <label for="email" class="label-float">Email</label>
                             </div>
                             <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
                                             <input id="firstname" class="form-control" required name="firstname" type="text">
-                                            <label for="firstname">Nome</label>
+                                            <label for="firstname" class="label-float">Nome</label>
                                         </div>
                                     </div>
                                 <div class="col-6">
                                     <div class="form-group">
                                         
                                         <input id="phone" class="form-control" name="phone" type="tel" pattern="[0-9]{11}">
-                                        <label for="phone">Telefone</label>
+                                        <label for="phone" class="label-float">Telefone</label>
                                     </div>
                                 </div>
                             </div>
@@ -250,7 +250,7 @@ require_once $root_dir_path.'/models/User.php';
                                 
                                 <div class="row container mx-0 px-0">
                                     <textarea id="message" required name="message" class="form-control"></textarea>
-                                    <label for="message">Digite sua mensagem</label>
+                                    <label for="message" class="label-float">Digite sua mensagem</label>
                                 </div>
                             </div>
                             <input class="btn btn-3d-primary" type="submit" value="Enviar">
@@ -269,7 +269,7 @@ require_once $root_dir_path.'/models/User.php';
                     </div>
                     <div class="row mb-1">
                         <a class="col-1 pr-0" href="tel:(22)91231-1231" rel="noopener" title="telefone"><i class="fas fa-phone text-gradient"></i></a>
-                        <div class="col-11 pl-4 pr-0">(22)91231-1231</div>
+                        <div class="col-11 pl-4 pr-0">(22) 91231-1231</div>
                     </div>
                     <div class="row mb-1">
                         <a class="col-1 pr-0" href="mailto:sctiuenf@gmail.com" rel="noopener" title="email"><i class="fas fa-envelope text-gradient"></i></a>

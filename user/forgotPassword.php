@@ -11,11 +11,11 @@ if(isset($_SESSION['logged'])){
     <form id="setupForgotPass" method="post">  
     <h1>Recuperar senha</h1>
         <div class="form-group">
-            <label>Email</label>
-            <input required class="form-control" type="email" name="email">
+            <input required class="form-control mt-4" type="email" name="email" id="email">
+            <label class="label-float" for="email">Email</label>
         </div>
         <div class="form-group">        
-            <input class="btn btn-primary" type="submit">
+            <input class="btn btn-3d-primary" type="submit">
         </div>
     </form>
 </main>
