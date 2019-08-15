@@ -22,7 +22,7 @@
 .account {
   padding-right: 0;
   padding-left: 0;
-  padding-top: .5em;
+  padding-top: 3em;
   background-color: #15955b; }
 
 .account section {
@@ -78,6 +78,13 @@ button.scroll-down {
 
 button.scroll-down i {
   margin: 0; }
+
+#btn-help-sympla {
+  padding: 0; }
+
+#btn-help-sympla i {
+  margin: 0;
+  width: 90%; }
 
 .account .card p, .account .card h5 {
   color: #222;
@@ -192,14 +199,29 @@ button.scroll-down i {
 .status-label {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   padding-top: 1em;
   padding-left: 1em;
+  padding-right: 1em;
   height: 10%;
   min-height: fit-content; }
 
+.status-label button {
+  background-color: transparent;
+  border: none;
+  color: #A9A9A9;
+  width: fit-content; }
+
+.status-label i {
+  margin: 0; }
+
+.status-label button:hover {
+  color: #155799; }
+
 .status-col {
-  height: 50vh; }
+  min-height: 50vh;
+  height: fit-content; }
 
 .status-ball-green {
   width: 20px;

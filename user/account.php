@@ -93,8 +93,14 @@ if(!isset($_SESSION['logged'])){
                                         <div class="row h-100 justify-content-center">
                                             <div class="card status">
                                                 <div class="status-label">
-                                                    <div class="<?=$statusColor?>">&nbsp;</div>
-                                                    <span class="status-text"><?=$statusMessage?><span>
+                                                    <div class="row m-0">
+                                                        <div class="<?=$statusColor?>">&nbsp;</div>
+                                                        <span class="status-text"><?=$statusMessage?><span>
+                                                    </div>
+
+                                                    <button type="button" data-toggle="popover" data-placement="top" data-trigger="focus" data-content="Ao confirmar o pedido no Sympla, será disponibilizado um 'Nº do pedido', seja no próprio site, ou através de um email de confirmação. Basta inserir o código no campo abaixo para acompanhar o status do seu pedido/confirmar sua inscrição." aria-label="Código do pedido">
+                                                        <i class="far fa-question-circle"></i>
+                                                    </button>
                                                 </div>
 
                                                 <?php if($paymentPending){?>
@@ -279,7 +285,7 @@ if(!isset($_SESSION['logged'])){
     ?>
     <section id="courses" class="container-fluid">
         <div class="row h-100 align-items-center pt-5 pb-3 px-3">
-            <div class="col-12 col-lg-3 h-25 light-color">
+            <div class="col-12 col-lg-3 light-color">
                 <h1 class="sec-title light-color text-center">Escolha dois cursos incríveis!</h1>
                 <p class="sec-text text-center">E não se preocupe, você pode alterar os cursos escolhidos até o dia <?=$day?> de <?=$month?></p>
                 <div class="sec-text help">
@@ -360,10 +366,15 @@ if(!isset($_SESSION['logged'])){
     ?>
     <section id="shirts" class="container-fluid">
         <div class="row h-100 align-items-center pt-5 pb-3 px-3">
-            <div class="col-12 col-lg-3 h-25 light-color">
+            <div class="col-12 col-lg-3 light-color">
                 <h1 class="sec-title light-color text-center">Escolha sua camisa :)</h1>
-                <p class="sec-text text-center">Uma dessas camisas iradas é sua! Escolhe a que mais gostar, e manda ver.</p>
-                <p class="sec-text text-center">*A camisa escolhida pode ser alterada até o dia <?=$day?> de <?=$month?>.</p>
+                <p class="sec-text text-center">Uma dessas camisas iradas é sua! Escolhe a que mais gostar, e manda ver. Lembrando que a camisa escolhida pode ser alterada até o dia <?=$day?> de <?=$month?>.</p>
+                <div class="sec-text help">
+                    Guia de tamanhos
+                    <button onclick="window.open('../assets/imgs/shirt-sizes.jpg')">
+                        <i class="far fa-question-circle"></i>
+                    </button>
+                </div>
             </div>
             <div class="shirt-slider-container col-12 col-lg-9 pl-3 h-75">
                 <div id="shirt-slider" class="">
