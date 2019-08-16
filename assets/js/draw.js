@@ -46,8 +46,8 @@ class Node {
 }
 
 function reset() {
-    let newW = cv.parentElement.offsetWidth;
-    let newH = cv.parentElement.offsetHeight;
+    let newW = cv.parentElement.scrollWidth;
+    let newH = cv.parentElement.scrollHeight;
     if (Math.abs(newW - lastW) > 100 || Math.abs(newH - lastH) > 100) {
         cv.width = newW;
         cv.height = newH;
