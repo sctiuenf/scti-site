@@ -8,7 +8,7 @@ try{
     if(isset($_POST['firstname'], $_POST['lastname'], $_POST['phone'], $_POST['email'], $_POST['password'], $_POST['passwordConfirm'])){
        
         
-        $phone = strlen($_POST['phone']) > 0 ? $_POST['phone']:null;
+        $phone = strlen($_POST['phone']) > 0 ? preg_replace("/[^0-9]/", "", $_POST['phone']):null;
         
         $pass = $_POST['password'];
         if(strlen($pass) < 6)

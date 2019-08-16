@@ -116,4 +116,30 @@ function hideAlert(){
     alert.css('top', '-5%');
     alert.hide();
 }
+function onlyNumber(tel){
+   let arr = tel.match(/\d/g);
+   return arr ? arr.join(''):'';
+}
+
+function getMaskedTell(tel){
+  let maskedTell = '';
+ 
+  if(tel.length > 0){
+      tel.split('').forEach((v, i) => {
+        if(i == 0)
+          maskedTell += '('+ v;
+        else if(i == 2)
+          maskedTell += ') ' + v;
+        else if(i == 3)
+          maskedTell += ' ' + v;
+        else if(i == 7)
+          maskedTell += '-' + v;
+        else 
+          maskedTell += v;
+      }); 
+  }
+  return maskedTell;
+}
+
+
 

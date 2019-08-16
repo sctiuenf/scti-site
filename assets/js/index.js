@@ -25,6 +25,22 @@ $(document).ready(function () {
     //navbarcolor
     navColorAndBtnUp();
 
+    //phone input
+    
+    let telInput = $('input[type=tel]');
+    if(telInput.length){
+        let tel = onlyNumber(telInput.val());
+        let maskedTell = getMaskedTell(tel);
+            
+        telInput.val(maskedTell);
+    }
+    telInput.on('keyup', () => {
+        let tel = onlyNumber(telInput.val());
+        let maskedTell = getMaskedTell(tel);
+        
+        telInput.val(maskedTell);
+    });
+
     //click listeners
     btnUp.click(function(e){
         scrollToDiv(0);
