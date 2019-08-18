@@ -136,7 +136,7 @@ $(document).ready(function () {
         showLoader();
         $.ajax({
             type: "post",
-            url: "utils/contact.php",
+            url: "utils/contact",
             data,
             dataType: "json",
             success: function (response) {

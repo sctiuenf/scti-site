@@ -95,7 +95,7 @@ require_once $root_dir_path.'/models/User.php';
     <section id="programacao" class="container-fluid justify-content-center d-flex">
         <div class="col-12 col-sm-11 col-xl-10">
             <h2>/ Programação</h2>
-            <p style="margin-bottom:3rem;">Preparamos uma programação muito bacana contando tudo vai rolar no evento do dia <b>4 (segunda-feira) ao 9 (sábado)</b> de novembro. Ah! O <b>credenciamento</b> é realizado a partir das <b>07:30 horas</b>, durante todo o evento. Além disso, contamos com um <b>coffee-break</b> caprichado todos os dias na pausa do minicurso de <b>10:00 às 10:30</b>, e outro um pouquinho maior de <b>16:00 as 17:00</b> visando o networking entre os participantes e convidados, e outras atividades bem legais :) Vale lembrar que a elaboração da programação está em andamento, então fique ligado nos próximos eventos anunciados ;) </p>
+            <p style="margin-bottom:3rem;">Preparamos uma programação muito bacana contando tudo vai rolar no evento do dia <b>4 (segunda-feira) ao 9 (sábado)</b> de novembro. Ah! O <b>credenciamento</b> é realizado a partir das <b>07:30 horas</b>, durante todo o evento. Além disso, contamos com um <b>coffee-break</b> caprichado todos os dias na pausa do minicurso de <b>10:00 às 10:30</b>, e outro um pouquinho maior de <b>16:00 às 17:00</b> visando o networking entre os participantes e convidados, e outras atividades bem legais :) Vale lembrar que a elaboração da programação está em andamento, então fique ligado nos próximos eventos anunciados ;) </p>
 
             <div class="day-slider slider">
                 <div class="slide">
@@ -251,7 +251,7 @@ require_once $root_dir_path.'/models/User.php';
                                 <div class="col-6">
                                     <div class="form-group">
                                         
-                                        <input id="phone" class="form-control" name="phone" type="tel" pattern="[0-9]{11}">
+                                        <input id="phone" pattern="[\(][0-9]{2}[\)] [0-9]{1} [0-9]{4}[\-][0-9]{4}" class="form-control" name="phone" type="tel" pattern="[0-9]{11}">
                                         <label for="phone" class="label-float">Telefone</label>
                                     </div>
                                 </div>
