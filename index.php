@@ -251,7 +251,7 @@ require_once $root_dir_path.'/models/User.php';
                                 <div class="col-6">
                                     <div class="form-group">
                                         
-                                        <input id="phone" pattern="[\(][0-9]{2}[\)] [0-9]{1} [0-9]{4}[\-][0-9]{4}" class="form-control" name="phone" type="tel" pattern="[0-9]{11}">
+                                        <input id="phone" pattern="[\(][0-9]{2}[\)] [0-9]{1} [0-9]{4}[\-][0-9]{4}" class="form-control" name="phone" type="tel" maxlength="16">
                                         <label for="phone" class="label-float">Telefone</label>
                                     </div>
                                 </div>

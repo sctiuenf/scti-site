@@ -8,9 +8,12 @@
     
     $page = '';
     $uri = $_SERVER["REQUEST_URI"];
-    if(strpos($uri, 'account')  !== false)
+    $uri = explode('/', $uri);
+    $uri_page = array_pop($uri);
+
+    if(strpos($uri_page, 'account')  !== false)
         $page = 'account';
-    else if($uri === '/' ||  $uri === '/scti/')
+    else if($uri_page === '')
         $page = 'index';
 
     $paymentComplete = true;

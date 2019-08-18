@@ -216,7 +216,7 @@ if(!isset($_SESSION['logged'])){
                                 <label for="email" class="label-float translated-label">Email</label>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" maxlength="16"  pattern="[\(][0-9]{2}[\)] [0-9]{1} [0-9]{4}[\-][0-9]{4}" id="phone" name="phone" type="tel" pattern="[0-9]{11}" value="<?=$userInfo['phone']?>">
+                                <input class="form-control" maxlength="16"  pattern="[\(][0-9]{2}[\)] [0-9]{1} [0-9]{4}[\-][0-9]{4}" id="phone" name="phone" type="tel" value="<?=$userInfo['phone']?>">
                                 <label for="phone"class="label-float <?php echo count($userInfo['phone']) > 0 ? 'translated-label':''?>">Telefone</label>
                             </div>
                             <div class="row m-0">
