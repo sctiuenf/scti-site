@@ -147,7 +147,7 @@ require_once $root_dir_path.'/models/User.php';
                 <option value="6">Quarta-feira</option>
                 <option value="7">Quinta-feira</option>
                 <option value="8">Sexta-feira</option>
-                <option value="9">Sábado-feira</option>
+                <option value="9">Sábado</option>
             </select>
           
             <div id="programacao-slider" class="card-slider slider">
@@ -189,6 +189,8 @@ require_once $root_dir_path.'/models/User.php';
                     <a class="row justify-content-center align-items-center" href="https://www.facebook.com/camposinfotrade/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/infotrade.jpeg" alt="Info Trade"></a>
             
                     <a class="row justify-content-center align-items-center" href="https://www.stickersdevs.com.br/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/stickersdev.jpeg" alt="Stickers Dev"></a>
+
+                    <a class="row justify-content-center align-items-center" href="https://www.agbm.com.br/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/briefing.jpeg" alt="Briefing Marketing"></a>
                   
                 </div>
             </div>
@@ -278,8 +280,8 @@ require_once $root_dir_path.'/models/User.php';
                         <div class="col-11 pl-4 pr-0">@sctiuenf</div>
                     </div>
                     <div class="row mb-1">
-                        <a class="col-1 pr-0" href="tel:(22)91231-1231" rel="noopener" title="telefone"><i class="fas fa-phone text-gradient"></i></a>
-                        <div class="col-11 pl-4 pr-0">(22) 91231-1231</div>
+                        <a class="col-1 pr-0" href="tel:(28)99995-1110" rel="noopener" title="telefone"><i class="fas fa-phone text-gradient"></i></a>
+                        <div class="col-11 pl-4 pr-0">(28) 99995-1110<br>(22) 99763-4863</div>
                     </div>
                     <div class="row mb-1">
                         <a class="col-1 pr-0" href="mailto:sctiuenf@gmail.com" rel="noopener" title="email"><i class="fas fa-envelope text-gradient"></i></a>
