@@ -10,10 +10,12 @@
     $uri = $_SERVER["REQUEST_URI"];
     $uri = explode('/', $uri);
     $uri_page = array_pop($uri);
-
-    if(strpos($uri_page, 'account')  !== false)
-        $page = 'account';
-    else if($uri_page === '')
+    //gambiarra
+    if(strpos($_SERVER["REQUEST_URI"], 'user') !== false){
+        if(strpos($uri_page, 'account')  !== false)
+            $page = 'account';
+    }
+    else
         $page = 'index';
 
     $paymentComplete = true;
@@ -89,14 +91,14 @@
                     <a id="link-to-user-info" class="nav-link" tabindex="0" onclick="scrollToDiv('#user-info')">Perfil</a>
                 </li>
 
-                    <?php if($paymentComplete){?>
-                    <li class="nav-item">
-                        <a id="link-to-courses" class="nav-link" tabindex="0" onclick="scrollToDiv('#courses')">Cursos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="link-to-shirts" class="nav-link" tabindex="0" onclick="scrollToDiv('#shirts')">Camisas</a>
-                    </li>
-                    <?php }?>
+                 
+                <li class="nav-item">
+                    <a id="link-to-courses" class="nav-link" tabindex="0" onclick="scrollToDiv('#courses')">Cursos</a>
+                </li>
+                <li class="nav-item">
+                    <a id="link-to-shirts" class="nav-link" tabindex="0" onclick="scrollToDiv('#shirts')">Camisas</a>
+                </li>
+                   
 
                 <?php } ?>
                 

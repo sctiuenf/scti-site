@@ -32,10 +32,12 @@
   background-color: #15955b; }
 
 #courses {
-  background-color: #157d73; }
+  background-color: #157d73;
+  position: relative; }
 
 #shirts {
-  background-color: #196988; }
+  background-color: #196988;
+  position: relative; }
 
 #user-info > .row {
   height: 45em;
@@ -55,8 +57,7 @@
   height: 100%; }
 
 .sympla-widget {
-  width: 90%;
-  margin-top: 10%; }
+  width: 90%; }
 
 .slick-list {
   height: 100%; }
@@ -207,16 +208,19 @@ button.scroll-down i {
   height: 10%;
   min-height: fit-content; }
 
-.status-label button {
+.status-label button, .status-col button {
   background-color: transparent;
   border: none;
   color: #A9A9A9;
-  width: fit-content; }
+  width: fit-content;
+  display: flex;
+  align-items: center; }
 
 .status-label i {
-  margin: 0; }
+  margin: 0;
+  font-size: 2em; }
 
-.status-label button:hover {
+.status-label button:hover, .status-col button:hover {
   color: #155799; }
 
 .status-col {

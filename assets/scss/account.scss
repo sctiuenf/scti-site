@@ -31,9 +31,11 @@
 }
 #courses{
     background-color: rgb(21,125,115);
+    position: relative;
 }
 #shirts{
     background-color: rgb(25, 105, 136);
+    position: relative;
 }
 .account div{
     //border: 1px solid red;
@@ -58,7 +60,7 @@
 }
 .sympla-widget{
     width: 90%;
-    margin-top: 10%;
+    //margin-top: 10%;
 }
 .slick-list{
     height: 100%;
@@ -218,16 +220,20 @@ button.scroll-down i{
     height: 10%;
     min-height: fit-content;
 }
-.status-label button{
+.status-label button, .status-col button{
     background-color: transparent;
     border: none;
     color: $grey;
     width: fit-content;
+    display: flex;
+    align-items: center;
 }
 .status-label i{
     margin: 0;
+    font-size: 2em;
 }
-.status-label button:hover{
+
+.status-label button:hover, .status-col button:hover{
     color: $primary;
 }
 .status-col{

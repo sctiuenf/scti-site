@@ -128,6 +128,9 @@ if(!isset($_SESSION['logged'])){
                                                     
 
                                                 <?php if(!$paymentComplete){ ?>
+                                               <button class="mt-3 w-100 pl-5" type="button" data-html="true"  data-toggle="popover" data-placement="top" data-trigger="focus" data-content="Caso deseje efetuar o pagamento da sua inscrição diretamente com a comissão organizadora do evento, entre em <a href='<?=$root_url?>?#sec-contato'><b>contato</b></a> conosco." aria-label="Código do pedido">
+                                               Quero pagar presencialmente
+                                                </button>
                                                 <div id="sympla-widget-<?=$EVENT_ID?>" class="sympla-widget <?=$widget_display?>" height="auto"></div> <script src="https://www.sympla.com.br/js/sympla.widget-pt.js/<?=$EVENT_ID?>"></script>
                                                 <?php } ?>
                                                
@@ -157,10 +160,10 @@ if(!isset($_SESSION['logged'])){
                                     <div class="col-12 col-sm-8">
                                         <div class="row">
                                             <div class="col-6 pl-0" >
-                                                <button <?php if(!$paymentComplete) echo 'disabled'?> onclick="scrollToDiv('#courses')" class=" w-100 h-100 btn btn-3d-secondary"><i class="fas fa-laptop-code"></i>Cursos</button>
+                                                <button  onclick="scrollToDiv('#courses')" class=" w-100 h-100 btn btn-3d-secondary"><i class="fas fa-laptop-code"></i>Cursos</button>
                                             </div>
                                             <div class="col-6 pr-0">
-                                                <button <?php if(!$paymentComplete) echo 'disabled'?> onclick="scrollToDiv('#shirts')" class=" w-100 h-100 btn btn-3d-secondary"><i class="fas fa-tshirt"></i>Camisas</button>
+                                                <button onclick="scrollToDiv('#shirts')" class=" w-100 h-100 btn btn-3d-secondary"><i class="fas fa-tshirt"></i>Camisas</button>
                                             </div>
                                         </div>
                                         <!-- lista de cursos e camisas 
@@ -279,11 +282,15 @@ if(!isset($_SESSION['logged'])){
         </div>
     </section>
     <?php 
-        if($paymentComplete){
-            $day = date('j', strtotime(COURSE_END))-1;
-            $month = MONTHS[$month = date('m', strtotime(COURSE_END))];
+        $day = date('j', strtotime(COURSE_END))-1;
+        $month = MONTHS[$month = date('m', strtotime(COURSE_END))];
     ?>
     <section id="courses" class="container-fluid">
+
+        <?php if(!$paymentComplete){ ?>
+        <div class="overlay">Após a confirmação de seu pagamento você poderá escolher 2 cursos bem legais!</div>
+        <?php } ?>
+
         <div class="row h-100 align-items-center pt-5 pb-3 px-3">
             <div class="col-12 col-lg-3 light-color">
                 <h1 class="sec-title light-color text-center">Escolha dois cursos incríveis!</h1>
@@ -361,10 +368,15 @@ if(!isset($_SESSION['logged'])){
     </section>
 
     <?php 
-            $day = date('j', strtotime(SHIRT_END))-1;
-            $month = MONTHS[$month = date('m', strtotime(SHIRT_END))];
+        $day = date('j', strtotime(SHIRT_END))-1;
+        $month = MONTHS[$month = date('m', strtotime(SHIRT_END))];
     ?>
     <section id="shirts" class="container-fluid">
+
+    <?php if(!$paymentComplete){ ?>
+    <div class="overlay">Além de uma camisa muito bacana :D</div>
+    <?php } ?>
+
         <div class="row h-100 align-items-center pt-5 pb-3 px-3">
             <div class="col-12 col-lg-3 light-color">
                 <h1 class="sec-title light-color text-center">Escolha sua camisa :)</h1>
@@ -412,7 +424,6 @@ if(!isset($_SESSION['logged'])){
             </div>
         </div>
     </section>
-    <?php } ?>
 </main>
 
 <script src="<?=$root_url?>/assets/js/requests/chooseRequests.js"></script>
