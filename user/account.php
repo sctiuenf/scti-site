@@ -98,9 +98,11 @@ if(!isset($_SESSION['logged'])){
                                                         <span class="status-text"><?=$statusMessage?><span>
                                                     </div>
 
+                                                    <?php if(!$paymentComplete && $paymentPending){ ?>
                                                     <button type="button" data-toggle="popover" data-placement="top" data-trigger="focus" data-content="Ao confirmar o pedido no Sympla, será disponibilizado um 'Nº do pedido', seja no próprio site, ou através de um email de confirmação. Basta inserir o código no campo abaixo para acompanhar o status do seu pedido/confirmar sua inscrição." aria-label="Código do pedido">
                                                         <i class="far fa-question-circle"></i>
                                                     </button>
+                                                    <?php } ?>
                                                 </div>
 
                                                 <?php if($paymentPending){?>
@@ -318,7 +320,7 @@ if(!isset($_SESSION['logged'])){
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>Pra esse curso é necessário que você tenha conhecimento de: </p>
+                            <p>Conhecimento necessário: <b>(Não se preocupe, é apenas desejável que conheça os seguintes temas, nada te impede de participar do minicurso)</b> </p>
                             <p id="modal-req-tec"></p>
                             <p>Caso vá levar seu próprio notebook, prepare-o com:</p>
                             <p id="modal-req-org"></p>
