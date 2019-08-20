@@ -10,13 +10,14 @@ var nodes, mouseNode;
 var lastW = 0, lastH = 0;
 
 class Node {
-    constructor() {
+    constructor(moves) {
         this.px = random(0, cv.width);
         this.py = random(0, cv.height);
         this.radius = ((cv.width * 0.005) / 2 + (cv.height * 0.005) / 2) * random(0.9, 1.4);
         this.vx = random(-0.5, 0.5) / window.devicePixelRatio;
         this.vy = random(-0.5, 0.5) / window.devicePixelRatio;
         this.linkedTo = [];
+        this.moves = moves;
     }
 
     move() {
@@ -71,10 +72,10 @@ function buildNodes() {
 }
 
 function checkLinks() {
-    for (let i = 0; i < nodes.length - 1; i++) {
+    for (let i = 0; i < nodes.length; i++) {
         nodes[i].linkedTo = [];
     }
-    for (let i = 0; i < nodes.length - 1; i++) {
+    for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
             var distSqr = dist2dSqr(nodes[i].px, nodes[i].py, nodes[j].px, nodes[j].py);
             if (distSqr < MAX_LINK_DISTANCE_SQR) {
@@ -92,8 +93,8 @@ function draw() {
     c.clearRect(0, 0, cv.width, cv.height);
 
     for (let i = 0; i < nodes.length; i++) {
-        nodes[i].move();
-        nodes[i].display()
+        if(nodes[i].moves) nodes[i].move();
+        nodes[i].display();
     }
     checkLinks();
 
@@ -103,6 +104,13 @@ function draw() {
 document.getElementsByTagName("BODY")[0].addEventListener("mousemove", function (event) {
     mouseNode.px = event.clientX + document.documentElement.scrollLeft;
     mouseNode.py = event.clientY + document.documentElement.scrollTop;
+});
+
+document.getElementsByTagName("BODY")[0].addEventListener("mouseup", function (event) {
+    var node = new Node(false);
+    node.px = event.clientX + document.documentElement.scrollLeft;
+    node.py = event.clientY + document.documentElement.scrollTop;
+    nodes.push(node);
 });
 
 window.onresize = reset;
