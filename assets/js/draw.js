@@ -107,7 +107,7 @@ document.getElementsByTagName("BODY")[0].addEventListener("mousemove", function 
 });
 
 document.getElementsByTagName("BODY")[0].addEventListener("mouseup", function (event) {
-    var node = new Node(false);
+    var node = new Node(true);
     node.px = event.clientX + document.documentElement.scrollLeft;
     node.py = event.clientY + document.documentElement.scrollTop;
     nodes.push(node);
