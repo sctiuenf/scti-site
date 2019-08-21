@@ -320,7 +320,7 @@ if(!isset($_SESSION['logged'])){
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>Conhecimento necessário: <b>(Não se preocupe, é apenas desejável que conheça os seguintes temas, nada te impede de participar do minicurso)</b> </p>
+                            <p>Conhecimento desejável: <b>(Não se preocupe, é apenas desejável que conheça os seguintes temas, nada te impede de participar do minicurso)</b> </p>
                             <p id="modal-req-tec"></p>
                             <p>Caso vá levar seu próprio notebook, prepare-o com:</p>
                             <p id="modal-req-org"></p>

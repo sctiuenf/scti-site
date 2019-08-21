@@ -56,6 +56,8 @@ function getEventCard(params){
                 case 'website':
                     icon = '<i title="Website" class="fas fa-globe"></i>';
                     break;
+                case 'github':
+                    icon = '<i title="Github" class="fab fa-github-square"></i>';
                 default:
                     icon = '<i title="Website" class="fas fa-globe"></i>';
                     break;

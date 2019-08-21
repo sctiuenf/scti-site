@@ -191,7 +191,8 @@ require_once $root_dir_path.'/models/User.php';
                     <a class="row justify-content-center align-items-center" href="https://www.stickersdevs.com.br/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/stickersdev.jpeg" alt="Stickers Dev"></a>
 
                     <a class="row justify-content-center align-items-center" href="https://www.agbm.com.br/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/briefing.jpeg" alt="Briefing Marketing"></a>
-                  
+                        
+                    <a class="row justify-content-center align-items-center" href="https://www.instagram.com/fino.saborsalgados/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/finosabor.jpeg" alt="Fino Sabor Salgados"></a>
                 </div>
             </div>
 
