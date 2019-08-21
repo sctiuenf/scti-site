@@ -25,10 +25,33 @@ $(document).ready(function () {
     //navbarcolor
     navColorAndBtnUp();
 
+    //phone input
+    
+    let telInput = $('input[type=tel]');
+    if(telInput.length){
+        let tel = onlyNumber(telInput.val());
+        let maskedTell = getMaskedTell(tel);
+            
+        telInput.val(maskedTell);
+    }
+    telInput.on('keyup', () => {
+        let tel = onlyNumber(telInput.val());
+        let maskedTell = getMaskedTell(tel);
+        
+        telInput.val(maskedTell);
+    });
+
     //click listeners
     btnUp.click(function(e){
         scrollToDiv(0);
     });
+
+    //close alert
+    $('.alert .close').click(function(e){
+        e.preventDefault();
+        hideAlert();
+    });
+
 
     $('.navbar-toggler').click(function(e){
         if($(this).hasClass('collapsed'))
@@ -79,7 +102,8 @@ $(document).ready(function () {
                 navColorAndBtnUp();
             
             if(btnDown.length){
-                if(actPos >= $('section').last().offset().top){
+                let tolerance = 50;
+                if(actPos >= $('section').last().offset().top-tolerance){
                     if(btnDown.css('display') != 'none')
                         btnDown.hide();    
                 }else{
@@ -88,15 +112,17 @@ $(document).ready(function () {
                 }               
             }
             
-            if(actPos > $('section').eq(1).offset().top/2){
-                if(btnUp.css('display') === 'none'){
-                    btnUp.css('display', 'flex');
-                    btnUp.animate({'opacity': 1}, 100);
-                }
-            }else{
-                if(btnUp.css('display') !== 'none'){
-                    btnUp.css('display', 'none');
-                    btnUp.css('opacity', 0);
+            if($('section').eq(1).length){
+                if(actPos > $('section').eq(1).offset().top/2){
+                    if(btnUp.css('display') === 'none'){
+                        btnUp.css('display', 'flex');
+                        btnUp.animate({'opacity': 1}, 100);
+                    }
+                }else{
+                    if(btnUp.css('display') !== 'none'){
+                        btnUp.css('display', 'none');
+                        btnUp.css('opacity', 0);
+                    }
                 }
             }
         });
@@ -110,19 +136,18 @@ $(document).ready(function () {
         showLoader();
         $.ajax({
             type: "post",
-            url: "utils/contact.php",
+            url: "utils/contact",
             data,
             dataType: "json",
             success: function (response) {
                 hideLoader();
-                let sec = $('#sec-contato');
 
                 if(response['success']){
-                    sec.find('.alert-success').show();
+                    showAlert('alert-success', 'Mensagem enviada com sucesso!');
 
                 }else{
                     console.log(response);
-                    sec.find('.alert-danger').show();
+                    showAlert('alert-danger', 'Falha ao enviar mensagem. Por favor, entre em contato com a equipe do evento através do email: sctiuenf@gmail.com.');
                 }
             },
             error: function(e){

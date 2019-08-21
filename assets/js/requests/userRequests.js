@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     //authenticate
     $('form#authenticate').submit(function(e){
+        let timeout = showLoader(500);
         e.preventDefault();
         
         let form = $(this);
@@ -15,10 +16,11 @@ $(document).ready(function () {
             data: form.serialize(),
             dataType: "json",
             success: function (response) {
+                hideLoader(timeout);
                 if(response['success'])
                     window.location.reload();
                 else
-                    alert(response['message']);
+                    showAlert('alert-danger', response['message']);
             },
             error: function(e){
                 console.log(e);
@@ -43,7 +45,7 @@ $(document).ready(function () {
                 if(response['success'])
                     window.location.reload();
                 else
-                    alert(response['message']);
+                    showAlert('alert-danger', response['message']);
             }
         });
     });
@@ -67,7 +69,7 @@ $(document).ready(function () {
                 if(response['success'])
                     window.location.reload();
                 else
-                    alert(response['message']);
+                    showAlert('alert-danger', response['message']);
             },
             error: function(da){
                 console.log(da);
@@ -92,9 +94,9 @@ $(document).ready(function () {
             success: function (response) {
                 hideLoader();
                 if(response['success'])
-                    alert('Um link para recuperação de senha foi enviado para o email informado. Lembre-se de verificar a caixa de spam :)');
+                    showAlert('alert-info', 'Um link para recuperação de senha foi enviado para o email informado. Lembre-se de verificar a caixa de spam :)');
                 else
-                    alert(response['message']);
+                    showAlert('alert-danger', response['message']);
             },
             error: function(e){
                 hideLoader();
@@ -120,7 +122,7 @@ $(document).ready(function () {
                 if(response['success'])
                     window.location = rootUrl() + '/user/access';
                 else
-                    alert(response['message']);
+                    showAlert('alert-danger', response['message']);
             },
             error: function(e){
                 console.log(e);
@@ -129,9 +131,6 @@ $(document).ready(function () {
     });
 
     //changeInfo
-    $('.info .alert .close, #changePass-modal .alert .close').click(function(){
-        $(this).parent().hide();
-    });
     $('form#changeInfo').submit(function(e){
         let timeOut = showLoader(300, '.info');
         e.preventDefault();
@@ -148,9 +147,9 @@ $(document).ready(function () {
             success: function (response) {
                 hideLoader(timeOut);
                 if(response['success']){
-                    $('.info .alert-success').show();
+                    showAlert('alert-success', 'Informações alteradas com sucesso!');
                 }else
-                    alert(response['message']);
+                    showAlert('alert-danger', response['message']);
             },
             error: function(e){
                 console.log(e);

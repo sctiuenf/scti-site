@@ -70,8 +70,8 @@ if(isset($_SESSION['logged'])){
                     <label class="label-float" for="signup-email">Email</label>
                 </div>
                 <div class="form-group">
-                    <input id="phone" class="form-control" name="phone" type="tel" pattern="[0-9]{11}">
-                    <label class="label-float" for="phone">Telefone</label>
+                    <input id="phone" class="form-control" maxlength="16" name="phone" type="tel" pattern="[\(][0-9]{2}[\)] [0-9]{1} [0-9]{4}[\-][0-9]{4}">
+                    <label class="label-float" for="phone" >Telefone</label>
                 </div>
                 <div class="row">
                     <div class="col-12 col-sm-6">

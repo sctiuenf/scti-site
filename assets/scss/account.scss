@@ -20,7 +20,7 @@
     padding-right: 0;
     padding-left: 0;
      //overflow-y: hidden;
-     padding-top: .5em;
+     padding-top: 3em;
      background-color: rgb(21, 149, 91);
 }
 .account section{
@@ -31,9 +31,11 @@
 }
 #courses{
     background-color: rgb(21,125,115);
+    position: relative;
 }
 #shirts{
     background-color: rgb(25, 105, 136);
+    position: relative;
 }
 .account div{
     //border: 1px solid red;
@@ -58,7 +60,7 @@
 }
 .sympla-widget{
     width: 90%;
-    margin-top: 10%;
+    //margin-top: 10%;
 }
 .slick-list{
     height: 100%;
@@ -78,8 +80,16 @@ button.scroll-down{
     animation: bounce .7s infinite alternate;
     z-index: 2;
 }
+
 button.scroll-down i{
     margin: 0;
+}
+#btn-help-sympla{
+    padding: 0;
+}
+#btn-help-sympla i{
+    margin:0;
+    width: 90%;
 }
 .account .card p, .account .card h5{
     color: #222;
@@ -202,14 +212,33 @@ button.scroll-down i{
 .status-label{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
     padding-top: 1em;
     padding-left: 1em;
+    padding-right: 1em;
     height: 10%;
     min-height: fit-content;
 }
+.status-label button, .status-col button{
+    background-color: transparent;
+    border: none;
+    color: $grey;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+}
+.status-label i{
+    margin: 0;
+    font-size: 2em;
+}
+
+.status-label button:hover, .status-col button:hover{
+    color: $primary;
+}
 .status-col{
-    height: 50vh;
+    min-height: 50vh;
+    height: fit-content;
 }
 .status-ball-green{
     width: 20px;
@@ -311,6 +340,14 @@ button.scroll-down i{
     .account section{
         min-height: 100vh;
         height: fit-content;
+    }
+    #courses .card, #shirts .card{
+        max-height: 100%;
+        height: 60vh;
+    }
+    .account #shirt-slider .card-body{
+        height: 10%;
+        min-height: fit-content;
     }
     .card-text{
         min-height: 20vh;

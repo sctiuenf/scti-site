@@ -8,9 +8,14 @@
     
     $page = '';
     $uri = $_SERVER["REQUEST_URI"];
-    if(strpos($uri, 'account')  !== false)
-        $page = 'account';
-    else if($uri === '/' ||  $uri === '/scti/')
+    $uri = explode('/', $uri);
+    $uri_page = array_pop($uri);
+    //gambiarra
+    if(strpos($_SERVER["REQUEST_URI"], 'user') !== false){
+        if(strpos($uri_page, 'account')  !== false)
+            $page = 'account';
+    }
+    else
         $page = 'index';
 
     $paymentComplete = true;
@@ -86,14 +91,14 @@
                     <a id="link-to-user-info" class="nav-link" tabindex="0" onclick="scrollToDiv('#user-info')">Perfil</a>
                 </li>
 
-                    <?php if($paymentComplete){?>
-                    <li class="nav-item">
-                        <a id="link-to-courses" class="nav-link" tabindex="0" onclick="scrollToDiv('#courses')">Cursos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="link-to-shirts" class="nav-link" tabindex="0" onclick="scrollToDiv('#shirts')">Camisas</a>
-                    </li>
-                    <?php }?>
+                 
+                <li class="nav-item">
+                    <a id="link-to-courses" class="nav-link" tabindex="0" onclick="scrollToDiv('#courses')">Cursos</a>
+                </li>
+                <li class="nav-item">
+                    <a id="link-to-shirts" class="nav-link" tabindex="0" onclick="scrollToDiv('#shirts')">Camisas</a>
+                </li>
+                   
 
                 <?php } ?>
                 
@@ -115,7 +120,12 @@
                 <?php } ?>
             </ul>
         </div>
-    </nav> 
+    </nav>
+
+    <div id="custom-alert" class="alert alert-success alert-dismissible">
+        <a href="#" class="close" aria-label="close">&times;</a>
+        <span>Informativo</span>
+    </div>
    
 
 

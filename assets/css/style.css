@@ -49,7 +49,8 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: 'Open Sans', sans-serif;
-  color: #222; }
+  color: #696969;
+  line-height: 1.8em; }
 
 body {
   position: relative; }
@@ -70,6 +71,21 @@ a {
 
 main {
   height: fit-content; }
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: #FEFEFE;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  z-index: 2;
+  text-align: center; }
 
 .home-main {
   height: fit-content;
@@ -110,6 +126,20 @@ main {
 
 .navbar-dark .navbar-toggler {
   border: none; }
+
+#custom-alert {
+  display: none;
+  position: fixed;
+  z-index: 1031;
+  min-width: fit-content;
+  max-width: 50%;
+  left: 50%;
+  top: -5%;
+  transform: translateX(-50%);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+
+.shaking-alert {
+  animation: shake-alert .5s; }
 
 #banner {
   display: flex;
@@ -212,6 +242,9 @@ main {
 .circle:not(:hover) img {
   animation: unshake .5s forwards; }
 
+#day-select {
+  display: none; }
+
 .btn-up {
   display: none;
   opacity: 0;
@@ -220,7 +253,7 @@ main {
   position: fixed;
   bottom: 6%;
   right: 2%;
-  z-index: 1;
+  z-index: 3;
   width: 50px;
   height: 50px;
   border-radius: 100%;
@@ -529,7 +562,7 @@ i {
   width: 154px; }
 
 .apoio img {
-  width: 120px; }
+  width: 100px; }
 
 .apoio-inst img {
   width: 200px; }
@@ -545,7 +578,13 @@ i {
     margin-right: auto !important; } }
 @media (max-width: 576px) {
   .title {
-    font-size: 1.5em; } }
+    font-size: 1.5em; }
+
+  .day-slider {
+    display: none !important; }
+
+  #day-select {
+    display: block; } }
 @keyframes animateBack {
   0% {
     transform: rotateZ(0deg); }
@@ -581,5 +620,14 @@ i {
     transform: scale(1.2); }
   100% {
     transform: scale(1); } }
+@keyframes shake-alert {
+  25% {
+    transform: translateX(-50%) rotateZ(-5deg); }
+  50% {
+    transform: translateX(-50%) rotateZ(10deg); }
+  75% {
+    transform: translateX(-50%) rotateZ(-10deg); }
+  100% {
+    transform: translateX(-50%) rotateZ(0deg); } }
 
 /*# sourceMappingURL=style.css.map */

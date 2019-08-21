@@ -50,7 +50,6 @@ function currentSection(){
     let secs = $('section');
     let scrollPos = $(window).scrollTop();
     let tolerance = window.innerHeight*0.2;
-    console.log(window.innerHeight*0.3);
 
     let closerSec = null;
 
@@ -66,3 +65,81 @@ function currentSection(){
 
     return closerSec;
 }
+
+var alertTimeout;
+function showAlert(type, text){
+    let alert = $('#custom-alert');
+    let alertText = alert.find('span');
+
+    let animationEvent = 'webkitAnimationEnd oanimationend msAnimationEnd animationend';
+
+    alert.on(animationEvent, function(){
+        alert.removeClass('shaking-alert');
+    })
+
+    //if the same alert is visible
+    if(alert.css('display') !== 'none' && alert.hasClass(type) && alertText.html() === text){
+        
+        alert.stop();
+        alert.css('opacity', 1);
+        alert.addClass('shaking-alert');
+
+        clearTimeout(alertTimeout);
+
+        alertTimeout = setTimeout(function(){
+            alert.animate({'opacity': 0}, 2000, function(){
+                hideAlert();
+            })
+        }, 5000);
+        
+        return;
+    }
+
+    alertText.html(text);
+    alert.attr('class', 'alert alert-dismissible');
+    alert.addClass(type);
+    alert.css('opacity', 1);
+    alert.show();
+
+    alert.animate({'top': '10%'}, 500, function(){
+        alertTimeout = setTimeout(function(){
+            alert.animate({'opacity': 0}, 2000, function(){
+                hideAlert();
+            })
+        }, 5000);
+    });
+}
+
+function hideAlert(){
+    let alert = $('#custom-alert');
+
+    alert.css('top', '-5%');
+    alert.hide();
+}
+function onlyNumber(tel){
+   let arr = tel.match(/\d/g);
+   return arr ? arr.join(''):'';
+}
+
+function getMaskedTell(tel){
+  let maskedTell = '';
+ 
+  if(tel.length > 0){
+      tel.split('').forEach((v, i) => {
+        if(i == 0)
+          maskedTell += '('+ v;
+        else if(i == 2)
+          maskedTell += ') ' + v;
+        else if(i == 3)
+          maskedTell += ' ' + v;
+        else if(i == 7)
+          maskedTell += '-' + v;
+        else 
+          maskedTell += v;
+      }); 
+  }
+  return maskedTell;
+}
+
+
+

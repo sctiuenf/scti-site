@@ -69,7 +69,7 @@ class User {
         $row = $result[0];
         $hashedPass = $row['senhaParticipante'];
         if(!password_verify($password, $hashedPass))
-            throw new Exception('Senha inválida');
+            throw new Exception('Senha incorreta');
         
         $this->id = $row['idParticipante'];
         $this->firstName = $row['nomeParticipante'];

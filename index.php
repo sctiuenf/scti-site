@@ -94,8 +94,9 @@ require_once $root_dir_path.'/models/User.php';
     </section>
     <section id="programacao" class="container-fluid justify-content-center d-flex">
         <div class="col-12 col-sm-11 col-xl-10">
-            <h2 style="margin-bottom:3rem;">/ Programação</h2>
-            
+            <h2>/ Programação</h2>
+            <p style="margin-bottom:3rem;">Preparamos uma programação muito bacana contando tudo vai rolar no evento do dia <b>4 (segunda-feira) ao 9 (sábado)</b> de novembro. Ah! O <b>credenciamento</b> é realizado a partir das <b>07:30 horas</b>, durante todo o evento. Além disso, contamos com um <b>coffee-break</b> caprichado todos os dias na pausa do minicurso de <b>10:00 às 10:30</b>, e outro um pouquinho maior de <b>16:00 às 17:00</b> visando o networking entre os participantes e convidados, e outras atividades bem legais :) Vale lembrar que a elaboração da programação está em andamento, então fique ligado nos próximos eventos anunciados ;) </p>
+
             <div class="day-slider slider">
                 <div class="slide">
                     <div class="day-circle-container">
@@ -140,6 +141,15 @@ require_once $root_dir_path.'/models/User.php';
                 </div>
             </div>
           
+            <select class="form-control" id="day-select">
+                <option value="4">Segunda-feira</option>
+                <option value="5">Terça-feira</option>
+                <option value="6">Quarta-feira</option>
+                <option value="7">Quinta-feira</option>
+                <option value="8">Sexta-feira</option>
+                <option value="9">Sábado</option>
+            </select>
+          
             <div id="programacao-slider" class="card-slider slider">
                 <!-- Programação do evento -->
             </div>
@@ -179,7 +189,10 @@ require_once $root_dir_path.'/models/User.php';
                     <a class="row justify-content-center align-items-center" href="https://www.facebook.com/camposinfotrade/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/infotrade.jpeg" alt="Info Trade"></a>
             
                     <a class="row justify-content-center align-items-center" href="https://www.stickersdevs.com.br/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/stickersdev.jpeg" alt="Stickers Dev"></a>
-                  
+
+                    <a class="row justify-content-center align-items-center" href="https://www.agbm.com.br/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/briefing.jpeg" alt="Briefing Marketing"></a>
+                        
+                    <a class="row justify-content-center align-items-center" href="https://www.instagram.com/fino.saborsalgados/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/finosabor.jpeg" alt="Fino Sabor Salgados"></a>
                 </div>
             </div>
 
@@ -241,7 +254,7 @@ require_once $root_dir_path.'/models/User.php';
                                 <div class="col-6">
                                     <div class="form-group">
                                         
-                                        <input id="phone" class="form-control" name="phone" type="tel" pattern="[0-9]{11}">
+                                        <input id="phone" pattern="[\(][0-9]{2}[\)] [0-9]{1} [0-9]{4}[\-][0-9]{4}" class="form-control" name="phone" type="tel" maxlength="16">
                                         <label for="phone" class="label-float">Telefone</label>
                                     </div>
                                 </div>
@@ -268,8 +281,8 @@ require_once $root_dir_path.'/models/User.php';
                         <div class="col-11 pl-4 pr-0">@sctiuenf</div>
                     </div>
                     <div class="row mb-1">
-                        <a class="col-1 pr-0" href="tel:(22)91231-1231" rel="noopener" title="telefone"><i class="fas fa-phone text-gradient"></i></a>
-                        <div class="col-11 pl-4 pr-0">(22) 91231-1231</div>
+                        <a class="col-1 pr-0" href="tel:(28)99995-1110" rel="noopener" title="telefone"><i class="fas fa-phone text-gradient"></i></a>
+                        <div class="col-11 pl-4 pr-0">(28) 99995-1110<br>(22) 99763-4863</div>
                     </div>
                     <div class="row mb-1">
                         <a class="col-1 pr-0" href="mailto:sctiuenf@gmail.com" rel="noopener" title="email"><i class="fas fa-envelope text-gradient"></i></a>
