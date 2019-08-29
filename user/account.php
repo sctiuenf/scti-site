@@ -98,14 +98,14 @@ if(!isset($_SESSION['logged'])){
                                                         <span class="status-text"><?=$statusMessage?><span>
                                                     </div>
 
-                                                    <?php if(!$paymentComplete && $paymentPending){ ?>
+                                                    <?php if(!$hasPayment){ ?>
                                                     <button type="button" data-toggle="popover" data-placement="top" data-trigger="focus" data-content="Ao confirmar o pedido no Sympla, será disponibilizado um 'Nº do pedido', seja no próprio site, ou através de um email de confirmação. Basta inserir o código no campo abaixo para acompanhar o status do seu pedido/confirmar sua inscrição." aria-label="Código do pedido">
                                                         <i class="far fa-question-circle"></i>
                                                     </button>
                                                     <?php } ?>
                                                 </div>
 
-                                                <?php if($paymentPending){?>
+                                                <?php if($hasPayment && !$paymentComplete){?>
                                                 <button onclick="updatePaymentStatus()" class="btn btn-refresh"><i class="fas fa-sync-alt"></i></button>
                                                 <?php }?>
 

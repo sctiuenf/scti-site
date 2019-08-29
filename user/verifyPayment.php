@@ -49,7 +49,6 @@ try{
     $data_criacao = $data->order_date;
     //$data_confirmacao = null;
     $data_confirmacao = $data->updated_date; //alterar a data de confirmação no banco para data de atualização
-   
 
     if(!$user->hasPayment()){
         db_query('INSERT INTO pagamentos(codigoPagamento, statusPagamento, dataCriacao, dataConfirmacao) VALUES(?, ?, ?, ?)', $id_pagamento, $status, $data_criacao, $data_confirmacao);
