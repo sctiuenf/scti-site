@@ -384,6 +384,11 @@ if(!isset($_SESSION['logged'])){
                 <h1 class="sec-title light-color text-center">Escolha sua camisa :)</h1>
                 <p class="sec-text text-center">Uma dessas camisas iradas é sua! Escolhe a que mais gostar, e manda ver. Lembrando que a camisa escolhida pode ser alterada até o dia <?=$day?> de <?=$month?>.</p>
                 <div class="sec-text help">
+                <button data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" data-content="Gostou das camisas e quer mais de uma? Entre em <a href='<?=$root_url?>?#sec-contato'><b>contato</b></a> com a gente!" aria-label="Vagas alternativas">
+                        Quer mais de uma camisa? <b>Clique aqui</b>!
+                    </button>
+                </div>
+                <div class="sec-text help mt-4">
                     Guia de tamanhos
                     <button onclick="window.open('../assets/imgs/shirt-sizes.jpg')">
                         <i class="far fa-question-circle"></i>
