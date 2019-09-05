@@ -161,11 +161,14 @@ require_once $root_dir_path.'/models/User.php';
 
             <h3 class="text-center">Patrocínio Diamante</h3>
             <div class="container-fluid sponsors diamante">
-                <div class="row justify-content-center align-items-center">
+                <div class="row justify-content-around align-items-center">
                 
-                    <a class="row justify-content-center align-items-center" href="https://www.respondeai.com.br/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/respondeai.jpeg" alt="Responde aí"></a>
-                   
+                    <a class="respondeai row justify-content-center align-items-center" href="https://www.respondeai.com.br/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/respondeai.jpeg" alt="Responde aí"></a>
+                        
+                    <a class="row justify-content-center align-items-center" href="https://www.cna.com.br/escola/95/CNACamposOuvidor" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/cna.jpeg" alt="CNA"></a>
+           
                 </div>
+
             </div>
 
             <h3 class="text-center">Patrocínio Prata</h3>
