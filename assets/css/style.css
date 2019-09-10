@@ -570,6 +570,10 @@ i {
 .apoio-inst img {
   width: 200px; }
 
+.sponsor-vertical img{
+  height: 110px;
+  width: auto;
+}
 #sec-contato .alert {
   display: none; }
 
