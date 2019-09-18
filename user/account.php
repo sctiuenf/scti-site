@@ -289,9 +289,9 @@ if(!isset($_SESSION['logged'])){
     ?>
     <section id="courses" class="container-fluid">
 
-        <?php if(!$paymentComplete){ ?>
-        <div class="overlay">Após a confirmação de seu pagamento você poderá escolher 2 cursos bem legais!</div>
-        <?php } ?>
+        <?php /* if(!$paymentComplete){ */?>
+        <!--<div class="overlay">Após a confirmação de seu pagamento você poderá escolher 2 cursos bem legais!</div>-->
+        <?php /*} */?>
 
         <div class="row h-100 align-items-center pt-5 pb-3 px-3">
             <div class="col-12 col-lg-3 light-color">
@@ -374,10 +374,10 @@ if(!isset($_SESSION['logged'])){
         $month = MONTHS[$month = date('m', strtotime(SHIRT_END))];
     ?>
     <section id="shirts" class="container-fluid">
-
-    <?php if(!$paymentComplete){ ?>
-    <div class="overlay">Além de uma camisa muito bacana :D</div>
-    <?php } ?>
+    
+    <?php /* if(!$paymentComplete){ */?>
+    <!--<div class="overlay">Além de uma camisa muito bacana :D</div>-->
+    <?php /*} */?>
 
         <div class="row h-100 align-items-center pt-5 pb-3 px-3">
             <div class="col-12 col-lg-3 light-color">
