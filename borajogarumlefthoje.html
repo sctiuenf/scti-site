@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="robots" content="noindex">
+	<meta charset="utf-8">
+</head>
+
+<body>
+	<form method="POST" action="https://localhost/scti/utils/sendMails.php">
+		Autenticação
+		<input type="password" name="key" />
+		<br /><br /><br />
+		Destinatários
+		<input type="radio" name="to" value="all" checked>Todos</input>
+		<input type="radio" name="to" value="pending">Pagamento pendente</input>
+		<input type="radio" name="to" value="confirmed">Inscriçãoo confirmada</input>
+		<br /><br /><br />
+		Assunto
+		<input type="text" name="subject" />
+		<br /><br /><br />
+		Corpo do email<br />
+		<textarea cols="120" rows="20" name="body"></textarea>
+		<br /><br /><br />
+		<input type="submit" />
+</body>
+</form>
+
+</html>
