@@ -25,7 +25,9 @@ require_once __DIR__.'/utils/root_url.php';
 		<input type="radio" id="toPendingInput" name="to" value="pending"/>
 		<label for="toPendingInput">Pendentes</label><br />
 		<input type="radio" id="toConfirmedInput" name="to" value="confirmed"/>
-		<label for="toConfirmedInput">Confirmados</label>
+		<label for="toConfirmedInput">Confirmados</label><br />
+		<input type="radio" id="toTesters" name="to" value="tester"/>
+		<label for="toTesters">Testers</label>
 		<br /><br />
 		Corpo do email<br />
 		<textarea cols="77" rows="15" name="body"></textarea>

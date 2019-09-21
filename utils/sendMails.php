@@ -17,14 +17,21 @@ if(isset($_POST['key']) and isset($_POST['to']) and isset($_POST['body'])and iss
 
 //Function that selects correct people and send them the email
 function sendMails($to, $subject, $body){
-    $query = 'SELECT nomeParticipante, sobrenomeParticipante, emailParticipante from participantes';
+    $query = 'SELECT nomeParticipante, sobrenomeParticipante, emailParticipante from';
 
-    if($to == 'pending') {
-        $query .= ' LEFT JOIN pagamentos ON participantes.idPagamento=pagamentos.idPagamento';
-        $query .= " WHERE statusPagamento!='A' OR participantes.idPagamento IS NULL";
-    } else if($to == 'confirmed'){
-        $query .= ' INNER JOIN pagamentos ON participantes.idPagamento=pagamentos.idPagamento';
-        $query .= " WHERE pagamentos.statusPagamento ='A'";
+    if($to == "tester"){
+        $query .= ' mailtesters';
+    } else {
+        $query .= ' participantes';
+
+        if($to == 'pending') {
+            $query .= ' LEFT JOIN pagamentos ON participantes.idPagamento=pagamentos.idPagamento';
+            $query .= " WHERE statusPagamento!='A' OR participantes.idPagamento IS NULL";
+        } else if($to == 'confirmed'){
+            $query .= ' INNER JOIN pagamentos ON participantes.idPagamento=pagamentos.idPagamento';
+            $query .= " WHERE pagamentos.statusPagamento ='A'";
+        }
+
     }
 
     $recipients = db_select($query);
@@ -32,9 +39,14 @@ function sendMails($to, $subject, $body){
     $counter = 0;
     if(is_array($recipients))
     foreach($recipients as $recipient){
-        $customBody = str_replace('$firstname$', $recipient['nomeParticipante'], $body);
-        $customBody = str_replace('$lastname$', $recipient['sobrenomeParticipante'], $customBody);
-        sendMail($subject, $customBody, $recipient['emailParticipante']);
+
+        $customSubject = str_replace('$$firstname$$', $recipient['nomeParticipante'], $subject);
+        $customSubject = str_replace('$$lastname$$', $recipient['sobrenomeParticipante'], $customSubject);
+
+        $customBody = str_replace('$$firstname$$', $recipient['nomeParticipante'], $body);
+        $customBody = str_replace('$$lastname$$', $recipient['sobrenomeParticipante'], $customBody);
+
+        sendMail($customSubject, $customBody, $recipient['emailParticipante']);
         $counter++;
     }
     echo $counter . ' emails enviados.';
