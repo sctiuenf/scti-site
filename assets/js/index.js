@@ -268,7 +268,7 @@ function updatePaymentStatus(){
             if(response['success']){
                 
                 let status = response['message'];
-                let statusLabel = $('.status-label > div'),
+                let statusLabel = $('.status-label > div').find('div'),
                     statusText = $('.status-text'),
                     listGroups = $('.list-group-container'),
                     widget = $('.sympla-widget');

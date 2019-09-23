@@ -38,11 +38,16 @@ try{
 
     $updated_date = $data->updated_date;
 
-    if($user->getLastOrderUpdate() == $updated_date)
+    $status = $data->order_status;
+
+    if($user->getPaymentStatus() == $status)
         json_return(false, 'Pedido já atualizado');
 
+    if($user->getLastOrderUpdate() == $updated_date)
+        $updated_date = date("Y-m-d H:i:s");  
+
     $id_pagamento =  $data->id;
-    $status = $data->order_status;
+ 
 
     db_query('UPDATE pagamentos SET statusPagamento = ?, dataConfirmacao = ? WHERE codigoPagamento = ?', $status, $updated_date, $id_pagamento);
 

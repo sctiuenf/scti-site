@@ -550,7 +550,10 @@ i {
   margin: 2.5em; }
 
 .diamante img {
-  width: 500px; }
+  width: 300px; }
+
+.respondeai img {
+  width: 400px !important; }
 
 .prata img {
   width: 178px; }
@@ -567,6 +570,10 @@ i {
 .apoio-inst img {
   width: 200px; }
 
+.sponsor-vertical img{
+  height: 110px;
+  width: auto;
+}
 #sec-contato .alert {
   display: none; }
 

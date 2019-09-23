@@ -98,14 +98,14 @@ if(!isset($_SESSION['logged'])){
                                                         <span class="status-text"><?=$statusMessage?><span>
                                                     </div>
 
-                                                    <?php if(!$paymentComplete && $paymentPending){ ?>
+                                                    <?php if(!$hasPayment){ ?>
                                                     <button type="button" data-toggle="popover" data-placement="top" data-trigger="focus" data-content="Ao confirmar o pedido no Sympla, será disponibilizado um 'Nº do pedido', seja no próprio site, ou através de um email de confirmação. Basta inserir o código no campo abaixo para acompanhar o status do seu pedido/confirmar sua inscrição." aria-label="Código do pedido">
                                                         <i class="far fa-question-circle"></i>
                                                     </button>
                                                     <?php } ?>
                                                 </div>
 
-                                                <?php if($paymentPending){?>
+                                                <?php if($hasPayment && !$paymentComplete){?>
                                                 <button onclick="updatePaymentStatus()" class="btn btn-refresh"><i class="fas fa-sync-alt"></i></button>
                                                 <?php }?>
 
@@ -289,9 +289,9 @@ if(!isset($_SESSION['logged'])){
     ?>
     <section id="courses" class="container-fluid">
 
-        <?php if(!$paymentComplete){ ?>
-        <div class="overlay">Após a confirmação de seu pagamento você poderá escolher 2 cursos bem legais!</div>
-        <?php } ?>
+        <?php /* if(!$paymentComplete){ */?>
+        <!--<div class="overlay">Após a confirmação de seu pagamento você poderá escolher 2 cursos bem legais!</div>-->
+        <?php /*} */?>
 
         <div class="row h-100 align-items-center pt-5 pb-3 px-3">
             <div class="col-12 col-lg-3 light-color">
@@ -374,16 +374,21 @@ if(!isset($_SESSION['logged'])){
         $month = MONTHS[$month = date('m', strtotime(SHIRT_END))];
     ?>
     <section id="shirts" class="container-fluid">
-
-    <?php if(!$paymentComplete){ ?>
-    <div class="overlay">Além de uma camisa muito bacana :D</div>
-    <?php } ?>
+    
+    <?php /* if(!$paymentComplete){ */?>
+    <!--<div class="overlay">Além de uma camisa muito bacana :D</div>-->
+    <?php /*} */?>
 
         <div class="row h-100 align-items-center pt-5 pb-3 px-3">
             <div class="col-12 col-lg-3 light-color">
                 <h1 class="sec-title light-color text-center">Escolha sua camisa :)</h1>
                 <p class="sec-text text-center">Uma dessas camisas iradas é sua! Escolhe a que mais gostar, e manda ver. Lembrando que a camisa escolhida pode ser alterada até o dia <?=$day?> de <?=$month?>.</p>
                 <div class="sec-text help">
+                <button data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" data-content="Gostou das camisas e quer mais de uma? Entre em <a href='<?=$root_url?>?#sec-contato'><b>contato</b></a> com a gente!" aria-label="Vagas alternativas">
+                        Quer mais de uma camisa? <b>Clique aqui</b>!
+                    </button>
+                </div>
+                <div class="sec-text help mt-4">
                     Guia de tamanhos
                     <button onclick="window.open('../assets/imgs/shirt-sizes.jpg')">
                         <i class="far fa-question-circle"></i>

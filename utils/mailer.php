@@ -23,11 +23,11 @@ function sendMail($subject, $body, $to){
     $mail->isSMTP();                                  
     $mail->Host = 'smtp.gmail.com';  
     $mail->SMTPAuth = true;                              
-    $mail->Username = $EMAIL_ADDRESS;                
-    $mail->Password = $EMAIL_PASS;                          
+    $mail->Username = getenv('EMAIL_ADDRESS');                
+    $mail->Password = getenv('EMAIL_PASS');                          
     $mail->SMTPSecure = 'tls';                           
     $mail->Port = 587;                                   
-    $mail->setFrom($EMAIL_ADDRESS, 'SCTI 2019');
+    $mail->setFrom(getenv('EMAIL_ADDRESS'), 'SCTI 2019');
 
     $mail->addAddress($to, $to); 
 

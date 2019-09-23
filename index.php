@@ -161,11 +161,14 @@ require_once $root_dir_path.'/models/User.php';
 
             <h3 class="text-center">Patrocínio Diamante</h3>
             <div class="container-fluid sponsors diamante">
-                <div class="row justify-content-center align-items-center">
+                <div class="row justify-content-around align-items-center">
                 
-                    <a class="row justify-content-center align-items-center" href="https://www.respondeai.com.br/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/respondeai.jpeg" alt="Responde aí"></a>
-                   
+                    <a class="respondeai row justify-content-center align-items-center" href="https://www.respondeai.com.br/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/respondeai.jpeg" alt="Responde aí"></a>
+                        
+                    <a class="row justify-content-center align-items-center" href="https://www.cna.com.br/escola/95/CNACamposOuvidor" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/cna.jpeg" alt="CNA"></a>
+           
                 </div>
+
             </div>
 
             <h3 class="text-center">Patrocínio Prata</h3>
@@ -214,7 +217,10 @@ require_once $root_dir_path.'/models/User.php';
                     <a class="row justify-content-center align-items-center" href="http://www.uenf.br/portal/index.php/br/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/uenf.jpeg" alt="UENF"></a>
             
                      <a class="row justify-content-center align-items-center" href="https://www.campos.rj.gov.br/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/prefeituracampos.jpeg" alt="Prefeitura de Campos dos Goytacazes"></a>
-                  
+                    
+                    <a class="row justify-content-center align-items-center" href="https://www.ucam-campos.br/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/candidomendes.jpeg" alt="Universidade Candido Mendes"></a>
+                    
+                    <a class="sponsor-vertical row justify-content-center align-items-center" href="https://www.facebook.com/devmodecom/" target="_blank" rel="noopener"><img class="img-fluid" src="assets/imgs/patrocinadores/devmode.jpeg" alt="DevMode Campos dos Goytacazes"></a>
                 </div>
             </div>
         </div>
