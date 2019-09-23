@@ -12,7 +12,7 @@ require_once __DIR__.'/utils/root_url.php';
 ?>
 
 <body>
-	<form method="POST" action="<?= $root_url ?>/utils/sendMails.php">
+	<form method="POST" action="<?= $root_url ?>/utils/sendMails">
 		Autenticação<br />
 		<input type="password" size="75"  name="key" />
 		<br /><br />
