@@ -4,6 +4,8 @@ require_once __DIR__.'/root_dir_path.php';
 require_once $root_dir_path.'/db/db_functions.php';
 require_once $root_dir_path.'/utils/mailer.php';
 
+set_time_limit(0);
+
 //Checking if query was built correctly
 if(isset($_POST['key']) and isset($_POST['to']) and isset($_POST['body'])and isset($_POST['subject'])){
     if(authenticate($_POST['key'])){
