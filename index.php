@@ -27,7 +27,9 @@ require_once $root_dir_path.'/models/User.php';
     <section id="sec-sobre" class="container-fluid justify-content-center d-flex">
         <div class="col-12 col-sm-11 col-xl-10">
             <h2>/ Sobre</h2>
-            <p>A Semana de Ciência da Computação e Tecnologia da Informação da UENF (SCTI) tem como principais objetivos o aprimoramento técnico-científico dos par&shy;ti&shy;ci&shy;pan&shy;tes, a difusão de novas tecnologias e a aproximação dos estudantes uni&shy;ver&shy;sitários com a realidade do mercado de trabalho. A SCTI busca também incentivar e mo&shy;tivar a pesquisa científica, a inovação tecnológica e o em&shy;preende&shy;dorismo na região, fortalecendo a formação dos alunos de graduação em Ciência da Com&shy;pu&shy;ta&shy;ção e áreas afins e oferecendo a oportunidade de conhecer tópicos não abordados nos cursos regulares. Confira abaixo as atividades que você pode aproveitar durante o evento:</p>
+            <p>A Semana de Ciência da Computação e Tecnologia da Informação da UENF (SCTI) tem como principais objetivos o aprimoramento técnico-científico dos par&shy;ti&shy;ci&shy;pan&shy;tes, a difusão de novas tecnologias e a aproximação dos estudantes uni&shy;ver&shy;sitários com a realidade do mercado de trabalho. A SCTI busca também incentivar e mo&shy;tivar a pesquisa científica, a inovação tecnológica e o em&shy;preende&shy;dorismo na região, fortalecendo a formação dos alunos de graduação em Ciência da Com&shy;pu&shy;ta&shy;ção e áreas afins e oferecendo a oportunidade de conhecer tópicos não abordados nos cursos regulares.
+            Vale ressaltar que a SCTI conta com um código de conduta (feito pela plataforma <a href="https://www.codamos.club" target="blank" rel="noopener">Codamos</a>) que visa um ambiente seguro e agradável para todos os participantes. <a href="<?=$root_url?>/assets/docs/codigo_de_conduta.pdf" target="blank" rel="noopener">Clique aqui</a> para acessá-lo.</p>
+            <p>Confira abaixo as atividades que você pode aproveitar durante o evento:</p>
 
             
             <div class="row events justify-content-center">
@@ -90,6 +92,8 @@ require_once $root_dir_path.'/models/User.php';
                     </div>
                 </div>
             </div>
+
+           
         </div>
     </section>
     <section id="programacao" class="container-fluid justify-content-center d-flex">
