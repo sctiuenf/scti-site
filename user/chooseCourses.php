@@ -7,8 +7,9 @@ require_once $root_dir_path.'/models/Event.php';
 require_once $root_dir_path.'/models/User.php';
 require_once $root_dir_path.'/utils/json_utils.php';
 
-
 session_start();
+
+date_default_timezone_set("America/Sao_Paulo");
 
 if(!isset($_SESSION['logged']) || !isset($_SESSION['user'])){
     header('Location: '.$root_url);
@@ -17,74 +18,72 @@ if(!isset($_SESSION['logged']) || !isset($_SESSION['user'])){
 
 $user = unserialize($_SESSION['user']);
 
-
 if($user->getPaymentStatus() !== 'A')
     json_return(false, 'Você ainda não completou o pagamento da sua inscrição.');
 
-$c1 = array('info'=>null, 'tipo'=>null, 'status'=>null);
-$c2 = array('info'=>null, 'tipo'=>null, 'status'=>null);
+if(!isset($_POST['courses']))
+    json_return(false, 'Os cursos desejados não foram enviados.');
 
-date_default_timezone_set("America/Sao_Paulo");
-//prazo final inscrições 1 semana antes do inicio do evento
-if(time() > strtotime(COURSE_END))
-    json_return(false, 'O período de inscrições em cursos foi encerrado.');
+$courses = $_POST['courses'];
 
-if(!isset($_POST['course1']) && !isset($_POST['course2']))
-    json_return(false, 'Dados não recebidos');
+$max_courses = Event::defineMaxCourses();
 
-$c1Id = $_POST['course1'];
-$c2Id = $_POST['course2'];
-
-$twoCourses = $c1Id != -1 && $c2Id != -1;
-
-if($twoCourses && $c1Id === $c2Id)
-    json_return(false, 'Você escolheu dois cursos iguais.');
-
-
-
-Event::deleteUnwantedEnrolls($user->getId(), $c1Id, $c2Id);
-
-if($c1Id != -1){
-    $c1['info'] = Event::getById($_POST['course1']);
-    if(isset($_POST['c1-tipoInscricao']))
-        $c1['tipo'] = $_POST['c1-tipoInscricao'];
-    else 
-        json_return(false, 'Você não escolheu o tipo de inscrição do curso: <br>'.$c1['info']['tituloEvento']);
-}
-if($c2Id != -1){
-    $c2['info'] = Event::getById($_POST['course2']);
-    if(isset($_POST['c2-tipoInscricao']))
-       $c2['tipo'] = $_POST['c2-tipoInscricao'];
-    else 
-    json_return(false, 'Você não escolheu o tipo de inscrição do curso: <br>'.$c2['info']['tituloEvento']);
-}
-
-if($twoCourses && strtotime($c1['info']['inicioEvento']) === strtotime($c2['info']['inicioEvento']))
-    json_return(false, 'Você não pode fazer dois cursos no mesmo horário.');
-
-$isEnrolledc1 = Event::isEnrolled($user->getId(), $c1['info']['idEvento']);
-$isEnrolledc2 = Event::isEnrolled($user->getId(), $c2['info']['idEvento']);
-
-Event::deleteUnwantedEnrolls($user->getId(), $c1['info']['idEvento'], $c2['info']['idEvento']);
-
-if($c1Id == -1 && $c2Id == -1)
+if($courses === 'false'){
+    Event::deleteAllEnrolls($user->getId());
     json_return(true, 'clear');
+}
 
-if($isEnrolledc1)
-    $c1['status'] = 'alreadyEnrolled';
+if(count($courses) > $max_courses)
+    json_return(false, 'Você não pode se inscrever em mais de '.$max_courses.' cursos.');
 
-if($isEnrolledc2)
-    $c2['status'] = 'alreadyEnrolled';
 
-$courses = array($c1, $c2);
+$horarios = array();
 foreach($courses as $i => $course){
-    $courseId = $course['info']['idEvento'];
-    $status = '';
-    if($course['status'] !== 'alreadyEnrolled'){
-        $status = Event::enroll($user->getId(), $courseId, $course['tipo']);
-        $courses[$i]['status'] = $status;
+    $courses[$i]['info'] = Event::getById($course['id']);
+
+    array_push($horarios, $courses[$i]['info']['inicioEvento']);
+
+    if(!isset($course['tipo']) || ($course['tipo'] !== 'padrao' && $course['tipo'] !== 'alternativa'))
+    json_return(false, 'Você não escolheu o tipo de inscrição do curso: <b>'.$course['title'].'</b>');
+}
+
+if(count(array_unique($horarios)) < count($horarios))
+    json_return(false, 'Você selecionou dois cursos que acontecem no mesmo horário. Por favor, desmarque um deles.');
+
+foreach($courses as $i => $course){
+    $courses[$i]['enrolled'] = false;
+
+    $isEnrolled = Event::isEnrolled($user->getId(), $course);
+   
+    if($isEnrolled) {
+        $courses[$i]['enrolled'] = true;
+        continue;
+    }
+
+    if(Event::isFull($course)){
+        $t = $course['tipo'] == 'padrao' ? 'regulares':'alternativas';
+
+        json_return(false, 'Não há mais vagas '.$t.' para o curso <b>'.$course['title'].'</b>');
+    }
+
+    if(!Event::checkEventDate($course['id'])){
+        json_return(false, 'O período de inscrição/desinscrição para o curso <b>'.$course['title'].'</b> foi finalizado.');
     }
 }
+
+foreach($courses as $i => $course){
+    $courses[$i]['status'] = 'ignore';
+
+    if($course['enrolled']) continue;
+
+    $result = Event::enroll($user->getId(), $course['id'], $course['tipo']);
+
+    if(!$result) json_return('Falha ao fazer inscrições. Favor entrar em contato com a organização do evento.');
+
+    $courses[$i]['status'] = 'success';
+}
+
+Event::deleteUnwantedEnrolls($user->getId(), $courses);
 
 json_return(true, '', null, $courses);
 ?>

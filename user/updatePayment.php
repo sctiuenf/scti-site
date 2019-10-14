@@ -31,7 +31,7 @@ try{
         CURLOPT_HTTPHEADER => ['S_TOKEN: '.$API_KEY]
     ]);
     $result = curl_exec($curl);
-    
+
     $data = json_decode($result)->data;
         
     curl_close($curl);
