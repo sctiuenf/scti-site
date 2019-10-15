@@ -208,6 +208,10 @@ $(document).ready(function () {
                                 enrolls.forEach(function(enroll){
                                     let checkbox = $(`#evento-${enroll.idMinicurso}`);
 
+                                    let tipoInscricaoInput = checkbox.siblings('.tipo-inscricao');
+
+                                    tipoInscricaoInput.attr('value', enroll.tipoInscricao);
+
                                     checkbox.trigger('click');
                                     checkbox.parent().find('.alert').show();
                                 });
@@ -413,7 +417,7 @@ function selectItem(event, type){
                 }
             }else{
                 elem.prop('checked', false);
-                alert('Você já escolheu uma camisa.');
+                showAlert('alert-danger', 'Você já escolheu uma camisa.');
             }
         }
     }
@@ -458,10 +462,20 @@ function courseConfirmModal(courseIds){
         modalContent.append('Selecione os tipos de incrição: <br>');
     
     courses.forEach(function(course){
+
+        let checkbox = $(`#evento-${course.id}`);
+        let tipoInsc = checkbox.siblings('input.tipo-inscricao').attr('value');
+
+        let padrao = '';
+        let alternativa = '';
+
+        if(tipoInsc == 'alternativa') alternativa = 'checked';
+        else padrao = 'checked';
+
         modalContent.append(`
             <b>${course.title}</b><br>
-            <input checked value="padrao" name="c${course.id}-tipo" type="radio" id="padrao${course.id}"><label for="padrao${course.id}">Inscrição Padrão (Usarei um computador do evento)</label><br>
-            <input value="alternativa" name="c${course.id}-tipo" type="radio" id="alternativa${course.id}"><label for="alternativa${course.id}">Inscrição Alternativa (Levarei meu próprio notebook)</label><br><br>
+            <input ${padrao} value="padrao" name="c${course.id}-tipo" type="radio" id="padrao${course.id}"><label for="padrao${course.id}">Inscrição Padrão (Usarei um computador do evento)</label><br>
+            <input ${alternativa} value="alternativa" name="c${course.id}-tipo" type="radio" id="alternativa${course.id}"><label for="alternativa${course.id}">Inscrição Alternativa (Levarei meu próprio notebook)</label><br><br>
         `);
     });
 
@@ -491,6 +505,9 @@ function confirmCourses(courses){
             $('#course-confirm-modal .btn-ok').show();
             
             if(response['success']){
+                let tipoInscricaoInputs = $('input.tipo-inscricao');
+                tipoInscricaoInputs.attr('value', 'padrao');
+
                 let messages = [];
                 coursePickedAlerts.hide();
         
@@ -499,10 +516,11 @@ function confirmCourses(courses){
                 }else{
 
                     let results = response['data_array'];
+
+                    
                     results.forEach(function(result){
                         if(!result.info)
                             return;
-
 
                         let curso = result.info.tituloEvento;
                         if(result.status == 'success'){
@@ -518,7 +536,12 @@ function confirmCourses(courses){
                         let id = result.info.idEvento;
 
                         if(result.status === 'success' || result.status === 'ignore'){
-                            $(`#evento-${id}`).siblings('.picked').show();
+                            let checkbox = $(`#evento-${id}`);
+                            checkbox.siblings('.picked').show();
+                        
+                            let tipoInscricaoInput = checkbox.siblings('input.tipo-inscricao');
+                            tipoInscricaoInput.attr('value', result.tipo);
+                         
                         }
                     });
 

@@ -135,9 +135,6 @@ class Event {
          //deletar inscrições e aumentar numero de vagas
          foreach($results as $course){
 
-
-
-
             db_query('DELETE FROM inscricoes WHERE idParticipante = ? AND (idMinicurso = ? AND tipoInscricao = ?)', $userId, $course['idMinicurso'], $course['tipoInscricao']);
 
             if($course['tipoInscricao'] === 'padrao'){

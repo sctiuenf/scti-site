@@ -188,6 +188,15 @@ class User {
         return $status;
     }
 
+    public function getPaymentDate(){
+        if(!$this->HasPayment() || $this->getPaymentStatus() !== 'A') return false;
+        
+        $result = db_select('SELECT dataConfirmacao FROM participantes INNER JOIN pagamentos ON participantes.idPagamento=pagamentos.idPagamento WHERE idParticipante=?', $this->id);
+        $status = $result[0]['dataConfirmacao'];
+
+        return $status;
+    }
+
     public function getOrdercode(){
        
         $result = db_select('SELECT codigoPagamento FROM participantes INNER JOIN pagamentos ON participantes.idPagamento=pagamentos.idPagamento WHERE idParticipante=?', $this->id);
@@ -206,7 +215,7 @@ class User {
     }
 
     public function getEnrollments(){
-        $enrolls = db_select('SELECT e.tituloEvento, e.inicioEvento, e.fotoEvento, e.preRequisitosOrg, e.preRequisitosTec, e.vagasPadrao, e.vagasAlternativas, e.vagasOcupadas, e.vagasAlterOcupadas, i.idMinicurso FROM inscricoes i INNER JOIN eventos e ON i.idMinicurso=e.idEvento WHERE i.idParticipante=?', $this->id);
+        $enrolls = db_select('SELECT e.tituloEvento, e.inicioEvento, e.fotoEvento, e.preRequisitosOrg, e.preRequisitosTec, e.vagasPadrao, e.vagasAlternativas, e.vagasOcupadas, e.vagasAlterOcupadas, i.idMinicurso, i.tipoInscricao FROM inscricoes i INNER JOIN eventos e ON i.idMinicurso=e.idEvento WHERE i.idParticipante=?', $this->id);
 
         return $enrolls;
     }
