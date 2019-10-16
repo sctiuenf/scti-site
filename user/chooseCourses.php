@@ -29,8 +29,10 @@ $courses = $_POST['courses'];
 $max_courses = Event::defineMaxCourses();
 
 if($courses === 'false'){
-    foreach($results as $course){
-        if(!Event::checkEventDate($course['id']))
+    $enrolls = $user->getEnrollments();
+
+    foreach($enrolls as $enroll){
+        if(!Event::checkEventDate($enroll['idEvento']))
             json_return(false, 'O período de inscrição/desinscrição para o curso <b>'.$course['title'].'</b> foi finalizado.');
     }
 

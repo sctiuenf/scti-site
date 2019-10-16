@@ -215,7 +215,7 @@ class User {
     }
 
     public function getEnrollments(){
-        $enrolls = db_select('SELECT e.tituloEvento, e.inicioEvento, e.fotoEvento, e.preRequisitosOrg, e.preRequisitosTec, e.vagasPadrao, e.vagasAlternativas, e.vagasOcupadas, e.vagasAlterOcupadas, i.idMinicurso, i.tipoInscricao FROM inscricoes i INNER JOIN eventos e ON i.idMinicurso=e.idEvento WHERE i.idParticipante=?', $this->id);
+        $enrolls = db_select('SELECT e.idEvento, e.tituloEvento, e.inicioEvento, e.fotoEvento, e.preRequisitosOrg, e.preRequisitosTec, e.vagasPadrao, e.vagasAlternativas, e.vagasOcupadas, e.vagasAlterOcupadas, i.idMinicurso, i.tipoInscricao FROM inscricoes i INNER JOIN eventos e ON i.idMinicurso=e.idEvento WHERE i.idParticipante=?', $this->id);
 
         return $enrolls;
     }

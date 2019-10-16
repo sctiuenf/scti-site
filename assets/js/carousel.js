@@ -495,12 +495,16 @@ function confirmCourses(courses){
 
     if(!courses.length) courses = false;
 
+    let timeOut = showLoader(200);
+
     $.ajax({
         type: "post",
         url: "chooseCourses",
         data: {courses},
         dataType: "json",
         success: function (response) {
+            hideLoader(timeOut);
+
             $('#course-confirm-modal .btns-confirm').hide();
             $('#course-confirm-modal .btn-ok').show();
             
@@ -513,10 +517,13 @@ function confirmCourses(courses){
         
                 if(response['message'] === 'clear'){
                     messages.push(`<div class="alert alert-warning">Você se desinscreveu de todos os cursos.</div>`);
+
+                    $('#enrolls-counter').html('0');
                 }else{
 
                     let results = response['data_array'];
 
+                    $('#enrolls-counter').html(results.length);
                     
                     results.forEach(function(result){
                         if(!result.info)
@@ -557,7 +564,7 @@ function confirmCourses(courses){
                     });
 
                     desinsc.forEach(function(course){
-                        messages.push(' <div class="alert alert-warning">Você de desinscreveu do curso <b>'+course.title+'</b></div>`');
+                        messages.push(' <div class="alert alert-warning">Você de desinscreveu do curso <b>'+course.title+'</b></div>');
                     });
                    
                     currentCourses = results;
