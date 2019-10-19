@@ -3,7 +3,7 @@ $(document).ready(function () {
     //chooseCourses
     $('form#chooseCourses').submit(function(e){
         e.preventDefault();
-        
+        console.log('aaa');
         let form = $(this);
 
         form[0].checkValidity();
