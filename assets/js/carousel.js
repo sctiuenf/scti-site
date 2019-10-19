@@ -1,13 +1,16 @@
 var coursePickedAlerts, shirtPickedAlerts;
 var currentCourses = [];
 
+var maxCourses = 2;
+defineMaxCourses();
+
 $(document).ready(function () {
     //enable popovers
     $('[data-toggle="popover"]').popover();
 
     let page = getCurrentPath();
     selectedCourses = 0, selectedShirts = 0;
-    maxCourses = 2, maxShirts = 1;
+    maxShirts = 1;
 
     let coursesSlider = $('#courses-slider');
     let shirtSlider = $('#shirt-slider');
@@ -330,6 +333,20 @@ $(document).ready(function () {
     }
 });
 
+function defineMaxCourses(){
+    $.ajax({
+        type: "post",
+        url: "../events/defineMaxCourses",
+        dataType: "json",
+        success: function (response) {
+            maxCourses = response;
+        },
+        error: function(e){
+            console.log('Falha ao definir número máximo de cursos.');
+        }
+    });
+}
+
 function loadEventSchedule(day, slider){
 
     let sliderId = slider.attr('id');
@@ -400,7 +417,7 @@ function selectItem(event, type){
                 selectedCourses++;
             }else{
                 elem.prop('checked', false);
-                showAlert('alert-danger', 'Você já escolheu dois cursos.');
+                showAlert('alert-danger', 'Você já escolheu '+maxCourses+' cursos.');
             }
         }
         else if(type == 'camisa'){
