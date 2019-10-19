@@ -303,6 +303,7 @@ if(!isset($_SESSION['logged'])){
                         <i class="far fa-question-circle"></i>
                     </button>
                 </div>
+                <p class="sec-text text-center mt-3">Inscrito em <span id="enrolls-counter"><?=$enrolls ? count($enrolls):'0'?></span> de <span id="max-courses-counter"><?=Event::defineMaxCourses()?></span> cursos</p>
             </div>
             <div class="courses-slider-container col-12 col-lg-9 pl-3 pt-3 h-75">
                 <div id="courses-slider" class="">

@@ -116,6 +116,7 @@ function getCourseCard(params){
     dataInicio = dia + '/' + mes;
 
     return `<div class="card">
+    <input class="tipo-inscricao" value="padrao" hidden/>
     <label for="evento-${params.idEvento}" class="card-overlay"></label>
     <div class="picked alert alert-success mt-1">Inscrito</div>
     

@@ -5,6 +5,7 @@ require_once $root_dir_path.'/config/eventDate.php';
 require_once $root_dir_path.'/utils/root_url.php';
 require_once $root_dir_path.'/models/Event.php';
 require_once $root_dir_path.'/models/User.php';
+require_once $root_dir_path.'/models/Shirt.php';
 require_once $root_dir_path.'/utils/json_utils.php';
 
 session_start();
@@ -21,14 +22,12 @@ try{
         json_return(false, 'Você ainda não completou o pagamento da sua inscrição.');
 
     date_default_timezone_set("America/Sao_Paulo");
-    //prazo final para escolha de camisa = último dia de inscrições (1 semana antes do evento)
-    if(time() > strtotime(SHIRT_END))
+   
+    if(!Shirt::checkDate($user))
         json_return(false, 'O período para escolha de camisa foi encerrado.');
 
     if(!isset($_POST['shirt']) || !isset($_POST['shirt-size']))
         json_return(false, 'Dados não recebidos');
-
-
 
     $result = $user->chooseShirt($_POST['shirt'], $_POST['shirt-size']);
     

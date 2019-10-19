@@ -1,4 +1,5 @@
 var coursePickedAlerts, shirtPickedAlerts;
+var currentCourses = [];
 
 $(document).ready(function () {
     //enable popovers
@@ -14,11 +15,13 @@ $(document).ready(function () {
     $('#confirm-courses').click(function(e){
 
         let courses = coursesSlider.find('input[type=checkbox]:checked');
-    
-        let c1Id = courses[0] ? $(courses[0]).val():-1;
-        let c2Id = courses[1] ? $(courses[1]).val():-1;
+        let courseIds = [];
+        
+        $.each(courses, function (i, v) { 
+            courseIds.push($(v).val());
+        });
 
-       courseConfirmModal(c1Id, c2Id);
+        courseConfirmModal(courseIds);
     });
 
     $('#confirm-shirt').click(function(e){
@@ -205,11 +208,28 @@ $(document).ready(function () {
                                 enrolls.forEach(function(enroll){
                                     let checkbox = $(`#evento-${enroll.idMinicurso}`);
 
+                                    let tipoInscricaoInput = checkbox.siblings('.tipo-inscricao');
+
+                                    tipoInscricaoInput.attr('value', enroll.tipoInscricao);
+
                                     checkbox.trigger('click');
                                     checkbox.parent().find('.alert').show();
                                 });
                             }else
                                 alert(response['message']);
+
+                                //grava os cursos inscritos para mensagem de desinscrição
+                                let courses = coursesSlider.find('input[type=checkbox]:checked');
+                                
+                                $.each(courses, function (i, v) {
+                                    let input = $(v);
+                                    let title = input.parent().find('#event-tituloEvento').html();
+                                    
+                                    currentCourses.push({
+                                        id: input.val(),
+                                        title
+                                    });
+                                });
                         },
                         error: function(e){
                             console.log(e);
@@ -219,6 +239,7 @@ $(document).ready(function () {
                 else{
                     alert(response['message']);
                 }
+
             },  
             error: function (e){
                 console.log(e);
@@ -379,7 +400,7 @@ function selectItem(event, type){
                 selectedCourses++;
             }else{
                 elem.prop('checked', false);
-                alert('Você já escolheu dois cursos.');
+                showAlert('alert-danger', 'Você já escolheu dois cursos.');
             }
         }
         else if(type == 'camisa'){
@@ -396,7 +417,7 @@ function selectItem(event, type){
                 }
             }else{
                 elem.prop('checked', false);
-                alert('Você já escolheu uma camisa.');
+                showAlert('alert-danger', 'Você já escolheu uma camisa.');
             }
         }
     }
@@ -417,38 +438,44 @@ function checkItem(elem){
     }
 }
 
-function courseConfirmModal(c1Id, c2Id){
+function courseConfirmModal(courseIds){
 
     $('#course-confirm-modal .btns-confirm').show();
     $('#course-confirm-modal .btn-ok').hide();
 
     let courses = [];
 
-    if(c1Id != -1){
-        let title = $(`#evento-${c1Id}`).parent().find('#event-tituloEvento').html();
-        
-        courses.push({title, id: c1Id});
-    }
-    if(c2Id != -1){
-        let title = $(`#evento-${c2Id}`).parent().find('#event-tituloEvento').html();
-
-        courses.push({title, id: c2Id});
-    }
-
+    courseIds.forEach(function(id){
+        let title = $(`#evento-${id}`).parent().find('#event-tituloEvento').html();
+    
+        courses.push({title, id});
+    });
+  
     let modalContent = $('#modal-courses');
     modalContent.html('');
 
     
-    if(!courses.length)
+    if(!courses.length){
         modalContent.append('Tem certeza de que deseja se <b>DESINSCREVER</b> de todos os cursos?');
+    }
     else
         modalContent.append('Selecione os tipos de incrição: <br>');
     
     courses.forEach(function(course){
+
+        let checkbox = $(`#evento-${course.id}`);
+        let tipoInsc = checkbox.siblings('input.tipo-inscricao').attr('value');
+
+        let padrao = '';
+        let alternativa = '';
+
+        if(tipoInsc == 'alternativa') alternativa = 'checked';
+        else padrao = 'checked';
+
         modalContent.append(`
             <b>${course.title}</b><br>
-            <input checked value="padrao" name="c${course.id}-tipo" type="radio" id="padrao${course.id}"><label for="padrao${course.id}">Inscrição Padrão (Usarei um computador do evento)</label><br>
-            <input value="alternativa" name="c${course.id}-tipo" type="radio" id="alternativa${course.id}"><label for="alternativa${course.id}">Inscrição Alternativa (Levarei meu próprio notebook)</label><br><br>
+            <input ${padrao} value="padrao" name="c${course.id}-tipo" type="radio" id="padrao${course.id}"><label for="padrao${course.id}">Inscrição Padrão (Usarei um computador do evento)</label><br>
+            <input ${alternativa} value="alternativa" name="c${course.id}-tipo" type="radio" id="alternativa${course.id}"><label for="alternativa${course.id}">Inscrição Alternativa (Levarei meu próprio notebook)</label><br><br>
         `);
     });
 
@@ -466,69 +493,85 @@ function confirmCourses(courses){
         course.tipo = $(`input[name=c${course.id}-tipo]:checked`).val();
     });
 
-    let c1Id = courses[0] ? courses[0].id:-1;
-    let c2Id = courses[1] ? courses[1].id:-1;
-    let data = {
-        course1: c1Id,
-        course2: c2Id,
-    };
-    
-    if(c1Id != -1)
-        data['c1-tipoInscricao'] = courses[0].tipo;
-    if(c2Id != -1)
-        data['c2-tipoInscricao'] = courses[1].tipo;
+    if(!courses.length) courses = false;
+
+    let timeOut = showLoader(200);
 
     $.ajax({
         type: "post",
         url: "chooseCourses",
-        data,
+        data: {courses},
         dataType: "json",
         success: function (response) {
+            hideLoader(timeOut);
+
             $('#course-confirm-modal .btns-confirm').hide();
             $('#course-confirm-modal .btn-ok').show();
-
+            
             if(response['success']){
+                let tipoInscricaoInputs = $('input.tipo-inscricao');
+                tipoInscricaoInputs.attr('value', 'padrao');
+
                 let messages = [];
                 coursePickedAlerts.hide();
         
                 if(response['message'] === 'clear'){
                     messages.push(`<div class="alert alert-warning">Você se desinscreveu de todos os cursos.</div>`);
+
+                    $('#enrolls-counter').html('0');
                 }else{
 
                     let results = response['data_array'];
+
+                    $('#enrolls-counter').html(results.length);
+                    
                     results.forEach(function(result){
                         if(!result.info)
                             return;
 
                         let curso = result.info.tituloEvento;
-                        switch(result.status){
-                            
-                            case 'isFull':
-                                messages.push(`
-                                <div class="alert alert-danger">Não há mais vagas para o curso: "${curso}".</div>`
+                        if(result.status == 'success'){
+                            let t = 'regular';
+                            if(result.tipo == 'alternativa') t = 'alternativa';
+
+                            messages.push(`
+                                <div class="alert alert-success">Sua inscrição no curso: <b>${curso}</b> em <b>vaga ${t}</b> foi realizada com sucesso!</div>`
                                 );
-                                break;
-                            case 'alreadyEnrolled':
-                                messages.push(`
-                                <div class="alert alert-info">Você já está inscrito no curso: "${curso}".</div>`
-                                );
-                                break;
-                            case 'success':
-                                messages.push(`
-                                <div class="alert alert-success">Sua inscrição no curso: "${curso}" foi realizada com sucesso!</div>`
-                                );
-                                break;
-                            default:
-                                break;
                         }
 
                         //select the correct course
                         let id = result.info.idEvento;
 
-                        if(result.status === 'success' || result.status === 'alreadyEnrolled'){
-                            $(`#evento-${id}`).siblings('.picked').show();
+                        if(result.status === 'success' || result.status === 'ignore'){
+                            let checkbox = $(`#evento-${id}`);
+                            checkbox.siblings('.picked').show();
+                        
+                            let tipoInscricaoInput = checkbox.siblings('input.tipo-inscricao');
+                            tipoInscricaoInput.attr('value', result.tipo);
+                         
                         }
                     });
+
+
+                    //diff between before and after courses
+                    let desinsc = currentCourses.filter(function(v){
+
+                        let index = results.findIndex(function(obj) {
+                            return obj.id === v.id;
+                        });
+
+                        if(index === -1) return true;
+                    });
+
+                    desinsc.forEach(function(course){
+                        messages.push(' <div class="alert alert-warning">Você de desinscreveu do curso <b>'+course.title+'</b></div>');
+                    });
+                   
+                    currentCourses = results;
+                }
+
+                if(messages.length == 0) {
+                    messages.push(' <div class="alert alert-warning">Nenhuma alteração realizada.</div>`');
                 }
 
                 let modalDiv = $('#modal-courses');
@@ -541,6 +584,9 @@ function confirmCourses(courses){
                 let modalDiv = $('#modal-courses');
                 modalDiv.html(`<div class="alert alert-danger">${response['message']}</div>`);
             }
+        },
+        error: function(e){
+            console.log(e);
         }
     });
 }

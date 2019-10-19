@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__.'/../db/db_functions.php';
+require_once __DIR__.'/../config/eventDate.php';
 
 class Event {  
 
@@ -89,22 +90,33 @@ class Event {
         return array_values($filteredEvents);
     }
 
-    public static function isEnrolled($userId, $eventId){
-        $result = db_select('SELECT COUNT(*) as count FROM inscricoes WHERE idParticipante=? AND idMinicurso=?', $userId, $eventId)[0];
+    public static function isEnrolled($userId, $course){
+        $result = db_select('SELECT COUNT(*) as count FROM inscricoes WHERE idParticipante=? AND idMinicurso=? AND tipoInscricao=?', $userId, $course['id'], $course['tipo'])[0];
 
         return $result['count'] > 0 ? true:false;
     }
 
-    //e1 = e2 = -1 para se desinscrever de todos os cursos;
-    public static function deleteUnwantedEnrolls($userId, $e1, $e2){
+    public static function deleteUnwantedEnrolls($userId, $wantedCourses){
+
+        if(count($wantedCourses) <= 0) return;
+
+        $ids = array();
+        $select_query = 'SELECT idMinicurso, tipoInscricao FROM inscricoes  WHERE idParticipante = ?';
+        $delete_query = 'DELETE FROM inscricoes WHERE idParticipante = ?';
+        foreach($wantedCourses as $course){
+            array_push($ids, $course['id'].$course['tipo']);
+
+            $select_query .= ' AND CONCAT(idMinicurso, tipoInscricao) != ?';
+            $delete_query .= ' AND CONCAT(idMinicurso, tipoInscricao) != ?';
+        }
 
         //selecionar idMinicurso e tipoInscrição para aumentar quantidade de vagas depois de deletar inscrições
-        $results = db_select('SELECT idMinicurso, tipoInscricao FROM inscricoes  WHERE idParticipante = ? AND (idMinicurso != ? AND idMinicurso != ?)', $userId, $e1, $e2);
+        $results = db_select($select_query, $userId, ...$ids);
 
         if(!$results) return;
 
         //deletar inscrições
-        db_query('DELETE FROM inscricoes WHERE idParticipante = ? AND (idMinicurso != ? AND idMinicurso != ?)', $userId, $e1, $e2);
+        db_query($delete_query, $userId, ...$ids);
 
         //aumentar número de vagas
         foreach($results as $result){
@@ -114,39 +126,115 @@ class Event {
                 db_query('UPDATE eventos SET vagasAlterOcupadas = vagasAlterOcupadas-1 WHERE idEvento=?', $result['idMinicurso']);
         }
     }
+    public static function deleteAllEnrolls($userId){
+         //selecionar idMinicurso e tipoInscrição para aumentar quantidade de vagas depois de deletar inscrições
+         $results = db_select('SELECT idMinicurso, tipoInscricao FROM inscricoes WHERE idParticipante = ?', $userId);
+
+         if(!$results) return;
+
+         //deletar inscrições e aumentar numero de vagas
+         foreach($results as $course){
+
+            db_query('DELETE FROM inscricoes WHERE idParticipante = ? AND (idMinicurso = ? AND tipoInscricao = ?)', $userId, $course['idMinicurso'], $course['tipoInscricao']);
+
+            if($course['tipoInscricao'] === 'padrao'){
+                db_query('UPDATE eventos SET vagasOcupadas = vagasOcupadas-1 WHERE idEvento=?', $course['idMinicurso']);
+            }else if($course['tipoInscricao'] === 'alternativa'){
+                db_query('UPDATE eventos SET vagasAlterOcupadas = vagasAlterOcupadas-1 WHERE idEvento=?', $course['idMinicurso']);
+            }
+         } 
+    }
+
+    public static function isFull($course){
+        $isFull = false;
+
+        if($course['tipo'] === 'padrao'){
+           $result = db_select('SELECT COUNT(*) as count FROM eventos WHERE idEvento=? AND vagasPadrao-vagasOcupadas > 0', $course['id'])[0];
+
+           $isFull = $result['count'] > 0 ? false:true;
+        }else if($course['tipo'] === 'alternativa'){
+            $result = db_select('SELECT COUNT(*) as count FROM eventos WHERE idEvento=? AND vagasAlternativas-vagasAlterOcupadas > 0', $course['id'])[0];
+
+           $isFull = $result['count'] > 0 ? false:true;
+        }
+
+        return $isFull;
+    }
 
     public static function enroll($userId, $eventId, $type){
-            
-        $free = false;
-        if($type === 'padrao'){
-           $result = db_select('SELECT COUNT(*) as count FROM eventos WHERE idEvento=? AND vagasPadrao-vagasOcupadas > 0', $eventId)[0];
-
-           $free = $result['count'] > 0 ? true:false;
-        }else if($type === 'alternativa'){
-            $result = db_select('SELECT COUNT(*) as count FROM eventos WHERE idEvento=? AND vagasAlternativas-vagasAlterOcupadas > 0', $eventId)[0];
-
-           $free = $result['count'] > 0 ? true:false;
-        }else
-            return 'invalidType';
-
-        if(!$free)
-            return 'isFull';
         
         $date = date('Y-m-d H:i:s');
-        db_query('INSERT INTO inscricoes(idParticipante, idMinicurso, dataInscricao, tipoInscricao) VALUES(?, ?, ?, ?)', $userId, $eventId, $date, $type);
+        $result = db_query('INSERT INTO inscricoes(idParticipante, idMinicurso, dataInscricao, tipoInscricao) VALUES(?, ?, ?, ?)', $userId, $eventId, $date, $type);
+
+        if(!$result) return false;
 
         if($type === 'padrao')
-            db_query('UPDATE eventos SET vagasOcupadas = vagasOcupadas+1 WHERE idEvento=?', $eventId);
+            $result = db_query('UPDATE eventos SET vagasOcupadas = vagasOcupadas+1 WHERE idEvento=?', $eventId);
         else if($type === 'alternativa')
-            db_query('UPDATE eventos SET vagasAlterOcupadas = vagasAlterOcupadas+1 WHERE idEvento=?', $eventId);
-        
-        return 'success';
+            $result = db_query('UPDATE eventos SET vagasAlterOcupadas = vagasAlterOcupadas+1 WHERE idEvento=?', $eventId);
+
+        return true;
     }
 
     public static function getById($eventId){
         return db_select('SELECT * FROM eventos WHERE idEvento=?', $eventId)[0];
     }
 
+    public static function defineMaxCourses(){
+        $max_courses = 2;
+
+        date_default_timezone_set("America/Sao_Paulo");
+
+        $event_start = new DateTime(EVENT_START);
+        $current_date = new DateTime('now');
+
+        //gambiarra pra liberação de vaga 1 dia antes do EVENT_START, pois o date diff buga pra esse caso
+        if($current_date->format('Y-m-d') === '2019-11-03'){
+            $max_courses = $max_courses + 1;
+            return $max_courses;
+        }
+
+        if($current_date > $event_start){
+
+            $interval = date_diff($event_start, $current_date);
+            $interval = intval($interval->format('%r%d'));
+            
+            $max_courses = $max_courses + $interval + 2;
+        }
+
+        return $max_courses;
+    }
+
+    public static function checkEventDate($eventId){
+        date_default_timezone_set("America/Sao_Paulo");
+
+        //2 hours
+        $min_interval = 2;
+   
+        $result = db_select('SELECT inicioEvento FROM eventos WHERE idEvento=?', $eventId)[0];
+
+        $course_date = new DateTime($result['inicioEvento']);
+        $current_date = new DateTime('now');
+
+        $yearDiff = intval($course_date->format('y')) - intval($current_date->format('y'));
+        $monthDiff = intval($course_date->format('m')) - intval($current_date->format('m'));
+        $dayDiff = intval($course_date->format('d')) - intval($current_date->format('d'));
+
+        if($yearDiff > 0) return true;
+        if($monthDiff > 0) return true;
+        if($monthDiff == 0 && $dayDiff > 0) return true;
+
+        if($yearDiff == 0 && $monthDiff == 0 && $dayDiff == 0){
+
+            $interval = date_diff($current_date, $course_date);
+            $interval = $interval->format("%r%h");
+
+            if(intval($interval) >= $min_interval) return true;
     
+            return false;  
+        }    
+        
+        return false;
+    }
 }
 ?>
