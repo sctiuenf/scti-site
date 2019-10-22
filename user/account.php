@@ -14,7 +14,7 @@ if(!isset($_SESSION['logged'])){
     $user = unserialize($_SESSION['user']);
     $userInfo = $user->getInfo();
 
-    $hasPayment = $user->hasPayment();
+    $hasPayment = $user->HasPayment();
 
     $paymentComplete =  $hasPayment && $user->getPaymentStatus() === 'A';
     $paymentPending = $hasPayment && $user->getPaymentStatus() !== 'A';
@@ -283,10 +283,6 @@ if(!isset($_SESSION['logged'])){
             </div>
         </div>
     </section>
-    <?php 
-        $day = date('j', strtotime(COURSE_END))-1;
-        $month = MONTHS[$month = date('m', strtotime(COURSE_END))];
-    ?>
     <section id="courses" class="container-fluid">
 
         <?php /* if(!$paymentComplete){ */?>
@@ -296,7 +292,7 @@ if(!isset($_SESSION['logged'])){
         <div class="row h-100 align-items-center pt-5 pb-3 px-3">
             <div class="col-12 col-lg-3 light-color">
                 <h1 class="sec-title light-color text-center">Escolha dois cursos incríveis!</h1>
-                <p class="sec-text text-center">E não se preocupe, você pode alterar os cursos escolhidos até o dia <?=$day?> de <?=$month?></p>
+                <p class="sec-text text-center">E não se preocupe, você pode  alterar sua inscrição, se inscrever ou desinscrever, de um curso até o dia anterior ao mesmo.</p>
                 <div class="sec-text help">
                     Vagas alternativas
                     <button data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content="As vagas alternativas são destinadas a participantes que possam levar seu próprio notebook para participarem dos minicursos." aria-label="Vagas alternativas">
@@ -371,8 +367,14 @@ if(!isset($_SESSION['logged'])){
     </section>
 
     <?php 
-        $day = date('j', strtotime(SHIRT_END))-1;
-        $month = MONTHS[$month = date('m', strtotime(SHIRT_END))];
+
+        if($user->HasPayment() && strtotime($user->getPaymentDate()) < strtotime(SHIRT_END)){
+            $day = date('j', strtotime(SHIRT_END))-1;
+            $month = MONTHS[$month = date('m', strtotime(SHIRT_END))];
+        }else{
+            $day = date('j', strtotime(INSC_END));
+            $month = MONTHS[$month = date('m', strtotime(INSC_END))];
+        }
     ?>
     <section id="shirts" class="container-fluid">
     
