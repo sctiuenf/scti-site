@@ -16,6 +16,7 @@ class RecoveryToken {
     }
 
     static function verifyToken($selector, $token){
+        date_default_timezone_set("America/Sao_Paulo");
         $timeStamp = time();
 
         $result = db_select('SELECT selecionador, token FROM tokensrecuperacao WHERE selecionador=? AND expiracao > ?', $selector, $timeStamp);

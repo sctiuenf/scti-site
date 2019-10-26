@@ -45,6 +45,56 @@ class Event {
 
     }
 
+    public static function getUpcomingEvents(){
+        date_default_timezone_set("America/Sao_Paulo");
+
+        $current_date = date("Y-m-d H:i:s"); 
+
+        $events = db_select('SELECT idEvento, tituloEvento, inicioEvento, fimEvento, tipo FROM eventos WHERE fimEvento > ?', $current_date);
+        if($events === null)    
+            return $events;
+
+        $event_list = array();
+        foreach($events as $event){
+
+            if($event['tipo'] === 'minicurso'){
+
+                $inscricoes = db_select('SELECT i.idMinicurso, i.idParticipante, i.tipoInscricao, p.nomeParticipante, p.sobrenomeParticipante FROM inscricoes i INNER JOIN participantes p ON i.idParticipante=p.idParticipante WHERE idMinicurso = ?', $event['idEvento']);
+        
+                $event['inscricoes'] = $inscricoes;
+            }
+
+            array_push($event_list, $event);
+        }
+        return $event_list;
+    }
+
+    public static function checkin($event_id, $user_id, $organizer_id, $force = false){
+        date_default_timezone_set("America/Sao_Paulo");
+
+        $current_date = date("Y-m-d H:i:s"); 
+
+        $result = db_select('SELECT tipo FROM eventos WHERE idEvento = ?', $event_id);
+        $event_type = $result[0]['tipo'];
+
+        if($event_type !== 'minicurso' || $force === true){
+
+            $result = db_query('INSERT INTO presencas(idParticipante, idEvento, dataPresenca, idOrganizador) VALUES(?, ?, ?, ?)', $user_id, $event_id, $current_date, $organizer_id);
+
+            if(!$result) throw new Exception('Falha registrar presença');
+
+        }else if($force === false){
+
+            $result = db_select('SELECT COUNT(*) as count FROM inscricoes WHERE idParticipante=? AND idMinicurso=?', $user_id, $event_id);
+
+            if($result[0]['count'] == 0) throw new Exception('Participante não inscrito no curso enviado.');
+
+            $result = db_query('INSERT INTO presencas(idParticipante, idEvento, dataPresenca, idOrganizador) VALUES(?, ?, ?, ?)', $user_id, $event_id, $current_date, $organizer_id);
+
+            if(!$result) throw new Exception('Falha registrar presença');
+        }
+    }
+
     public static function getEventsByDay($day, $type = null){
 
         $date = '2019-11-'.$day;

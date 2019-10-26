@@ -4,7 +4,7 @@ require_once __DIR__.'/../models/RecoveryToken.php';
 require_once __DIR__.'/../utils/json_utils.php';
 require_once __DIR__.'/../utils/root_url.php';
 require_once __DIR__.'/../utils/mailer.php';
-
+date_default_timezone_set("America/Sao_Paulo");
 try{
 if(!$_POST["email"])
     throw new Exception("Email não enviado");
