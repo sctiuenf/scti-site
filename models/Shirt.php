@@ -16,6 +16,9 @@ class Shirt {
     //permite que usuários com pagamento processado antes do dia "shirt_end" mudem de camisa até esse dia
     //já para usuários com pagamento processado após o dia "shirt_end", permite que alterem a camisa até o fim das inscrições (insc_end) 
     public static function checkDate($user){
+        //temporary disabled
+        return false;
+
         date_default_timezone_set("America/Sao_Paulo");
 
         $shirt_end = strtotime(SHIRT_END);
