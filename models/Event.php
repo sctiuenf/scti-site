@@ -59,7 +59,7 @@ class Event {
 
             if($event['tipo'] === 'minicurso'){
 
-                $inscricoes = db_select('SELECT i.idMinicurso, i.idParticipante, i.tipoInscricao, p.nomeParticipante, p.sobrenomeParticipante FROM inscricoes i INNER JOIN participantes p ON i.idParticipante=p.idParticipante WHERE idMinicurso = ?', $event['idEvento']);
+                $inscricoes = db_select('SELECT i.idMinicurso, i.idParticipante, i.tipoInscricao FROM inscricoes i INNER JOIN participantes p ON i.idParticipante=p.idParticipante WHERE idMinicurso = ?', $event['idEvento']);
         
                 $event['inscricoes'] = $inscricoes;
             }
@@ -69,30 +69,75 @@ class Event {
         return $event_list;
     }
 
-    public static function checkin($event_id, $user_id, $organizer_id, $force = false){
+    //registra os checkins enviados, e retorna um array contendendo o "status" de cada checkin, dentre eles:
+    /*
+        "success" => checkin feito com sucesso,
+        "already_sync" => checkin já feito anteriormente,
+        "not_enrolled" => participante não inscrito no curso, e opção "force_checkin" não marcada
+    */
+    public static function checkin($attendances, $organizer_id){
         date_default_timezone_set("America/Sao_Paulo");
 
-        $current_date = date("Y-m-d H:i:s"); 
+        $query = 'INSERT INTO presencas(idParticipante, idEvento, dataPresenca, idOrganizador) VALUES ';
+        $counter = 0;
 
-        $result = db_select('SELECT tipo FROM eventos WHERE idEvento = ?', $event_id);
-        $event_type = $result[0]['tipo'];
+        $params = array();
 
-        if($event_type !== 'minicurso' || $force === true){
+        $results = array();
+        foreach($attendances as $att){
+            $event_id = $att['eventId'];
+            $user_id = $att['userId'];
+            $date = $att['date'];
+            $force_checkin = isset($att['force_checkin']) ? $att['force_checkin']:false;
 
-            $result = db_query('INSERT INTO presencas(idParticipante, idEvento, dataPresenca, idOrganizador) VALUES(?, ?, ?, ?)', $user_id, $event_id, $current_date, $organizer_id);
+            $result = db_select('SELECT COUNT(*) as count FROM presencas WHERE idParticipante = ? AND idEvento = ?', $user_id, $event_id);
+            $already_registered = $result[0]['count'] > 0 ? true:false;
 
-            if(!$result) throw new Exception('Falha registrar presença');
+            if($already_registered){
+                $att['status'] = 'already_sync';
+                array_push($results, $att);
+                continue;
+            }
 
-        }else if($force === false){
+            $result = db_select('SELECT tipo FROM eventos WHERE idEvento = ?', $event_id);
+            $event_type = $result[0]['tipo'];
 
-            $result = db_select('SELECT COUNT(*) as count FROM inscricoes WHERE idParticipante=? AND idMinicurso=?', $user_id, $event_id);
+            if($event_type !== 'minicurso' || $force_checkin === true){
+                if($counter > 0) $query .= ', ';
 
-            if($result[0]['count'] == 0) throw new Exception('Participante não inscrito no curso enviado.');
+                $query .= '(?, ?, ?, ?)';
+                array_push($params, $user_id, $event_id, $date, $organizer_id);
 
-            $result = db_query('INSERT INTO presencas(idParticipante, idEvento, dataPresenca, idOrganizador) VALUES(?, ?, ?, ?)', $user_id, $event_id, $current_date, $organizer_id);
+                $att['status'] = 'success';
+                array_push($results, $att);
+                $counter++;
 
-            if(!$result) throw new Exception('Falha registrar presença');
+            }else if($force_checkin === false){
+                $result = db_select('SELECT COUNT(*) as count FROM inscricoes WHERE idParticipante=? AND idMinicurso=?', $user_id, $event_id);
+
+                if($result[0]['count'] == 0){
+
+                    $att['status'] = 'not_enrolled';
+                    array_push($results, $att);
+                }else{
+                    if($counter > 0) $query .= ', ';
+                    $query .= '(?, ?, ?, ?)';
+                    array_push($params, $user_id, $event_id, $date, $organizer_id);
+    
+                    $att['status'] = 'success';
+                    array_push($results, $att);
+                    $counter++;
+                }
+            }
         }
+        
+        if($counter > 0){
+            $result = db_query($query, ...$params);
+
+            if(!$result) throw new Exception('Falha na query para registrar presenças.');
+        }
+
+        return $results;
     }
 
     public static function getEventsByDay($day, $type = null){

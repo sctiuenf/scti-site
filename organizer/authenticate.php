@@ -27,7 +27,7 @@ AuthToken::deleteOldTokens($organizer->getId());
 
 $selector = bin2hex(random_bytes(8)).$organizer->getId(); //unique selector
 $token = bin2hex(random_bytes(32));
-$expires = time() + 3600; //actual timestamp Unix plus 1 hour
+$expires = time() + 1209600; //actual timestamp Unix plus 14 days
 
 $authToken = new AuthToken(
     $organizer->getId(),

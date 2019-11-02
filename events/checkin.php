@@ -16,22 +16,20 @@ try{
 
     $params =  json_decode(file_get_contents('php://input'), true);
 
-    if(!isset($params['eventId']) || !isset($params['userId']))
+    if(!isset($params['attendances']))
         throw new Exception("Dados não recebidos");
 
-    $event_id = $params['eventId'];
-    $user_id = $params['userId'];
-    $force_checkin = isset($params['force_checkin']) ? $params['force_checkin']:false;
+    $attendances = $params['attendances'];
 
-    Event::checkin($event_id, $user_id, $organizer_id, $force_checkin);
-    
-    json_return(true);
+    $results = Event::checkin($attendances, $organizer_id);
+
+    json_return(true, 'Sincronização feita com sucesso.', null, $results);
 
 }catch(Exception $e){
 
     $message = $e->getMessage();
     
-    if(isset($e->errorInfo) && $e->errorInfo[1] == 1062) $message = 'O check-in deste usuário já foi feito neste minicurso';
+    if(isset($e->errorInfo) && $e->errorInfo[1] == 1062) $message = 'Existem checkins já feitos. Nenhum checkin realizado.';
 
     json_return(false, $message, $e);
 }

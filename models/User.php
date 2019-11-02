@@ -46,6 +46,12 @@ class User {
 
         return $result[0]['count'] > 0 ? true:false;
     }
+
+    static function getConfirmedUsers(){
+        $result = db_select('SELECT p.idParticipante, p.nomeParticipante, p.sobrenomeParticipante FROM participantes p INNER JOIN pagamentos pg ON p.idPagamento = pg.idPagamento WHERE pg.statusPagamento = "A"');
+
+        return $result;
+    }
     
     public function register($password){
        
