@@ -79,7 +79,10 @@ function getEventCard(params){
         ${instrutorImg}
     </div>
     <div class="card-body">
-        <h6 id="event-tipo">${params.tipo}</h6>
+        <div class="row justify-content-between m-0">
+            <h6 id="event-tipo">${params.tipo}</h6>
+            <h6 id="event-local">Local: ${params.local}</h6>
+        </div>
         <h4 id="event-tituloEvento" class="card-title">${params.tituloEvento}</h4>
         <div class="row m-0 nome-instrutor">
         <h5 id="event-nomeInstrutor" class="card-title">${params.nomeInstrutor} ${params.sobrenomeInstrutor}</h5>
