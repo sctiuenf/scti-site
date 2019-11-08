@@ -114,7 +114,8 @@ class User {
 
             $query.= $column.'=?';
 
-            $value = $value === true ? 0:1;
+            if($column == 'participarCampeonato')
+                $value = $value === true ? 0:1;
 
             array_push($values, $value);
 
