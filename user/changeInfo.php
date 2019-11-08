@@ -13,14 +13,20 @@ try{
         die;
     }
 
+
+ 
+
     $unfilteredParams = array(
         'nomeParticipante' => isset($_POST['firstname']) ? $_POST['firstname']:null, 
         'sobrenomeParticipante' => isset($_POST['lastname']) ? $_POST['lastname']:null, 
         'telefoneParticipante' => isset($_POST['phone']) ? $_POST['phone']:null,
-        'emailParticipante' => isset($_POST['email']) ? $_POST['email']:null
+        'emailParticipante' => isset($_POST['email']) ? $_POST['email']:null,
+        'participarCampeonato' =>  $_POST['championship']
     );
+    
 
     $params = array();
+  
     foreach($unfilteredParams as $i => $param){
 
         if($param !== null){
@@ -29,6 +35,7 @@ try{
                 $params[$i] = $param;
         }
     }
+    $params['participarCampeonato'] = $_POST['championship'] == "true" ? true:false;
 
     if(count($params) <= 0)
         throw new Exception('Informações não recebidas');

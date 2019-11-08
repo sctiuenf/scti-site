@@ -3,14 +3,16 @@ require_once __DIR__.'/../db/db_functions.php';
 
 class User {  
 
-    private $id, $firstName, $lastName, $phone, $email; 
+    private $id, $firstName, $lastName, $phone, $email, $championship; 
 
-    function __construct($firstName=null, $lastName=null, $phone=null, $email=null){
+    function __construct($firstName=null, $lastName=null, $phone=null, $email=null, $championship = null){
         $this->id = null;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->phone = $phone;
         $this->email = $email;
+        $this->championship = $championship;
+          
     } 
 
     static function findByEmail($email){
@@ -82,7 +84,8 @@ class User {
         $this->lastName = $row['sobrenomeParticipante'];
         $this->phone = $row['telefoneParticipante'];
         $this->email = $row['emailParticipante'];
-
+        $this->championship = $row['participarCampeonato'];
+        
         if(!$this->isLoggedIn()){
             $_SESSION['user'] = serialize($this);
             $_SESSION['logged'] = true;
@@ -111,6 +114,8 @@ class User {
 
             $query.= $column.'=?';
 
+            $value = $value === true ? 0:1;
+
             array_push($values, $value);
 
             $first = false;
@@ -124,7 +129,8 @@ class User {
             'nomeParticipante' => 'firstName',
             'sobrenomeParticipante' => 'lastName',
             'telefoneParticipante' => 'phone',
-            'emailParticipante' => 'email'
+            'emailParticipante' => 'email',
+            'participarCampeonato' => 'championship'
         );
 
         foreach($params as $column => $value){
@@ -164,7 +170,8 @@ class User {
             "firstName" => $this->firstName,
             "lastName" => $this->lastName,
             "phone" => $this->phone,
-            "email" => $this->email
+            "email" => $this->email,
+            'championship' => $this->championship
         );
     }
 

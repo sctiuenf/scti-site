@@ -138,7 +138,7 @@ $(document).ready(function () {
 
         form[0].reportValidity();
         if(!form[0].checkValidity()) return false;
-
+        console.log(form.serialize());
         $.ajax({
             type: "post",
             url: "changeInfo",

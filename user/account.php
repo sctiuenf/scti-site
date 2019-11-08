@@ -224,6 +224,12 @@ if(!isset($_SESSION['logged'])){
                                 <input class="form-control" maxlength="16"  pattern="[\(][0-9]{2}[\)] [0-9]{1} [0-9]{4}[\-][0-9]{4}" id="phone" name="phone" type="tel" value="<?=$userInfo['phone']?>">
                                 <label for="phone"class="label-float <?php echo count($userInfo['phone']) > 0 ? 'translated-label':''?>">Telefone</label>
                             </div>
+                            <div class="form-group row mr-0 ml-0 align-items-center">
+                            <input hidden name="championship" value="false">
+                            <input <?php if($userInfo['championship'] == true) echo 'checked' ?> id="championship" name="championship" type="checkbox" value="true">
+                             
+                                <label for="championship" class="mb-0 ml-1">Vou participar da competição de programação</label>
+                            </div>
                             <div class="row m-0">
                                 <input class="btn btn-3d-primary mr-3 changeInfo-btn" type="submit" value="Alterar informações">
                                 
